@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light shadow mb-1">
+  <div class="container">
+        <a routerLink="/navbar" routerLinkActive="active" class="navbar-brand logo">
+           <img class="w-50 m-auto" src="./assets/img/logo.png">
+       </a>
+           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+          </button>
+        <div class="collapse navbar-collapse text-center"  id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                  <a class="nav-link" href="./index">主页 <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">景点介绍</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">美食推荐</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">旅游游记</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">罗川简介</a>
+              </li>
+          </ul>
+          <div class="navbar-nav" id="user-icon">
+              <div class="nav-item">
+                  <a class="btn btn-light" data-toggle="modal" data-target="#loginAndRegstModal">
+                      <i class="fas fa-user"></i>
+                  </a>
+              </div>
+              <div class="dropdown d-none">
+                  <a class="btn dropdown-toggle clear-after transparent-background p-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       <img class="nav-user-pic rounded-circle" src="./assets/img/userPic.png" alt="" >
+                   </a>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#">设置</a>
+                      <a class="dropdown-item" data-operating="exit" href="javascript:void(0)">退出</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</nav>
