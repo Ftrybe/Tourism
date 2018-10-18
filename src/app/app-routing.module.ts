@@ -1,9 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { NavbarComponent } from './nav/navbar/navbar.component'
+import { HomeContentComponent } from './home/content/content.component'
 
 const routes: Routes = [
-  {path:'navbar',component:NavbarComponent},
+  { path: '', redirectTo: "/index", pathMatch: "full" },
+  { path: 'index', component: HomeContentComponent },
+  { path: 'scenery', loadChildren: './page/scenery/scenery.module#SceneryModule' },
+  { path: 'note', loadChildren: './page/note/note.module#NoteModule' },
+  { path: 'introduction', loadChildren: './page/introduction/introduction.module#IntroductionModule' },
+  {
+    path: 'food', loadChildren: './page/food/food.module#FoodModule'
+  },
+
+  { path: '**', redirectTo: "/index" }
 
 ];
 
@@ -12,4 +21,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [NavbarComponent]
+export const routingComponents = [HomeContentComponent]
