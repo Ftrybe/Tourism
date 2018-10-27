@@ -4,14 +4,11 @@ import { HomeContentComponent } from './home/content/content.component'
 
 const routes: Routes = [
   { path: '', redirectTo: "/index", pathMatch: "full" },
-  { path: 'index', component: HomeContentComponent },
-  { path: 'scenery', loadChildren: './page/scenery/scenery.module#SceneryModule' },
-  { path: 'note', loadChildren: './page/note/note.module#NoteModule' },
-  { path: 'introduction', loadChildren: './page/introduction/introduction.module#IntroductionModule' },
-  {
-    path: 'food', loadChildren: './page/food/food.module#FoodModule'
-  },
-
+  { path: 'index', component: HomeContentComponent ,data:{title: '罗源游'}},
+  { path: 'scenery', loadChildren: './page/scenery/scenery.module#SceneryModule',data:{title:'景点推荐'} },
+  { path: 'note', loadChildren: './page/note/note.module#NoteModule',data:{title: '旅游游记'} },
+  { path: 'introduction', loadChildren: './page/introduction/introduction.module#IntroductionModule',data:{title:'罗源湾简介'} },
+  {path: 'food', loadChildren: './page/food/food.module#FoodModule',data:{title:'美食推荐'}},
   { path: '**', redirectTo: "/index" }
 
 ];
