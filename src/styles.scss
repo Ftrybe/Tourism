@@ -1,7 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../src/assets/font/fontawasome/fontawesome-all.css";
 
-
+@media screen and (min-width:998){
+  .navbar {
+    .navbar-collapse{
+      transform: translateX(0rem);
+    }
+  }
+}
   .navbar {
     .container {
       .logo {

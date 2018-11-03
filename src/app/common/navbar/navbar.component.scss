@@ -12,5 +12,10 @@ $color:#f8f9fa;
             transform: translateX(-12.5rem);
             transition: transform 1s;
         }
+        .show{
+            transform: translateX(0);
+            transition: transform 1s;
+        }
     }
+    
 }

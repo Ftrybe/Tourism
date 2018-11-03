@@ -1,5 +1,6 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule,routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './common/footer/footer.component';
@@ -26,7 +27,9 @@ import { HasRoleDirective } from './core/directive/has-role.directive';
       BrowserModule,
       AppRoutingModule,
       HttpClientModule,
-      BrowserAnimationsModule
+      BrowserAnimationsModule,
+      FormsModule,
+      ReactiveFormsModule
    ],
    entryComponents: [
     SignComponent,

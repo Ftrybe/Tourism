@@ -57,9 +57,11 @@ export class NavbarComponent implements OnInit {
   toggleMenu(){
     this.isClick = !this.isClick;
     if(this.isClick){
-      this.renderer.setStyle(this.navbCollapse.nativeElement,"transform","translateX(0rem)");
+      this.renderer.addClass(this.navbCollapse.nativeElement,"show");
+      
     }else{
-      this.renderer.setStyle(this.navbCollapse.nativeElement,"transform","translateX(-12.5rem)");
+      this.renderer.removeClass(this.navbCollapse.nativeElement,"show");
+    
     }
    
   }
