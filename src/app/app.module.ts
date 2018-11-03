@@ -4,7 +4,11 @@ import { AppRoutingModule,routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './common/footer/footer.component';
 import { NavbarComponent } from './common/navbar/navbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignComponent,LoginComponent,RegisterComponent } from './dialog/sign';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthenticationInterceptor } from './core/interceptors/authentication.interceptor';
+import { HasRoleDirective } from './core/directive/has-role.directive';
 
 
 @NgModule({
@@ -15,14 +19,23 @@ import { SignComponent,LoginComponent,RegisterComponent } from './dialog/sign';
       NavbarComponent,
       SignComponent,
       LoginComponent,
-      RegisterComponent
+      RegisterComponent,
+      HasRoleDirective
    ],
    imports: [
       BrowserModule,
-      AppRoutingModule
+      AppRoutingModule,
+      HttpClientModule,
+      BrowserAnimationsModule
+   ],
+   entryComponents: [
+    SignComponent,
+    LoginComponent,
+    RegisterComponent
    ],
    providers: [
-       Title
+       Title,
+        [{provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true}]
    ],
    bootstrap: [
       AppComponent

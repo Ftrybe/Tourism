@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
+
 
 @Component({
   selector: 'app-login',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authenticationService:AuthenticationService) {}
+
 
   ngOnInit() {
+    
   }
 
+  onLogin(){
+    this.authenticationService.login("admin", "admin")
+      .subscribe(result => {
+        if (result) {
+          
+        } else {
+          // login failed
+
+        }
+      });
+  }
 }

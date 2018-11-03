@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../src/assets/font/fontawasome/fontawesome-all.css";
+
+
   .navbar {
     .container {
       .logo {
@@ -12,7 +14,7 @@
     }
   }
   .clear-after {
-    ::after {
+    &:after {
       content: "";
       border: 0;
     }
@@ -20,12 +22,11 @@
   .transparent-background {
     background-color: transparent;
   }
-  .footer {
-    .mbg-color {
-      background-color: #d4d4d41a;
-      background: linear-gradient(to bottom, #d4d4d41a, #d1d1d111, #d4d4d413);
+  .footer.mbg-color {
+      background-color: rgba($color: #d4d4d4, $alpha: .1);
+      background: linear-gradient(to bottom, rgba($color: #d4d4d4, $alpha: .01), rgba($color: #d1d1d1, $alpha: .07), rgba($color: #d4d4d4, $alpha: .01));
     }
-  }
+  
   .notes-list::before,
   .food-list::before {
     margin: 0 auto;
@@ -36,17 +37,17 @@
     border: 1rem solid transparent;
   }
   .notes-list {
-    ::before {
+    &:before {
       border-top: 1rem solid #f8f9fa;
     }
   }
   .food-list {
-    ::before {
+    &:before {
       border-top: 1rem solid white;
     }
   }
   .scenery-list-title {
-    background: linear-gradient(to right, #fff, #dddddd11, #fff);
+    background: linear-gradient(to right, #fff,rgba($color:#ddd,$alpha:.01), #fff);
     padding-top: 5rem;
     padding-bottom: 1rem;
   }
@@ -119,24 +120,3 @@
       width: 400px;
     }
   }
-  .stage {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(38, 145, 201);
-    overflow: hidden;
-  }
-  .sheep {
-    width: 154px;
-    height: 117px;
-    background-image: url('assets/img/animations/sheep.png');
-    background-position: 0 0;
-    position: absolute;
-    right: 0;
-    bottom: 50px;
-    background-repeat: no-repeat;
-    cursor: -webkit-grabbing;
-  }
-  

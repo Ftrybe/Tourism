@@ -7,11 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SceneryComponent implements OnInit {
 
-  private mmmmm;
   constructor() { }
 
   ngOnInit() {
-    this.mmmmm = '嘿嘿';
+    
   }
 
 }

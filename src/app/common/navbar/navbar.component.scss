@@ -1,4 +1,16 @@
-
-.router-active{
- 
+$color:#f8f9fa;
+@media screen and (min-width:0) and (max-width:992px) {
+    .navbar {
+        .navbar-collapse {
+            position: fixed;
+            top: 4.5rem;
+            left: 0;
+            width: 12.5rem;
+            height: 100%;
+            z-index: 9999;
+            background-color: $color;
+            transform: translateX(-12.5rem);
+            transition: transform 1s;
+        }
+    }
 }

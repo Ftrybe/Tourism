@@ -1,4 +1,10 @@
-[{
-   "username":"admin",
-   "password":"admin"
-}]
+[
+    {
+        "username": "admin",
+        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZ…IiXX0.ONMpRDj9jDbGmwbEr-ucvu0R8uj0E7FXCZ3dguLyzcQ",
+        "authorities": {
+            "0": "ROLE_ADMIN",
+            "1": "ROLE_USER"
+        }
+    }
+]

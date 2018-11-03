@@ -3,13 +3,13 @@
         <a routerLink="/index" routerLinkActive="active" class="navbar-brand logo">
            <img class="w-50 m-auto" src="./assets/img/logo.png">
        </a>
-           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+           <button class="navbar-toggler" type="button" (click)="toggleMenu()">
                 <span class="navbar-toggler-icon"></span>
           </button>
-        <div class="collapse navbar-collapse text-center"  id="navbarSupportedContent">
+        <div class="navbar-collapse text-center" #navberCollapse>
           <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                  <a [routerLink]="['/index']" routerLinkActive="router-active" class="nav-link">主页</a>
+                  <a [routerLink]="['/index']" class="nav-link">主页</a>
               </li>
               <li class="nav-item">
                   <a [routerLink]="['/scenery']"  class="nav-link" >景点介绍</a>
@@ -25,7 +25,7 @@
               </li>
           </ul>
           <div class="navbar-nav" id="user-icon">
-              <div class="nav-item" *ngIf="!islogin;else elseBlock">
+              <div class="nav-item" *ngIf="!isLogin;else elseBlock">
                   <a class="btn btn-light" data-toggle="modal" data-target="#loginAndRegstModal">
                       <i class="fas fa-user"></i>
                   </a>
@@ -36,8 +36,9 @@
                        <img class="nav-user-pic rounded-circle" src="./assets/img/userPic.png" [alt]="username" >
                    </a>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#">{{username}}</a>
                       <a class="dropdown-item" href="#">设置</a>
-                      <a class="dropdown-item" data-operating="exit" href="javascript:void(0)">退出</a>
+                      <a class="dropdown-item" (click)="logout()" href="javascript:void(0)">退出</a>
                   </div>
               </div>
             </ng-template>
