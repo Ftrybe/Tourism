@@ -24,25 +24,7 @@
                   <a [routerLink]="['/introduction']"  class="nav-link">罗川简介</a>
               </li>
           </ul>
-          <div class="navbar-nav" id="user-icon">
-              <div class="nav-item" *ngIf="!isLogin;else elseBlock">
-                  <a class="btn btn-light" data-toggle="modal" data-target="#loginAndRegstModal">
-                      <i class="fas fa-user"></i>
-                  </a>
-              </div>
-              <ng-template #elseBlock>
-              <div class="dropdown">
-                  <a class="btn dropdown-toggle clear-after transparent-background p-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                       <img class="nav-user-pic rounded-circle" src="./assets/img/userPic.png" [alt]="username" >
-                   </a>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">{{username}}</a>
-                      <a class="dropdown-item" href="#">设置</a>
-                      <a class="dropdown-item" (click)="logout()" href="javascript:void(0)">退出</a>
-                  </div>
-              </div>
-            </ng-template>
-          </div>
+          <app-user-status></app-user-status>
       </div>
   </div>
 </nav>

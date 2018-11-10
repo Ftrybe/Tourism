@@ -1,0 +1,21 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-notes-list',
+  templateUrl: './notes-list.component.html',
+  styleUrls: ['./notes-list.component.scss']
+})
+export class NotesListComponent implements OnInit {
+
+  public isShowMenu:boolean;
+
+  getSortMenu(envent){
+    console.log(event);
+    this.isShowMenu = true;
+  }
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}

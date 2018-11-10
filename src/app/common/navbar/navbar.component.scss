@@ -3,11 +3,11 @@ $color:#f8f9fa;
     .navbar {
         .navbar-collapse {
             position: fixed;
-            top: 4.5rem;
+            top: 56px;
             left: 0;
             width: 12.5rem;
             height: 100%;
-            z-index: 9999;
+            z-index: 99;
             background-color: $color;
             transform: translateX(-12.5rem);
             transition: transform 1s;

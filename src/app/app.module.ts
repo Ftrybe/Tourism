@@ -10,6 +10,9 @@ import { SignComponent,LoginComponent,RegisterComponent } from './dialog/sign';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthenticationInterceptor } from './core/interceptors/authentication.interceptor';
 import { HasRoleDirective } from './core/directive/has-role.directive';
+import { CustomMaterialModule } from './customMaterial.module';
+import { UserStatusComponent } from './common/navbar/userStatus.component';
+import { NotesListComponent } from './home/notes-list/notes-list.component';
 
 
 @NgModule({
@@ -21,7 +24,9 @@ import { HasRoleDirective } from './core/directive/has-role.directive';
       SignComponent,
       LoginComponent,
       RegisterComponent,
-      HasRoleDirective
+      HasRoleDirective,
+      UserStatusComponent,
+      NotesListComponent
    ],
    imports: [
       BrowserModule,
@@ -29,7 +34,9 @@ import { HasRoleDirective } from './core/directive/has-role.directive';
       HttpClientModule,
       BrowserAnimationsModule,
       FormsModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      CustomMaterialModule
+
    ],
    entryComponents: [
     SignComponent,

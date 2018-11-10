@@ -27,7 +27,6 @@ export class AuthenticationService {
         }
       }),
       catchError((err) => {
-        console.error(err);
         return of(false)
       })
     );

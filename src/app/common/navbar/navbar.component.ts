@@ -1,7 +1,4 @@
-import { Component, OnInit, ComponentFactoryResolver, ElementRef, Injector, ApplicationRef, ComponentRef, Renderer2, ViewChild, HostListener } from '@angular/core';
-import { SignComponent } from 'src/app/dialog/sign';
-import { AuthenticationService } from 'src/app/core/services/authentication.service';
-
+import { Component, OnInit, ElementRef, Renderer2, ViewChild, HostListener } from '@angular/core';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -9,65 +6,32 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
 })
 export class NavbarComponent implements OnInit {
 
-  public username: String;
-  public isLogin: boolean;
-  public screenWidth:Number;
-  public isClick:boolean;
+  public isClick: boolean;
 
-  component: ComponentRef<SignComponent>;
-
-
-  @ViewChild("navberCollapse") navbCollapse:ElementRef;
+  @ViewChild("navberCollapse") navbCollapse: ElementRef;
   constructor(
-    private componentFactoryResolver: ComponentFactoryResolver,
-    private elementRef: ElementRef,
-    private injector: Injector,
-    private appRef: ApplicationRef,
-    private authenticationService: AuthenticationService,
-    private renderer:Renderer2
-  ) {
-
-    this.component = this.componentFactoryResolver
-      .resolveComponentFactory(SignComponent)
-      .create(this.injector);
-    appRef.attachView(this.component.hostView);
-  }
+    private renderer: Renderer2
+  ) { }
+ 
 
   ngOnInit() {
-    //用户登录判断/添加拟态框
-    this.isLogin = this.authenticationService.isLoggedIn();
-    console.log(this.isLogin);
-    if (this.isLogin) {
-      this.username = this.authenticationService.getUsername();
-    } else {
-      let  host = document.createElement("div");
-      host.appendChild((this.component.hostView as any).rootNodes[0]);
-      this.elementRef.nativeElement.appendChild(host);
-    }
-  }
-  ngAfterViewInit() {
-
   }
 
-  ngOnDestroy() {
-    this.appRef.detachView(this.component.hostView);
-    this.component.destroy();
-  }
   //侧滑菜单
-  toggleMenu(){
+  toggleMenu() {
     this.isClick = !this.isClick;
-    if(this.isClick){
-      this.renderer.addClass(this.navbCollapse.nativeElement,"show");
-      
-    }else{
-      this.renderer.removeClass(this.navbCollapse.nativeElement,"show");
-    
+    if (this.isClick) {
+      this.renderer.addClass(this.navbCollapse.nativeElement, "show");
+
+      //点击关闭侧滑
+      this.renderer.listen(this.navbCollapse.nativeElement,'click',event => {
+        this.renderer.removeClass(this.navbCollapse.nativeElement, "show");
+        this.isClick = false;
+      });
+    } else {
+      this.renderer.removeClass(this.navbCollapse.nativeElement, "show");
     }
-   
+    console.log(this.isClick);
   }
-  //退出登录
-  logout(){
-    this.authenticationService.logout();
-    this.isLogin=false;
-  }
+
 }

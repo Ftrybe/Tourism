@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 
@@ -16,6 +16,8 @@ export class AppComponent {
     ){}
 
     ngOnInit(): void {
+
+      //路由动态修改标题
      this.router.events.pipe(
        filter(e=>e instanceof NavigationEnd),
        map(() => this.activatedRoute),
