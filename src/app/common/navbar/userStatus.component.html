@@ -1,15 +1,15 @@
 <div class="navbar-nav" id="user-icon">
-    <div class="nav-item" *ngIf="isLogin;else elseBlock">
+    <div class="nav-item" *ngIf="!isLogin;else elseBlock">
         <a mat-button (click)="openDialog()" class="btn btn-light">
             <i class="fas fa-user"></i>
         </a>
     </div>
     <ng-template #elseBlock>
-        <div id="userInfo" (mouseover)="logout()">
-            <a class="btn transparent-background p-0" href="#">
+        <div id="userInfo">
+            <a class="btn dropdown-toggle transparent-background p-0" href="#">
                 <span>{{username}}</span>
             </a>
-            <div class="usertip" >
+            <div class="userTip">
                 <img class="nav-user-pic rounded-circle" src="./assets/img/userPic.png" [alt]="username" >
                 <div>
                     <a class="">
@@ -17,9 +17,9 @@
                         <span class=""></span>
                     </a>
                 </div>
-                <a class=""></a>
+                <a class="fa fa-bell">(0)</a>
                 <a class="" href="#">设置</a>
-                <a class="" (click)="logout()" href="javascript:void(0)">退出</a>
+                <a class="btn" (click)="logout()">退出</a>
             </div>
         </div>
     </ng-template>

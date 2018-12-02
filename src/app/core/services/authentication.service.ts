@@ -16,7 +16,7 @@ export class AuthenticationService {
 
   login(username: string, password: string): Observable<boolean> {
      return this.http.post<any>(`${environment.apiUrl}/auth`, JSON.stringify({username: username, password: password}), httpOptions).pipe(
-   //return this.http.post<any>(`../../../assets/data/user.json`, JSON.stringify({username: username, password: password}), httpOptions).pipe(
+     // return this.http.post<any>(`../../../assets/data/user.json`, JSON.stringify({username: username, password: password}), httpOptions).pipe(
       tap(response => {
         if (response && response.token) {
           // login successful, store username and jwt token in local storage to keep user logged in between page refreshes
@@ -27,7 +27,7 @@ export class AuthenticationService {
         }
       }),
       catchError((err) => {
-        return of(false)
+        return of(false);
       })
     );
   }

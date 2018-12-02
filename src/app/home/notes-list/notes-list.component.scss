@@ -1,0 +1,72 @@
+@mixin notes-list($imgWidth,$imgHeight,$titleSize,$contentSize,$contentHeight) {
+  & {
+
+    .note-item {
+      .note-link {
+        position: relative;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        padding: 16px;
+        overflow: hidden;
+        &:hover{
+          box-shadow: 3px 5px 3px 0px rgba(6, 16, 1, 0.15);;
+          border-radius:15px;
+          border: 1px solid rgba(0,0,0,.4);
+        }
+        .note-img {
+          padding: 8px;
+          width: $imgWidth;
+          height: $imgHeight;
+        }
+        .note-overview {
+          flex: 1;
+          padding: 8px;
+          overflow: hidden;
+          position: relative;
+          .note-title {
+            color: #222;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: $titleSize;
+          }
+          .note-content {
+            font-size: $contentSize;
+            color: #666;
+            height: $contentHeight;
+            line-height: $contentHeight/3;
+            overflow: hidden;
+          }
+          .opts {
+            color: #6c757d;
+            font-size: 11px;
+            position: absolute;
+            bottom: 5px;
+            right: 0;
+            .fa {
+              font-size: small;
+              font-weight: 400;
+              padding-left: 1rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 0) {
+  .notes-list {
+      @include notes-list(110px, 125px, 17px, 13px, 3rem);
+  }
+}
+@media screen and (min-width: 768px) {
+  .notes-list {
+      @include notes-list(220px, 250px, 23px, 17px, 6rem);
+  }
+}
+

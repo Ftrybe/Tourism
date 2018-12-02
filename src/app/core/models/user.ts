@@ -1,12 +1,12 @@
 
 
-//用户表
+// 用户表
 export class User {
-    username:String;
-    password:String;
-    realname?:String;
-    nickname?:String;
-    email?:String;
-    sex?:boolean;
-    birthday?:String;
+    username: String;
+    password: String;
+    realname?: String;
+    nickname?: String;
+    email?: String;
+    sex?: boolean;
+    birthday?: String;
 }

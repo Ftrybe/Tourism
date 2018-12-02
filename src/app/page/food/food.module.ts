@@ -7,7 +7,6 @@ import { FoodRoutes } from './food.routing';
   imports: [
     CommonModule,
     FoodRoutes
-  
   ],
   declarations: [FoodComponent]
 })

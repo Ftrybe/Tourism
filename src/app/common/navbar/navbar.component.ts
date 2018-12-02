@@ -8,30 +8,29 @@ export class NavbarComponent implements OnInit {
 
   public isClick: boolean;
 
-  @ViewChild("navberCollapse") navbCollapse: ElementRef;
+  @ViewChild('navbarCollapse') navbCollapse: ElementRef;
   constructor(
     private renderer: Renderer2
   ) { }
- 
+
 
   ngOnInit() {
   }
 
-  //侧滑菜单
+  // 侧滑菜单
   toggleMenu() {
     this.isClick = !this.isClick;
     if (this.isClick) {
-      this.renderer.addClass(this.navbCollapse.nativeElement, "show");
+      this.renderer.addClass(this.navbCollapse.nativeElement, 'show');
 
-      //点击关闭侧滑
-      this.renderer.listen(this.navbCollapse.nativeElement,'click',event => {
-        this.renderer.removeClass(this.navbCollapse.nativeElement, "show");
+      // 点击关闭侧滑
+      this.renderer.listen(this.navbCollapse.nativeElement, 'click', () => {
+        this.renderer.removeClass(this.navbCollapse.nativeElement, 'show');
         this.isClick = false;
       });
     } else {
-      this.renderer.removeClass(this.navbCollapse.nativeElement, "show");
+      this.renderer.removeClass(this.navbCollapse.nativeElement, 'show');
     }
-    console.log(this.isClick);
   }
 
 }

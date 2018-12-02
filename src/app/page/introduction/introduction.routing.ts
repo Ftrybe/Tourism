@@ -3,8 +3,8 @@ import { IntroductionComponent } from './introduction.component';
 
 const routes: Routes = [
   {
-     path:'',
-     component:IntroductionComponent }
+     path: '',
+     component: IntroductionComponent }
 ];
 
 export const IntroductionRoutes = RouterModule.forChild(routes);

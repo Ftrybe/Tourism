@@ -1,0 +1,15 @@
+@import "../../../assets/scss/varible";
+
+@media screen and (min-width: 0){
+  .userTip{
+    display: block;
+
+  }
+}
+@media screen and (min-width: $media-lg){
+  .userTip{
+    display: none;
+
+
+  }
+}
