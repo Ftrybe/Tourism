@@ -3,7 +3,7 @@ import {MatButtonModule, MatCheckboxModule, MatDialogModule, MatTabsModule} from
 
 
 @NgModule({
-  imports: [MatButtonModule, MatCheckboxModule,MatDialogModule,MatTabsModule],
-  exports: [MatButtonModule, MatCheckboxModule,MatDialogModule,MatTabsModule],
+  imports: [MatButtonModule, MatCheckboxModule, MatDialogModule, MatTabsModule],
+  exports: [MatButtonModule, MatCheckboxModule, MatDialogModule, MatTabsModule],
 })
 export class CustomMaterialModule { }

@@ -13,7 +13,7 @@ import { HasRoleDirective } from './core/directive/has-role.directive';
 import { CustomMaterialModule } from './customMaterial.module';
 import { UserStatusComponent } from './common/navbar/userStatus.component';
 import { NotesListComponent } from './home/notes-list/notes-list.component';
-
+import {ShareModule} from './share.module';
 
 @NgModule({
    declarations: [
@@ -35,8 +35,8 @@ import { NotesListComponent } from './home/notes-list/notes-list.component';
       BrowserAnimationsModule,
       FormsModule,
       ReactiveFormsModule,
-      CustomMaterialModule
-
+      CustomMaterialModule,
+      ShareModule
    ],
    entryComponents: [
     SignComponent,

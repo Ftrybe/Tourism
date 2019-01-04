@@ -1,0 +1,34 @@
+
+.notes-list::before,
+.food-list::before {
+  margin: 0 auto;
+  display: block;
+  content: "";
+  width: 0px;
+  height: 0px;
+  border: 1rem solid transparent;
+}
+.notes-list {
+  &:before {
+    border-top: 1rem solid #f8f9fa;
+  }
+}
+.food-list {
+  &:before {
+    border-top: 1rem solid white;
+  }
+}
+.scenery-list-title {
+  background: linear-gradient(to right, #fff,rgba($color:#ddd,$alpha:.01), #fff);
+  padding-top: 5rem;
+  padding-bottom: 1rem;
+}
+.content {
+  a {
+    color: #111;
+    &:hover {
+      text-decoration: none;
+      color: #666;
+    }
+  }
+}

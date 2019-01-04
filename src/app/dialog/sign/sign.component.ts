@@ -8,11 +8,10 @@ import { Component, OnInit, Input, SimpleChanges, OnChanges, Output, EventEmitte
 export class SignComponent implements OnInit {
   @Output()
   isLogin = new EventEmitter<Boolean>();
-  
   ngOnInit() {
 
   }
-  onLogin(arg: boolean){
+  onLogin(arg: boolean) {
    this.isLogin.emit(arg);
   }
 }

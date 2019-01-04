@@ -1,0 +1,42 @@
+@import "src/assets/scss/varible";
+.food{
+  &-ttl{
+    span{
+      border-bottom: 1px solid black;
+      display: inline-block;
+      padding-bottom: 1.25rem;
+    }
+  }
+  &-item{
+    padding:0 4%;
+    margin-bottom: 3rem;
+    .box{
+      width: 100%;
+      text-decoration: none;
+      color: #fcf8e3;
+      p{
+        padding:0 1rem;
+        // font-size: 1.5rem;
+        font-family:400 1.5rem/160% "仿宋",sans-serif;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+
+      }
+    }
+    &-ttl{
+      padding:1rem;
+      font-family:400 1.3rem/160% "仿宋",sans-serif;
+      height: 1rem;
+      line-height: 1.5rem;
+    }
+  }
+  .item-img{
+    width: 100%;
+    height: 100%;
+    padding-top:58.25%;
+    position: relative;
+
+  }
+}
+

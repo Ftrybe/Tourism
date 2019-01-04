@@ -1,0 +1,9 @@
+<div class="card banner" [class.subBanner]="isSubBanner">
+  <img class="img-fluid card-img" [src]="imgSrc">
+  <div class="card-img-overlay d-flex justify-content-sm-center">
+    <div class="align-self-center">
+        <ng-content select="h1"></ng-content>
+        <ng-content select="p"></ng-content>
+    </div>
+  </div>
+</div>
