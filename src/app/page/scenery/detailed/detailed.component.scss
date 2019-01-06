@@ -1,0 +1,10 @@
+.list-horizontal{
+  & > *{
+    padding: 1em 0;
+    border-bottom: 1px solid #CCC;
+
+  }
+  dd{
+    margin-bottom: 0;
+  }
+}
