@@ -5,11 +5,12 @@ import { SceneryRoutes } from './scenery.routing';
 import {DetailedComponent} from './detailed/detailed.component';
 import {ShareModule} from '../../share.module';
 
+
 @NgModule({
   imports: [
     CommonModule,
     SceneryRoutes,
-    ShareModule
+    ShareModule,
   ],
   declarations: [
     SceneryComponent,

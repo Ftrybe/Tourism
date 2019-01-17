@@ -2,17 +2,12 @@
 @import "../src/assets/font/fontawasome/fontawesome-all.css";
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import "assets/scss/varible";
-
-  .navbar {
+ .navbar {
     height: 56px;
     .container {
       .logo {
         text-align: center;
       }
-    }
-    .nav-user-pic {
-      width: 40px;
-      height: 40px;
     }
   }
   .clear-after {
@@ -29,35 +24,36 @@
   }
 
 
-
-  .banner {
-    h1{
-        @media screen and (min-width:0px){
-            font-size: 1rem !important;
-            font-weight: 500;
-            color: #fff;
-        }
-        @media screen and (min-width:$media-sm){
-            font-size: 1rem !important;
-        }
-        @media screen and (min-width:$media-md){
-            font-size: 1.5rem !important;
-        }
-        @media screen and (min-width:$media-lg){
-            font-size: 2rem !important;
-        }
+.banner {
+  h1{
+    @media screen and (min-width:0px){
+      font-size: 1rem !important;
+      font-weight: 500;
+      color: #fff;
     }
-    p{
-        @media screen and (min-width:0px){
-            font-size: .75rem;
-        }
-
-        @media screen and (min-width:$media-md){
-            font-size: 1rem !important;
-        }
-
+    @media screen and (min-width:$media-sm){
+      font-size: 1rem !important;
+    }
+    @media screen and (min-width:$media-md){
+      font-size: 1.5rem !important;
+    }
+    @media screen and (min-width:$media-lg){
+      font-size: 2rem !important;
     }
   }
+  p{
+    @media screen and (min-width:0px){
+      font-size: .75rem;
+    }
+
+    @media screen and (min-width:$media-md){
+      font-size: 1rem !important;
+    }
+
+  }
+}
+
+
   /*   媒体查询    */
 
     /* 设置页面 */
