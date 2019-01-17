@@ -1,4 +1,5 @@
-import { Component, OnInit, ElementRef, Renderer2, ViewChild, HostListener } from '@angular/core';
+import {Component, OnInit, ElementRef, Renderer2, ViewChild, HostListener} from '@angular/core';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -6,12 +7,14 @@ import { Component, OnInit, ElementRef, Renderer2, ViewChild, HostListener } fro
 })
 export class NavbarComponent implements OnInit {
 
-  public isClick: boolean;
+  public isClick: boolean = false;
 
   @ViewChild('navbarCollapse') navbCollapse: ElementRef;
+
   constructor(
     private renderer: Renderer2
-  ) { }
+  ) {
+  }
 
 
   ngOnInit() {
@@ -24,13 +27,12 @@ export class NavbarComponent implements OnInit {
       this.renderer.addClass(this.navbCollapse.nativeElement, 'show');
 
       // 点击关闭侧滑
-      this.renderer.listen(this.navbCollapse.nativeElement, 'click', () => {
-        this.renderer.removeClass(this.navbCollapse.nativeElement, 'show');
-        this.isClick = false;
-      });
+      // this.renderer.listen(this.navbCollapse.nativeElement, 'click', () => {
+      //   this.renderer.removeClass(this.navbCollapse.nativeElement, 'show');
+      //   this.isClick = false;
+      // });
     } else {
       this.renderer.removeClass(this.navbCollapse.nativeElement, 'show');
     }
   }
-
 }

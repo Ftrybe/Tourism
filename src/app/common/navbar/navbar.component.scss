@@ -10,11 +10,11 @@ $color:#f8f9fa;
             z-index: 99;
             background-color: $color;
             transform: translateX(-12.5rem);
-            transition: transform 1s;
+            transition: transform 0.5s;
         }
         .show{
             transform: translateX(0);
-            transition: transform 1s;
+            transition: transform 0.5s;
         }
     }
     

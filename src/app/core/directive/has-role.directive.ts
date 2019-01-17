@@ -5,7 +5,10 @@ import {AuthenticationService} from '../services/authentication.service';
   selector: '[appHasRole]'
 })
 export class HasRoleDirective {
-  constructor(private templateRef: TemplateRef<any>, private viewContainer: ViewContainerRef, private authenticationService: AuthenticationService) {
+  constructor(
+    private templateRef: TemplateRef<any>,
+    private viewContainer: ViewContainerRef,
+    private authenticationService: AuthenticationService) {
   }
 
   @Input()

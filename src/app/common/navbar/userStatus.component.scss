@@ -1,15 +1,50 @@
 @import "../../../assets/scss/varible";
 
-@media screen and (min-width: 0){
-  .userTip{
-    display: block;
+$bg-color: #ffffff;
+@media screen and (min-width: 0) {
+  #userInfo {
+    color: rgba(0, 0, 0, 0.5) !important;
+    .user-pic {
+      margin: 0.25rem 0;
+      width: 40px;
+      height: 40px;
+    }
+    .user-name{
+      display: none;
+    }
 
+    a {
+      text-decoration: none;
+      display: block;
+      margin: 0.25rem 0;
+      color: rgba(0, 0, 0, 0.5) !important;
+    }
   }
-}
-@media screen and (min-width: $media-lg){
-  .userTip{
-    display: none;
 
+}
+
+@media screen and (min-width: $media-lg) {
+  #userInfo {
+    .user-name{
+      display: block;
+    }
+    position: relative;
+    .userTip {
+      display: none;
+    }
+
+    &:hover {
+      .userTip {
+        position: absolute;
+        top: 36px;
+        left: 0;
+        width: 8rem;
+        background-color: $bg-color;
+        display: block;
+        box-shadow: 0 0 1px 0 #908e8e;
+
+      }
+    }
 
   }
 }

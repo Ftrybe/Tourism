@@ -1,26 +1,28 @@
 <div class="navbar-nav" id="user-icon">
-    <div class="nav-item" *ngIf="!isLogin;else elseBlock">
-        <a mat-button (click)="openDialog()" class="btn btn-light">
-            <i class="fas fa-user"></i>
-        </a>
-    </div>
-    <ng-template #elseBlock>
-        <div id="userInfo">
-            <a class="btn dropdown-toggle transparent-background p-0" href="#">
-                <span>{{username}}</span>
-            </a>
-            <div class="userTip">
-                <img class="nav-user-pic rounded-circle" src="./assets/img/userPic.png" [alt]="username" >
-                <div>
-                    <a class="">
-                        <i class=""></i>
-                        <span class=""></span>
-                    </a>
-                </div>
-                <a class="fa fa-bell">(0)</a>
-                <a class="" href="#">设置</a>
-                <a class="btn" (click)="logout()">退出</a>
-            </div>
+  <div class="nav-item" *ngIf="isLogin;else elseBlock">
+    <a mat-button (click)="openDialog()" class="btn btn-light">
+      <i class="fas fa-user"></i>
+    </a>
+  </div>
+  <ng-template #elseBlock>
+    <!--      <button mat-button="" [matMenuTriggerFor]="menu">Menu</button>
+          <mat-menu #menu="matMenu" [overlapTrigger]="false">
+            <button mat-menu-item="">Item 1</button>
+            <button mat-menu-item="">Item 2</button>
+          </mat-menu>-->
+    <div id="userInfo">
+          <span class="user-name btn">
+          {{username}}
+          </span>
+      <div class="userTip rounded">
+        <div>
+          <img class="user-pic rounded-circle" src="./assets/img/userPic.png" [alt]="username" >
+          <a class="far fa-bell">消息(0)</a>
+          <a  href="#">个人中心</a>
+          <a href="#">个人收藏</a>
+          <a href="javascript:void(0)" (click)="logout()">退出</a>
         </div>
-    </ng-template>
+      </div>
+    </div>
+  </ng-template>
 </div>

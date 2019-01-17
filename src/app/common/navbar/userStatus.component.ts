@@ -11,15 +11,16 @@ import { MatDialog } from '@angular/material';
 })
 export class UserStatusComponent implements OnInit {
 
-    public username: String;
+    public username: string;
     public isLogin: boolean;
     public dialogRef;
-
+    public menu: string;
     ngOnInit(): void {
         this.isLogin = this.authenticationService.isLoggedIn();
         if (this.isLogin) {
             this.username = this.authenticationService.getUsername();
         }
+        this.username = '长将依旧心还在' ;
     }
     constructor(
         private authenticationService: AuthenticationService,
