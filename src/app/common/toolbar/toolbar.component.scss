@@ -1,0 +1,26 @@
+.toolbar-box{
+
+  .toolbar-item{
+    padding: 0.2rem;
+    margin: 0 0.1rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    color: #f8f9fa;
+    background-color: #767c82;
+    cursor: pointer;
+    &:hover{
+     // color: #8bcbff;
+      background-color: #007bff;
+
+    }
+    span{
+      font-family: "宋体";
+
+    }
+  }
+  .action{
+    color: #afe5ff;
+    background-color: #007bff;
+  }
+}
+
