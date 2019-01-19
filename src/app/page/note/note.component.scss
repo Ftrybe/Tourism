@@ -1,14 +1,30 @@
+@import "/~src/assets/scss/varible";
+@import "/~src/assets/scss/mixin";
 .warp {
   position: relative;
 }
 
 .note-card {
-  width: 300px;
   position: absolute;
+  width: calc(50% - 10.5px);
+  @include media(sm){
+    width: 245px;
+  }
+  @include media(md){
+    width: 220px;
+  }
+  @include media(lg){
+    width: 222px;
+  }
+  @include media(xl){
+    width: 267px;
+  }
+
+
 }
 
 .note-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-image: url('../../../assets/img/userPic.png');
   background-size: cover;
 }
 
