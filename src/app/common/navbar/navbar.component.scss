@@ -1,21 +1,24 @@
-$color:#f8f9fa;
-@media screen and (min-width:0) and (max-width:992px) {
-    .navbar {
-        .navbar-collapse {
-            position: fixed;
-            top: 56px;
-            left: 0;
-            width: 12.5rem;
-            height: 100%;
-            z-index: 99;
-            background-color: $color;
-            transform: translateX(-12.5rem);
-            transition: transform 0.5s;
-        }
-        .show{
-            transform: translateX(0);
-            transition: transform 0.5s;
-        }
+@import "/~src/assets/scss/varible";
+
+$color: #f8f9fa;
+.navbar {
+  @media screen and (max-width: $media-lg) {
+    .navbar-collapse {
+      position: fixed;
+      top: 56px;
+      left: 0;
+      width: 12.5rem;
+      height: 100%;
+      z-index: 99;
+      background-color: $color;
+      transform: translateX(-12.5rem);
+      transition: transform 0.5s;
     }
-    
+    .show {
+      transform: translateX(0);
+      transition: transform 0.5s;
+    }
+  }
 }
+    
+
