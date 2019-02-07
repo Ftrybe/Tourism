@@ -1,4 +1,4 @@
-<mat-form-field class="example-chip-list">
+<mat-form-field class="search-chip-list">
   <mat-chip-list #chipList>
     <mat-chip
       *ngFor="let fruit of fruits"
@@ -9,7 +9,7 @@
       <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
     </mat-chip>
     <input
-      placeholder="New fruit..."
+      placeholder="搜索..."
       #fruitInput
       [formControl]="fruitCtrl"
       [matAutocomplete]="auto"
