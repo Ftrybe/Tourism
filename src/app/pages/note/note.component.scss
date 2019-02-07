@@ -1,0 +1,79 @@
+@import "/~src/assets/scss/varible";
+@import "/~src/assets/scss/mixin";
+
+.warp {
+  position: relative;
+}
+
+.note-card {
+  position: absolute;
+  width: calc(100% - 10px);
+  .mat-card-content {
+    display: none;
+  }
+
+  .note-header-image {
+    width: 30px;
+    height: 30px;
+  }
+
+  .mat-card-header {
+    .mat-card-subtitle,
+    .mat-card-title{
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+  }
+
+  .mat-card-footer {
+    display: flex;
+    flex-direction: row;
+
+    .mat-card-time {
+      margin-left: auto;
+      margin-right: 16px;
+      color: #adb5bd;
+      font-size: 11px;
+    }
+  }
+
+  @include media(sm) {
+    width: 245px;
+    .mat-card-header {
+      .mat-card-subtitle,
+      .mat-card-title{
+        font-size: 14px;
+        margin-bottom: 16px;
+      }
+    }
+    .mat-card-content {
+      display: block;
+    }
+    .note-header-image {
+      width: 40px;
+      height: 40px;
+    }
+    .mat-card-footer {
+      .mat-card-time {
+        font-size: 14px;
+      }
+    }
+  }
+  @include media(md) {
+    width: 220px;
+  }
+  @include media(lg) {
+    width: 222px;
+  }
+  @include media(xl) {
+    width: 267px;
+  }
+
+
+}
+
+.note-header-image {
+  background-image: url('../../../assets/img/userPic.png');
+  background-size: cover;
+}
+

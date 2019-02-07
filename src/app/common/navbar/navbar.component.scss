@@ -2,23 +2,46 @@
 
 $color: #f8f9fa;
 .navbar {
+  height: 56px;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05), inset 0 -1px 0 rgba(0,0,0,.1);
+  .logo{
+    text-align: left;
+  }
   @media screen and (max-width: $media-lg) {
     .navbar-collapse {
       position: fixed;
-      top: 56px;
+      top: 0;
       left: 0;
       width: 12.5rem;
+      padding-top: 56px;
       height: 100%;
       z-index: 99;
       background-color: $color;
       transform: translateX(-12.5rem);
       transition: transform 0.5s;
+      li:not(:last-child){
+        border-bottom: 1px solid #0000000a;
+        margin: 0 1rem;
+      }
     }
+
     .show {
       transform: translateX(0);
       transition: transform 0.5s;
     }
   }
+
 }
+.overlay{
+  display: none;
+  position: fixed;
+  width: calc(100% - 1px);
+  height: 2000px;
+  background: rgba(0,0,0,.5);
+  &.show{
+   display: block;
+  }
+}
+
     
 

@@ -1,0 +1,39 @@
+<div>
+  <div class="form-group">
+    <label for="nickname">昵称:</label>
+    <input [disabled]="isEdit" matInput class="form-control" [class.lock]="isEdit" id="nickname" placeholder="瞎鸡儿取个名字">
+  </div>
+  <div class="form-group">
+    <label for="sex">性别:</label>
+    <mat-select id="sex" class="form-control" [disabled]="isEdit"
+                [class.lock]="isEdit">
+      <mat-option value="0">未知</mat-option>
+      <mat-option value="1">女</mat-option>
+      <mat-option value="2">男</mat-option>
+    </mat-select>
+  </div>
+  <div class="form-group">
+    <label for="email">邮箱:</label>
+    <input class="form-control" [disabled]="isEdit" [class.lock]="isEdit" type="text" id="email">
+  </div>
+  <div class="form-group birthday-warp">
+    <label for="birthday">生日:</label>
+    <input matInput class="form-control" [disabled]="isEdit" [class.lock]="isEdit" [matDatepicker]="picker" placeholder="Choose a date" id="birthday">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </div>
+  <div class="form-group">
+    <label for="declaration">简介:</label>
+    <textarea class="form-control" draggable="false" [disabled]="isEdit" [class.lock]="isEdit" style="resize: none" id="declaration"></textarea>
+  </div>
+  <div class="d-flex ops">
+    <mat-slide-toggle
+      class="toggle-submit"
+      [color]="color"
+      [checked]="checked"
+      (change)="switch()">
+      更改资料
+    </mat-slide-toggle>
+    <button  class="btn btn-primary ml-auto" *ngIf="!isEdit" (click)="onSubmit()">保存</button>
+  </div>
+</div>

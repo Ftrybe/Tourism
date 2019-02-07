@@ -1,0 +1,25 @@
+label {
+  font-size: 14px;
+  color: #91979e;
+}
+
+.birthday-warp {
+  position: relative;
+  .mat-datepicker-toggle {
+    position: absolute;
+    top: 28px;
+    right: 0;
+  }
+}
+.ops{
+  height: 38px;
+}
+.lock{
+  background-color: #00000000;
+  border: 0;
+}
+.form-control{
+  font-size: 14px;
+  font-weight: 500;
+  color: black;
+}

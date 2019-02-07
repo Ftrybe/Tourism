@@ -1,15 +1,10 @@
 <div class="navbar-nav" id="user-icon">
-  <div class="nav-item" *ngIf="isLogin;else elseBlock">
+  <div class="nav-item" *ngIf="!isLogin;else elseBlock">
     <a mat-button (click)="openDialog()" class="btn btn-light">
       <i class="fas fa-user"></i>
     </a>
   </div>
   <ng-template #elseBlock>
-    <!--      <button mat-button="" [matMenuTriggerFor]="menu">Menu</button>
-          <mat-menu #menu="matMenu" [overlapTrigger]="false">
-            <button mat-menu-item="">Item 1</button>
-            <button mat-menu-item="">Item 2</button>
-          </mat-menu>-->
     <div id="userInfo">
           <span class="user-name btn">
           {{username}}
@@ -18,7 +13,7 @@
         <div>
           <img class="user-pic rounded-circle" src="./assets/img/userPic.png" [alt]="username" >
           <a class="far fa-bell">消息(0)</a>
-          <a  href="#">个人中心</a>
+          <a [routerLink]="['/user']">个人中心</a>
           <a href="#">个人收藏</a>
           <a href="javascript:void(0)" (click)="logout()">退出</a>
         </div>

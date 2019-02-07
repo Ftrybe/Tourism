@@ -1,38 +1,39 @@
-@import "../../../assets/scss/varible";
+@import "/~src/assets/scss/mixin";
 
 $bg-color: #ffffff;
-@media screen and (min-width: 0) {
-  #userInfo {
-    color: rgba(0, 0, 0, 0.5) !important;
-    .user-pic {
-      margin: 0.25rem 0;
-      width: 40px;
-      height: 40px;
-    }
-    .user-name{
-      display: none;
-    }
 
-    a {
-      text-decoration: none;
-      display: block;
-      margin: 0.25rem 0;
-      color: rgba(0, 0, 0, 0.5) !important;
-    }
+#userInfo {
+  padding-top: 3rem;
+  color: rgba(0, 0, 0, 0.5) !important;
+  .user-pic {
+    margin: 0.25rem 0;
+    width: 40px;
+    height: 40px;
   }
 
+  .user-name {
+    display: none;
+  }
+
+  a {
+    text-decoration: none;
+    display: block;
+    margin: 0.25rem 0;
+    color: rgba(0, 0, 0, 0.5) !important;
+  }
 }
 
-@media screen and (min-width: $media-lg) {
+
+@include media(lg) {
   #userInfo {
-    .user-name{
+    position: relative;
+    padding-top: 0;
+    .user-name {
       display: block;
     }
-    position: relative;
     .userTip {
       display: none;
     }
-
     &:hover {
       .userTip {
         position: absolute;
@@ -42,7 +43,6 @@ $bg-color: #ffffff;
         background-color: $bg-color;
         display: block;
         box-shadow: 0 0 1px 0 #908e8e;
-
       }
     }
 

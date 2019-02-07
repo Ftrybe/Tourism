@@ -1,0 +1,28 @@
+.user{
+  background-color: #9999990a;
+  .bg{
+    width: 100%;
+    background-size: cover;
+    background-image: url("../../../assets/img/user_bg_default.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+  .avatar{
+    border-radius: 100%;
+    display: inline-block;
+    margin: 0 0 2em 0;
+    box-shadow: 0 0 5px 3px #f5f1f1df;
+    img{
+      border-radius: 100%;
+      display: block;
+      width: 8em;
+    }
+  }
+  h1{
+    display: block;
+    max-width: 1178px;
+    margin: 0 auto;
+    color: #ffffffee;
+  }
+}
+
