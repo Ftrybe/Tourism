@@ -1,10 +1,10 @@
-<mat-dialog-content  class="mat-typography">
-    <mat-tab-group>
-        <mat-tab label="登录">
-                <app-login (loginState)="onLogin($event)"></app-login>
-        </mat-tab>
-        <mat-tab label="注册">
-                <app-register (loginState)="onLogin($event)"></app-register>
-        </mat-tab>
-    </mat-tab-group>
+<mat-dialog-content class="mat-typography">
+  <mat-tab-group [selectedIndex]="index">
+    <mat-tab label="登录">
+      <app-login (loginState)="onLogin($event)"></app-login>
+    </mat-tab>
+    <mat-tab label="注册">
+      <app-register (loginState)="onLogin($event)"></app-register>
+    </mat-tab>
+  </mat-tab-group>
 </mat-dialog-content>

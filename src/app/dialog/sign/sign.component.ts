@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, SimpleChanges, OnChanges, Output, EventEmitter } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-sign',
@@ -8,11 +9,14 @@ import { Component, OnInit, Input, SimpleChanges, OnChanges, Output, EventEmitte
 export class SignComponent implements OnInit {
   @Output()
   isLogin = new EventEmitter<Boolean>();
-  ngOnInit() {
 
+  index: number;
+  ngOnInit() {
+    this.index = 0;
   }
+
   onLogin(arg: boolean) {
-   this.isLogin.emit(arg);
+    this.isLogin.emit(arg);
   }
 }
 

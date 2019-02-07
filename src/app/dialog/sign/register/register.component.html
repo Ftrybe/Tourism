@@ -1,23 +1,27 @@
-<form #regstFrom="ngForm" (ngSubmit)="onSubmit(regstFrom)" class="register" >
+<form [formGroup]="formModel" (ngSubmit)="onSubmit()" class="register">
+  <div class="form-group">
+    <label for="regstName">账号</label>
+    <input type="text" class="form-control" id="regstName" name="username" placeholder="请输入你的手机号"
+           formControlName="username">
+  </div>
+  <div formGroupName="passwordGroup" class="passwordGroup">
     <div class="form-group">
-        <label for="regstName">账号</label>
-        <input type="text" ngModel class="form-control" id="regstName" name="username" placeholder="请输入你的账号" required>
-    </div>
-
-    <div class="form-group">
-        <label for="regstPwd">密码</label>
-        <input type="password" ngModel class="form-control" id="regstPwd" name="password" placeholder="请输入你的密码" required>
-    </div>
-    <div class="form-group">
-        <label for="reRegstPwd">确认密码</label>
-        <input type="password" ngModel class="form-control" id="reRegstPwd" name="passwordRe" placeholder="请再次输入你的密码" required>
+      <label for="regstPwd">密码</label>
+      <input type="password" class="form-control" id="regstPwd" name="password" placeholder="请输入你的密码"
+             formControlName="password">
     </div>
     <div class="form-group">
-        <label for="random">验证码</label>
-        <div class="form-inline">
-            <input type="text" ngModel class="form-control col-sm-8" id="random" name="randomCode" placeholder="请输入验证码" required>
-            <img id="randomCode" class="col-sm-4 rounded" src="" />
-        </div>
-    </div> 
-    <button id="regstBtn" type="submit" class="btn btn-secondary w-100">注册</button>
+      <label for="reRegstPwd">确认密码</label>
+      <input type="password" class="form-control" id="reRegstPwd" name="pconfirm" placeholder="请再次输入你的密码"
+             formControlName="pconfirm">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="smsCode">验证码</label>
+    <div class="form-inline">
+      <input type="text" class="form-control col-sm-8" id="smsCode" formControlName="smsCode" name="randomCode" placeholder="请输入验证码">
+      <input type="button" class="form-control" value="获取验证码" (click)="getSMSCode()">
+    </div>
+  </div>
+  <button id="regstBtn" type="submit" class="btn btn-secondary w-100">注册</button>
 </form>
