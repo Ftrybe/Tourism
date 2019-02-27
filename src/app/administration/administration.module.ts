@@ -7,8 +7,8 @@ import {OverlayContainer} from '@angular/cdk/overlay';
 import {PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface, PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 import {AppSettings} from './app.settings';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {ErrorComponent} from './pages/errors/error/error.component';
-import {PagesComponent} from './pages/pages.component';
+import {ErrorComponent} from './mgt-pages/errors/error/error.component';
+import {PagesComponent} from './mgt-pages/pages.component';
 import {SharedModule} from './shared/shared.module';
 import {HorizontalMenuComponent} from './theme/components/menu/horizontal-menu/horizontal-menu.component';
 import {VerticalMenuComponent} from './theme/components/menu/vertical-menu/vertical-menu.component';
@@ -20,6 +20,7 @@ import {UserMenuComponent} from './theme/components/user-menu/user-menu.componen
 import {MessagesComponent} from './theme/components/messages/messages.component';
 import {PipesModule} from './theme/pipes/pipes.module';
 import {MenuService} from './theme/components/menu/menu.service';
+
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   wheelPropagation: true,
@@ -47,7 +48,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ApplicationsComponent,
     MessagesComponent,
     UserMenuComponent,
-    FavoritesComponent
+    FavoritesComponent,
   ],
   providers: [
     AppSettings,

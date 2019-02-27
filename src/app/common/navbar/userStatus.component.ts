@@ -1,7 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SignComponent} from 'src/app/dialog/sign';
-import {AuthenticationService} from 'src/app/core/services/authentication.service';
 import {MatDialog} from '@angular/material';
+import {UsersService} from '../../core/services/users.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {NotePublishDialogComponent} from '../../dialog/note-publish-dialog/note-publish-dialog.component';
 
 
 @Component({
@@ -9,31 +11,33 @@ import {MatDialog} from '@angular/material';
   templateUrl: './userStatus.component.html',
   styleUrls: ['./userStatus.component.scss']
 })
-export class UserStatusComponent implements OnInit, OnDestroy{
+export class UserStatusComponent implements OnInit, OnDestroy {
 
   public username: string;
+  public uid: string;
   public isLogin: boolean;
   public dialogRef;
   public menu: string;
+  public userSubscribe;
+  public dialogSubscribe;
 
   constructor(
-    private authenticationService: AuthenticationService,
+    private usersService: UsersService,
     private dialog: MatDialog,
   ) {
   }
 
   ngOnInit(): void {
-    this.isLogin = this.authenticationService.isLoggedIn();
-    if (this.isLogin) {
-      this.username = this.authenticationService.getUsername();
+    if (this.usersService.getUser()) {
+      this.isLogin = true;
+      this.username = this.usersService.getUser().sub;
+      this.uid = this.usersService.getUserId();
     }
-    this.username = '长将依旧心还在';
   }
 
   // 退出登录
   logout() {
-    console.log('退出');
-    this.authenticationService.logout();
+    this.usersService.logout();
     this.isLogin = false;
   }
 
@@ -49,11 +53,22 @@ export class UserStatusComponent implements OnInit, OnDestroy{
         this.dialogRef = '';
       });
       // 获取子组件传来得登录状态
-      //  this.dialog.getDialogById('signDialog').componentInstance.isLogin.subscribe(status => this.isLogin = status);
+      this.dialogSubscribe = this.dialog.getDialogById('signDialog').componentInstance.isLogin.subscribe(status => {
+        this.isLogin = status;
+        this.username = this.usersService.getUser().sub;
+      });
     }
   }
 
+  openPublishDialog() {
+    this.dialog.closeAll();
+    this.dialog.open(NotePublishDialogComponent, {
+      width: 800
+    });
+  }
+
   ngOnDestroy(): void {
-    this.dialogRef.unsubscribe();
+    this.dialogRef ? this.dialogRef.unsubscribe() : console.log('');
+    this.userSubscribe ? this.userSubscribe.unsubscribe() : console.log('');
   }
 }

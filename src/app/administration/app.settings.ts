@@ -4,7 +4,7 @@ import {Settings} from './app.settings.model';
 @Injectable()
 export class AppSettings {
   public settings = new Settings(
-    'Annular',   // theme name
+    'LuoYuan',   // theme name
     true,       // loadingSpinner
     false,      // fixedHeader
     false,      // fixedSidenav

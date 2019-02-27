@@ -6,6 +6,7 @@ import {filter, map, mergeMap} from 'rxjs/operators';
 import {log} from 'util';
 import {Settings} from './administration/app.settings.model';
 import {AppSettings} from './administration/app.settings';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-root',
@@ -22,9 +23,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   ) {
   }
 
-
   ngOnInit(): void {
-
     // 路由动态修改标题
         this.router.events.pipe(
           filter(e => e instanceof NavigationEnd),

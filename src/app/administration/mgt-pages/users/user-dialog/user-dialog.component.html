@@ -1,0 +1,53 @@
+<h1 mat-dialog-title><span *ngIf="!user.id">增加</span><span *ngIf="user.id">编辑</span>用户</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form" class="user-form">
+    <div fxLayout="column" class="form-field-outer">
+      <mat-form-field class="w-100">
+        <mat-placeholder>
+          <mat-icon>person</mat-icon>
+          用户名
+        </mat-placeholder>
+        <input matInput formControlName="username" required>
+        <mat-error *ngIf="this.form.hasError('required','username')">Username is required</mat-error>
+        <mat-error *ngIf="this.form.hasError('minlength','username')">Username isn't long enough, minimum of 5
+          characters
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="w-100">
+        <mat-placeholder>
+          <mat-icon>vpn_key</mat-icon>
+          密码
+        </mat-placeholder>
+        <input matInput formControlName="password" required [type]="passwordHide ? 'password' : 'text'">
+        <mat-icon matSuffix
+                  (click)="passwordHide = !passwordHide">{{passwordHide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        <mat-error *ngIf="this.form.hasError('required','password')">必须输入密码</mat-error>
+        <mat-error *ngIf="this.form.hasError('minlength','password')">密码最少8位
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="w-100">
+        <input matInput placeholder="昵称" formControlName="nickname">
+      </mat-form-field>
+      <mat-form-field class="w-100">
+        <input matInput [matDatepicker]="birthday"
+               [placeholder]=" '生日'"
+               formControlName="birthday">
+        <mat-datepicker-toggle matSuffix [for]="birthday"></mat-datepicker-toggle>
+        <mat-datepicker #birthday></mat-datepicker>
+      </mat-form-field>
+        <mat-select  class="w-100" formControlName="sex">
+          <mat-option value="NONE">未知</mat-option>
+          <mat-option value="MAN">男</mat-option>
+          <mat-option value="WOMAN">女</mat-option>
+        </mat-select>
+      <mat-form-field class="w-100">
+        <input matInput placeholder="个人说明" formControlName="declaration">
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between center">
+  <button mat-raised-button color="primary" [mat-dialog-close]="form.value" [disabled]="!form.valid"><span
+    *ngIf="!user.id">保存</span><span *ngIf="user.id">更新</span></button>
+  <button mat-raised-button color="warn" (click)="close()">取消</button>
+</div>

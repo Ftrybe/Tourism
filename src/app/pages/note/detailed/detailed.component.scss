@@ -63,49 +63,75 @@
 }
 
 .note-body {
+  .catalog-warp{
+    display: none;
+    @include media(lg){
+      display: block;
+    }
 
-  .catalog {
-    overflow: hidden;
-    margin-top: 16px;
-    border: 1px solid #e6e6e6;
-    padding: 16px 16px 8px 16px;
-    @include media(lg) {
+    .catalog {
+      overflow: hidden;
+      margin-top: 16px;
+      border: 1px solid #e6e6e6;
+      padding: 16px 16px 8px 16px;
+      flex-direction: column;
       width: 210px;
-      &.action{
-        position: fixed;
-        top: 56px;
+      background-color: #ffffff;
+      border-radius: 0.5rem;
+      .scroll{
+        max-height: 9rem;
+        overflow-y: auto;
+      }
+      @include media(lg) {
+        width: 210px;
+        &.action{
+          position: fixed;
+          top: 56px;
+        }
+      }
+      @include media(xl) {
+        width: 255px;
+      }
+
+      li {
+        font-size: 18px;
+      }
+
+      &-link {
+        display: list-item;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #000000b0;
+      }
+
+      &-header {
+        font-size: 24px;
+        border-bottom: 1px solid #e6e6e6;
+        padding-bottom: 14px;
+
+        .fa-list {
+          color: #ff9913;
+          padding: 4px;
+          border: 3px solid;
+          border-radius: 50%;
+          margin-right: 4px;
+          font-size: 16px;
+        }
       }
     }
-    @include media(xl) {
-      width: 255px;
-    }
-
-    li {
-      font-size: 18px;
-    }
-
-    &-link {
-      display: list-item;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      color: #000000b0;
-    }
-
-    &-header {
-      font-size: 24px;
-      border-bottom: 1px solid #e6e6e6;
-      padding-bottom: 14px;
-
-      .fa-list {
-        color: #ff9913;
-        padding: 4px;
-        border: 3px solid;
-        border-radius: 50%;
-        margin-right: 4px;
-        font-size: 16px;
+    &.open{
+      @include media-max(lg){
+        position: fixed;
+        display: flex;
+        bottom: 48px;
+        z-index: 90;
+        .nav{
+          flex-direction: column;
+        }
       }
     }
   }
+
 
   img {
     max-width: 100%;
@@ -168,7 +194,7 @@
   height: 48px;
   background-color: #f8f9fa;
   padding: 6px;
-
+  z-index: 99;
   .item {
     text-align: center;
     width: calc(100% / 4);
@@ -191,5 +217,4 @@
       color: rgba(128, 143, 157, 0.93);
     }
   }
-
 }

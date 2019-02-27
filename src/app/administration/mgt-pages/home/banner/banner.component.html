@@ -1,0 +1,41 @@
+<app-content-header
+  [icon]="'image'"
+  [title]="'Banner更改'"
+  [desc]="'更换Banner信息'"
+  [hideBreadcrumb]="false"
+  [hasBgImage]="true"
+  [class]="'pb-5'"></app-content-header>
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center"
+             class="px-2 banner-toolbar bg-transparent">
+  <div fxLayout="row">
+    <button mat-icon-button (click)="openDialog(null)">
+      <mat-icon>add_circle</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+<mat-drawer-container class="page-wrapper">
+  <div fxLayout="column" class="p-2">
+    <div class="p-2">
+      <mat-table #table [dataSource]="banners" class="mat-elevation-z8">
+        <ng-container matColumnDef="title">
+          <mat-header-cell *matHeaderCellDef> 标题</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="topic">
+          <mat-header-cell *matHeaderCellDef> 主题</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.topic}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="ops">
+          <mat-header-cell *matHeaderCellDef> 操作</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <mat-icon class="mr-2" (click)="openDialog(element)" style="cursor: pointer">visibility</mat-icon>
+            <mat-icon style="cursor: pointer" (click)="delete(element.id)">delete_forever</mat-icon>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
+  </div>
+</mat-drawer-container>
+

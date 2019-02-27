@@ -1,0 +1,55 @@
+<h1 mat-dialog-title>Banner</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <div fxLayout="column" class="form-field-outer">
+      <mat-form-field class="w-100">
+        <input matInput placeholder="标题" formControlName="title">
+      </mat-form-field>
+      <mat-form-field class="w-100">
+        <input matInput placeholder="子标题" formControlName="subtitle">
+      </mat-form-field>
+      <mat-form-field class="w-100">
+        <mat-select placeholder="类型" formControlName="topic" [value]="this.form.get('topic').value"  >
+          <mat-option value="HOME">主页</mat-option>
+          <mat-option value="FOOD">美食</mat-option>
+          <mat-option value="SCENERY">景点</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <input type="file" (change)="fileChangeEvent($event)" />
+      <image-cropper
+        [imageChangedEvent]="imageChangedEvent"
+        [maintainAspectRatio]="true"
+        [aspectRatio]="aspectRatio"
+        [resizeToWidth]="1920"
+        [cropperMinWidth]="1080"
+        format="png"
+        outputType="both"
+        (imageCropped)="imageCropped($event)"
+        (imageLoaded)="imageLoaded()"
+        (cropperReady)="cropperReady()"
+        (loadImageFailed)="loadImageFailed()"
+      ></image-cropper>
+    </div>
+  </form>
+  <mat-checkbox
+    [(ngModel)]="checked">
+    预览
+  </mat-checkbox>
+    <div class="card banner" [class.subBanner]="banner.topic!=0" *ngIf="checked">
+      <img class="img-fluid card-img" [src]="croppedImage">
+      <div class="card-img-overlay d-flex justify-content-sm-center">
+        <div class="align-self-center">
+          <h1 class="card-title" [innerText]="this.form.get('title').value"></h1>
+          <p class="card-text text-light" [innerText]="this.form.get('subtitle').value"></p>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">不保存</button>
+  <button mat-button (click)="submit()" *ngIf="isNew" [disabled]="this.form.invalid">保存</button>
+  <button mat-button (click)="update()" *ngIf="!isNew" [disabled]="this.form.invalid">修改</button>
+</div>

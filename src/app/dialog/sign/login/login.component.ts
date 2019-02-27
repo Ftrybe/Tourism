@@ -1,9 +1,9 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
-import {AuthenticationService} from 'src/app/core/services/authentication.service';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {forMobileValidator, forPasswordValidator} from '../../../core/validator/forUserValidator';
+import {UsersService} from '../../../core/services/users.service';
 
 
 @Component({
@@ -12,39 +12,41 @@ import {forMobileValidator, forPasswordValidator} from '../../../core/validator/
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  // 登录数据模块
   formModel: FormGroup;
   @Output()
   loginState = new EventEmitter();
+  loginService;
+  // 登录失败提示
+  isValid: boolean;
 
   constructor(
-    private authenticationService: AuthenticationService,
-    private router: Router,
+    private userService: UsersService,
     private dialog: MatDialog,
     private fb: FormBuilder) {
     this.formModel = fb.group({
       username: ['', [Validators.required, Validators.minLength(11), forMobileValidator(11)]],
-      password: ['', forPasswordValidator()],
+      password: ['', [Validators.required, forPasswordValidator()]],
     });
   }
 
 
   ngOnInit() {
-
   }
 
   // 登录修改。关闭浏览器后需要重新登录
 
-
-  onSubmit(form) {
-    this.authenticationService.login(form.value.username, form.value.password)
-      .subscribe(result => {
-        if (result) {
-          this.loginState.emit(true);
-          this.dialog.getDialogById('signDialog').close();
-        } else {
-          // login failed
-          console.log(this.router.url);
-        }
-      });
+  onSubmit() {
+    // const user: User = this.formModel.value;
+    this.loginService = this.userService.login(this.formModel.value).subscribe(result => {
+      if (result) {
+        // this.userService.decodeToken();
+        this.loginState.emit(true);
+        this.dialog.getDialogById('signDialog').close();
+        this.loginService.unsubscribe();
+      } else {
+        this.isValid = true;
+      }
+    });
   }
 }

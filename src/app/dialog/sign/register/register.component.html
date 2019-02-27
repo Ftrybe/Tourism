@@ -2,13 +2,25 @@
   <div class="form-group">
     <label for="regstName">账号</label>
     <input type="text" class="form-control" id="regstName" name="username" placeholder="请输入你的手机号"
-           formControlName="username">
+           formControlName="username" #username>
+  </div>
+  <div *ngIf="formModel.hasError('minlength',['username'])" class="alert alert-danger">
+    请输入11位大陆手机号码
+  </div>
+  <div *ngIf="formModel.hasError('mobile',['username']) || smsClick" class="alert alert-danger">
+    手机号码输入错误
+  </div>
+  <div *ngIf="formModel.hasError('usernameExist',['username']) || smsClick" class="alert alert-danger">
+    手机号码已被注册
   </div>
   <div formGroupName="passwordGroup" class="passwordGroup">
     <div class="form-group">
       <label for="regstPwd">密码</label>
       <input type="password" class="form-control" id="regstPwd" name="password" placeholder="请输入你的密码"
              formControlName="password">
+      <div *ngIf="formModel.hasError('password1',['passwordGroup'])" class="alert alert-danger">
+        密码格式错误
+      </div>
     </div>
     <div class="form-group">
       <label for="reRegstPwd">确认密码</label>
@@ -16,12 +28,16 @@
              formControlName="pconfirm">
     </div>
   </div>
+  <div *ngIf="formModel.hasError('equal',['passwordGroup'])" class="alert alert-danger">
+    两次输入不一致
+  </div>
   <div class="form-group">
     <label for="smsCode">验证码</label>
     <div class="form-inline">
-      <input type="text" class="form-control col-sm-8" id="smsCode" formControlName="smsCode" name="randomCode" placeholder="请输入验证码">
-      <input type="button" class="form-control" value="获取验证码" (click)="getSMSCode()">
+      <input type="text" class="form-control col-7" id="smsCode" formControlName="smsCode" name="randomCode" placeholder="请输入验证码">
+      <input type="button" class="form-control col-5" [value]="smsValue" (click)="getSMSCode()" [disabled]="disabled" >
     </div>
   </div>
-  <button id="regstBtn" type="submit" class="btn btn-secondary w-100">注册</button>
+  <div *ngIf="isValid" class="alert alert-danger">注册失败，请检查</div>
+  <button id="regstBtn" type="submit" class="btn btn-secondary w-100" [disabled]="this.formModel.invalid">注册</button>
 </form>

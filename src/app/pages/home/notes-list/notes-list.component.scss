@@ -1,6 +1,5 @@
 @mixin notes-list($imgWidth,$imgHeight,$titleSize,$contentSize,$contentHeight) {
   & {
-
     .note-item {
       .note-link {
         position: relative;
@@ -10,12 +9,12 @@
         -webkit-box-orient: horizontal;
         -webkit-flex-direction: row;
         flex-direction: row;
-        padding: 16px;
+        padding: 8px;
         overflow: hidden;
         text-decoration: none;
         &:hover{
           box-shadow: 3px 5px 3px 0px rgba(6, 16, 1, 0.15);;
-          border-radius:15px;
+          border-radius:5px;
           border: 1px solid rgba(0,0,0,.4);
         }
         .note-img {
@@ -67,7 +66,7 @@
 }
 @media screen and (min-width: 768px) {
   .notes-list {
-      @include notes-list(340px, 191px, 23px, 14px, 4rem);
+      @include notes-list(330px, 220px, 23px, 14px, 4rem);
   }
 }
 

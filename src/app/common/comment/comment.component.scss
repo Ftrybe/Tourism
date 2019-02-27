@@ -1,0 +1,31 @@
+*{
+  font-size: 14px;
+}
+.comment-list-item{
+  padding: 4px;
+  margin-top: 16px;
+  &:not(last-child){
+    border-bottom: 1px solid #e6e6e6;
+  }
+}
+.inp{
+  width: 100%;
+  resize: none;
+}
+.cmt-btn{
+  margin-top: 8px;
+}
+.media{
+  img{
+    width: 48px;
+  }
+}
+.media-footer{
+  display: flex;
+  .fl{
+
+  }
+  .fr{
+    margin-left: auto;
+  }
+}

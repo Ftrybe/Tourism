@@ -5,17 +5,21 @@
     </a>
   </div>
   <ng-template #elseBlock>
-    <div id="userInfo">
+    <div id="user-info">
           <span class="user-name btn">
           {{username}}
           </span>
-      <div class="userTip rounded">
+      <div class="user-tip rounded">
         <div>
-          <img class="user-pic rounded-circle" src="./assets/img/userPic.png" [alt]="username" >
-          <a class="far fa-bell">消息(0)</a>
-          <a [routerLink]="['/user']">个人中心</a>
-          <a href="#">个人收藏</a>
-          <a href="javascript:void(0)" (click)="logout()">退出</a>
+          <a [routerLink]="['/user', uid]" >
+             <img class="user-pic rounded-circle" src="./assets/img/userPic.png" [alt]="username" >
+          </a>
+          <a [routerLink]="['/user', uid]" [queryParams]="{select: 'news'}"><span class="fa fa-bell"></span> 消息(0)</a>
+          <a [routerLink]="['/user', uid]" [queryParams]="{select: 'info'}"><span class="fa fa-home"></span> 个人中心</a>
+          <a [routerLink]="['/user', uid]" [queryParams]="{select: 'collection'}"><span class="far fa-star"></span> 个人收藏</a>
+          <a [routerLink]="['/user', uid]" [queryParams]="{select: 'publish'}"><span class="fa fa-columns"></span> 我的发表</a>
+          <a href="javascript:void(0)" (click)="openPublishDialog()"><span class="far fa-file"></span> 发表游记</a>
+          <a href="javascript:void(0)" (click)="logout()"><span class="fa fa-sign-out-alt"></span> 退出登录</a>
         </div>
       </div>
     </div>

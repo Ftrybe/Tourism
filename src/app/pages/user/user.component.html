@@ -7,7 +7,9 @@
         and released for free under the Creative Commons License.</h1>
     </div>
   <div class="container">
-    <mat-tab-group>
+    <mat-tab-group [selectedIndex]="index"
+                   (selectedIndexChange)="changeIndexEvent($event)"
+                   (selectedTabChange)="changeQueryParam()">
       <mat-tab label="我的信息">
         <app-user-info></app-user-info>
       </mat-tab>

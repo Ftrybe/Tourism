@@ -6,22 +6,29 @@ $color: #f8f9fa;
   box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05), inset 0 -1px 0 rgba(0,0,0,.1);
   .logo{
     text-align: left;
+    max-width: 34px;
+    img{
+      width: 100%;
+    }
   }
   @media screen and (max-width: $media-lg) {
     .navbar-collapse {
       position: fixed;
       top: 0;
       left: 0;
-      width: 12.5rem;
-      padding-top: 56px;
+      width: 10rem;
+      padding-top: 16px;
       height: 100%;
       z-index: 99;
       background-color: $color;
+      font-size: 14px;
       transform: translateX(-12.5rem);
       transition: transform 0.5s;
-      li:not(:last-child){
-        border-bottom: 1px solid #0000000a;
-        margin: 0 1rem;
+      li{
+        padding-left: 16px;
+        &:last-child{
+          border-bottom: 1px solid #e6e6e6;
+        }
       }
     }
 
@@ -39,7 +46,12 @@ $color: #f8f9fa;
   height: 2000px;
   background: rgba(0,0,0,.5);
   &.show{
-   display: block;
+    display: block;
+  }
+  @media screen and (min-width: $media-md) {
+    &.show{
+      display: none;
+    }
   }
 }
 

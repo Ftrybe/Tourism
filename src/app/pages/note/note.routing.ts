@@ -6,8 +6,9 @@ const routes: Routes = [
   {
     path: '',
     component: NoteComponent
-  },{
-    path: '1',
+  },
+  {
+    path: ':id',
     component: DetailedComponent
   }
 ];

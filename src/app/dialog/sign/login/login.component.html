@@ -3,16 +3,25 @@
     <label for="loginName">账号</label>
     <input type="text" class="form-control" id="loginName" name="username"
            placeholder="请输入你的手机号码" formControlName="username">
-    <div [hidden]="!formModel.hasError('mobile','username')" class="alert alert-danger">
-      手机号码输入错误
+    <div *ngIf="formModel.hasError('minlength',['username'])" class="alert alert-danger">
+      请输入11位大陆手机号码
+    </div>
+    <div *ngIf="formModel.hasError('mobile',['username'])" class="alert alert-danger">
+     请输入正确的手机号
     </div>
   </div>
   <div class="form-group">
     <label for="loginPwd">密码</label>
     <input type="password" class="form-control" id="loginPwd" name="password" placeholder="请输入你的密码"
            formControlName="password">
+    <div *ngIf="formModel.hasError('password',['password'])" class="alert alert-danger">
+      密码格式错误
+    </div>
+    <div *ngIf="isValid" class="alert alert-danger">
+     账号或密码错误
+    </div>
   </div>
-  <button class="btn btn-secondary w-100" type="submit">登录</button>
+  <button class="btn btn-secondary w-100" type="submit" [disabled]="this.formModel.invalid">登录</button>
 </form>
 <div class="alert alert-light float-right">
   <span>忘记密码了？点击<a class="alert-link" href="#">找回密码</a></span>

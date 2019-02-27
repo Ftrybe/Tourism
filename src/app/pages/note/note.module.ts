@@ -7,6 +7,7 @@ import {ShareModule} from '../../share.module';
 import {DetailedComponent} from './detailed/detailed.component';
 import {CustomMaterialModule} from '../../customMaterial.module';
 import { WINDOW_PROVIDERS} from '../../core/services/window.service';
+import {CommentComponent} from '../../common/comment/comment.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { WINDOW_PROVIDERS} from '../../core/services/window.service';
     ShareModule,
     CustomMaterialModule
   ],
-  declarations: [NoteComponent, DetailedComponent],
+  declarations: [NoteComponent, DetailedComponent,CommentComponent],
   providers: [WINDOW_PROVIDERS]
 })
 export class NoteModule {

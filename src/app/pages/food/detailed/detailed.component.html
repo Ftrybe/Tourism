@@ -6,7 +6,7 @@
     <div class="col-12 p-0">
       <div class="col-md-12 col-lg-9 p-0">
         <div class="header pt-5 pb-4">
-          <h2 class="title">这是一个标题</h2>
+          <h2 class="title">这是一个标题<i class="fa fa-chart-area" ></i></h2>
           <app-toolbar></app-toolbar>
         </div>
       </div>
@@ -27,12 +27,16 @@
         <dd class="col-9">假装是个备注</dd>
       </dl>
       <h2>地图</h2>
-      <div class="map">
-        <img src="./assets/img/1.jpg" alt="" width="100%">
+      <div class="map-warp">
+       <baidu-map  class="map" [options]="mapOptions" (clicked)="clickMap($event)">
+         <marker [point]="markers[0].point"  (clicked)="showWindow($event)" (loaded)="setAnimation($event)"></marker>
+         <control type="navigation" [options]="controlOpts"></control>
+         <control type="geolocation" [options]="geolocationOpts"></control>
+       </baidu-map>
       </div>
     </div>
     <div class="col-lg-3 d-none d-lg-block">
-      <img src="./assets/img/2.jpg" class="img-thumbnail" alt="">
+      <img src="./assets/img/2.jpg" class="img-thumbnail" alt="" (click)="showPreview()">
     </div>
   </div>
 </div>

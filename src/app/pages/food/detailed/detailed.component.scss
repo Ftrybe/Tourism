@@ -1,3 +1,4 @@
+@import "/~src/assets/scss/mixin";
 .list-horizontal{
   & > *{
     padding: 1em 0;
@@ -7,4 +8,13 @@
   dd{
     margin-bottom: 0;
   }
+}
+.map{
+  height: 300px;
+  width: 100%;
+  display: block;
+  @include media(md){
+    height: 400px;
+  }
+
 }

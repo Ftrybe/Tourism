@@ -6,4 +6,5 @@ export interface Note {
   thumbsUp: number;
   imgSrc: string;
   src: string;
+  commentNum: number;
 }

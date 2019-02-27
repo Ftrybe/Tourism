@@ -1,0 +1,90 @@
+<app-content-header 
+    [icon]="'supervisor_account'" 
+    [title]="'用户信息'" 
+    [desc]="'浏览，新增，修改，删除，搜索用户信息'"
+    [hideBreadcrumb]="false"
+    [hasBgImage]="true" 
+    [class]="'pb-5'"></app-content-header>
+
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center" class="px-2 user-toolbar">
+    <div fxLayout="row">
+        <button mat-icon-button (click)="openUserDialog(null)">
+            <mat-icon>person_add</mat-icon>
+        </button>
+        <button mat-icon-button (click)="showSearch = !showSearch" class="mx-2">
+            <mat-icon>search</mat-icon>
+        </button>
+    </div>
+    <form class="user-search" [class.show]="showSearch">
+        <mat-form-field class="user-search-input">
+            <input matInput placeholder="输入要搜索的用户姓名" [(ngModel)]="searchText" name="search">
+        </mat-form-field>
+    </form>
+</mat-toolbar>
+
+<div class="users-wrapper p-2">
+    <div *ngIf="viewType == 'grid'" fxLayout="row wrap">    
+        <div *ngFor="let user of users | UserSearchPipe : searchText | paginate: { itemsPerPage: 6, currentPage: page }" fxFlex="100" fxFlex.gt-md="33.3" fxFlex.md="50" fxFlex.sm="50" class="p-2"> 
+            <mat-card fxLayout="row" class="p-0 user-content">  
+                <div fxFlex="35" fxLayout="column" fxLayoutAlign="center center" class="bg-primary" [ngClass]="(user.enable) ? '' : 'gradient-gray'">
+                    <div class="user-img">
+                        <img *ngIf="user.image" [src]="user.picture" class="transition mb-2" [class.blocked]="user.enable">
+                        <img *ngIf="!user.image" src="./assets/img/user/default-user.jpg" class="transition mb-2" [class.blocked]="user.enable">
+                        <mat-icon *ngIf="user.enable" class="warn-color block-icon">block</mat-icon>
+                    </div>
+                </div>
+                <div fxFlex="65" [class.blocked]="user.enable" class="user-details"> 
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <h4 *ngIf="!user.enable" class="user-name px-2">{{user.nickname}}</h4>
+                        <h4 *ngIf="user.enable" class="user-name px-2">该用户被限制</h4>
+                        <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                    </div>                  
+                    <mat-menu #menu="matMenu" xPosition="before" overlapTrigger="true">
+                        <span (mouseleave)="menuTrigger.closeMenu()">
+                            <button mat-menu-item (click)="openUserDialog(user)">
+                                <mat-icon>mode_edit</mat-icon>
+                                <span>编辑</span>
+                            </button>
+                            <button mat-menu-item (click)="deleteUser(user);">
+                                <mat-icon>delete</mat-icon>
+                                <span>删除</span>
+                            </button>
+                            <button mat-menu-item (click)="user.enable = !user.enable">
+                                <mat-icon>block</mat-icon>
+                                <span *ngIf="!user.enable">禁用</span>
+                                <span *ngIf="user.enable">启用</span>
+                            </button>
+                        </span>
+                    </mat-menu>
+                    <mat-divider></mat-divider>
+                    <div class="info-list mx-2" [class.blocked]="user.enable">
+                        <p fxLayout="row" fxLayoutAlign="start center">
+                            <mat-icon class="secondary-text-color">wc</mat-icon>
+                            <span>{{user.sex}}</span>
+                        </p>
+                        <p fxLayout="row" fxLayoutAlign="start center">
+                            <mat-icon class="secondary-text-color">call</mat-icon>
+                            <span>{{user.username}}</span>
+                        </p>
+                        <p fxLayout="row" fxLayoutAlign="start center">
+                            <mat-icon class="secondary-text-color">access_time</mat-icon>
+                            <span>{{user.create_time | date:'yyyy-MM-dd HH:mm:ss'}}</span>
+                        </p>
+                    </div>                    
+                </div>
+            </mat-card>        
+        </div>
+    </div>
+    <div *ngIf="users" fxLayout="row wrap">
+        <div fxFlex="100" class="p-2"> 
+            <mat-card class="p-0 text-center">           
+                <pagination-controls class="annular-pagination" autoHide="true" maxSize="3" (pageChange)="onPageChanged($event)"></pagination-controls>
+            </mat-card>
+        </div>
+    </div>    
+    <div *ngIf="!users" fxLayout="column" fxLayoutAlign="center center" class="user-spinner">   
+        <mat-spinner color="accent"></mat-spinner>    
+    </div>   
+</div>

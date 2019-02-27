@@ -2,9 +2,11 @@
 
 $bg-color: #ffffff;
 
-#userInfo {
-  padding-top: 3rem;
+#user-info {
   color: rgba(0, 0, 0, 0.5) !important;
+  .user-tip{
+    padding: 8px 12px 8px;
+  }
   .user-pic {
     margin: 0.25rem 0;
     width: 40px;
@@ -20,27 +22,32 @@ $bg-color: #ffffff;
     display: block;
     margin: 0.25rem 0;
     color: rgba(0, 0, 0, 0.5) !important;
+    padding: 4px;
+    &:last-child{
+      border-top: 1px solid #e6e6e6;
+    }
   }
 }
 
 
 @include media(lg) {
-  #userInfo {
+  #user-info {
     position: relative;
     padding-top: 0;
     .user-name {
       display: block;
     }
-    .userTip {
+    .user-tip {
       display: none;
     }
     &:hover {
-      .userTip {
+      .user-tip {
         position: absolute;
         top: 36px;
-        left: 0;
-        width: 8rem;
-        background-color: $bg-color;
+        font-size: 14px;
+        right: 16px;
+        width: 160px;
+        background-color: #ffffff;
         display: block;
         box-shadow: 0 0 1px 0 #908e8e;
       }

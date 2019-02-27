@@ -1,6 +1,5 @@
 import {Directive, ElementRef, Inject, NgZone, OnDestroy, Renderer2} from '@angular/core';
 import {DOCUMENT} from '@angular/common';
-import {debounceTime} from 'rxjs/operators';
 
 @Directive({
   selector: '[appBackToTop]'
