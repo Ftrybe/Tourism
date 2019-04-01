@@ -1,0 +1,24 @@
+<h1 [innerText]="info.title"></h1>
+<mat-dialog-content>
+  <label for="upload_btn" style="font-size: 14px;padding: 4px;border: 1px solid #e6e6e6">上传图片</label>
+  <input type="file" (change)="fileChangeEvent($event)" id="upload_btn" hidden/>
+  <div fxflex>
+    <image-cropper
+      [imageChangedEvent]="imageChangedEvent"
+      [maintainAspectRatio]="info.maintainAspectRatio"
+      [resizeToWidth]="info.resizeToWidth"
+      [cropperMinWidth]="info.cropperMinWidth"
+      [aspectRatio]="info.aspectRatio"
+      (cropperReady)="cropperReady()"
+
+      format="jpeg"
+      outputType="base64"
+      (imageCropped)="imageCropped($event)"
+    ></image-cropper>
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="closeDialog()">取消</button>
+  <button mat-button (click)="save()">完成</button>
+</mat-dialog-actions>

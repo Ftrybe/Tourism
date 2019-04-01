@@ -1,0 +1,86 @@
+@import "/~src/assets/scss/mixin";
+
+.maintain {
+  padding-top: 12%;
+  width: 100%;
+  background-size: cover;
+  background-image: url("../../../../assets/img/user_bg_default.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  .upload_bg_btn{
+    color: #fff;
+    background-color: #dddddd44;
+    padding: 4px;
+    border-radius: 8px;
+  }
+  .t-title{
+    color: #fff;
+    border: 0;
+    background-color: transparent;
+    font-size: 1rem !important;
+    outline: none;
+    max-width: 1100px;
+    width: 100%;
+    text-align: center;
+    overflow-y: hidden;
+    resize: none;
+    &::placeholder{
+      color: #fff;
+      opacity: 1;
+    }
+    @include media(md) {
+      font-size: 1.25rem !important;
+    }
+    @include media(lg) {
+      font-size: 2rem !important;
+    }
+    @include media(xl) {
+      font-size: 2.5rem !important;
+    }
+  }
+  .fr {
+    color: white;
+    padding-right: 16px;
+    max-width: 1178px;
+    margin: 0 auto;
+    text-align: right;
+    padding-top: 6%;
+    .avatar {
+      border-radius: 100%;
+      display: inline-block;
+
+      img {
+        border-radius: 100%;
+        display: block;
+        width: 1rem;
+      }
+    }
+
+    .name {
+      display: inline-block;
+      vertical-align: middle;
+      height: 24px;
+      line-height: 16px;
+      font-size: 10px;
+      padding-left: 8px;
+    }
+
+    @include media(md) {
+      .avatar {
+        img {
+          width: 2rem;
+        }
+      }
+      .name {
+        height: 3rem;
+        line-height: 2rem;
+        font-size: 1rem;
+      }
+    }
+  }
+}
+::ng-deep #quill-editor{
+  img{
+    display: block;
+  }
+}

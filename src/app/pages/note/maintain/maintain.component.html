@@ -1,0 +1,50 @@
+<form  [formGroup]="formModel">
+  <div class="maintain"
+       [ngStyle]="this.cover_image_base64?{'background-image':'url('+this.cover_image_base64+')'} : null">
+    <div class="header text-center">
+      <textarea class="t-title" type="text" placeholder="在这里输入标题" formControlName="title" maxlength="50"></textarea>
+      <label class="upload_bg_btn" (click)="openCropperDialog()">点击更改背景</label>
+      <div class="fr">
+        <div class="avatar">
+          <img class="" [src]="user ? user.picture: ''">
+        </div>
+        <div class="name" [innerText]="user? user.nickname: ''"></div>
+      </div>
+    </div>
+  </div>
+  <div class="container py-3">
+    <image-upload
+      id="upload_image" hidden
+      (uploadFinished)="onUploadFinished($event)"
+    ></image-upload>
+
+    <quill-editor id="quill-editor" [style]="{minHeight:'150px'}" formControlName="content" (onEditorCreated)="getEditorInstance($event)">
+      <div quill-editor-toolbar>
+          <span class="ql-formats">
+            <button class="ql-bold" [title]="'加粗'"></button>
+          </span>
+        <span class="ql-formats">
+            <button class="ql-header" [value]="'1'" title="大标题"></button>
+          </span>
+        <span class="ql-formats">
+            <button class="ql-list" [value]="'ordered'" title="编号"></button>
+          </span>
+        <span class="ql-formats">
+            <button class="ql-link" [value]="'ordered'" title="编号"></button>
+          </span>
+        <span class="ql-formats">
+            <button class="ql-image" title="图片"></button>
+          </span>
+        <span class="ql-formats">
+            <select class="ql-align" [title]="'对齐方式'">
+              <option selected></option>
+              <option value="center"></option>
+              <option value="right"></option>
+              <option value="justify"></option>
+            </select>
+          </span>
+      </div>
+    </quill-editor>
+    <button class="btn px-2 my-2" style="width: 5rem" (click)="publish()">发 表</button>
+  </div>
+</form>
