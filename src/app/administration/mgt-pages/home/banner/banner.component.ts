@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {BannerDialogComponent} from './banner-dialog/banner-dialog.component';
-import {Banner} from './banner';
-import {BannerService} from './banner.service';
+import {Banner} from '../../../../core/models/banner';
+import {BannerService} from '../../../../core/services/banner.service';
 
 @Component({
   selector: 'app-banner',

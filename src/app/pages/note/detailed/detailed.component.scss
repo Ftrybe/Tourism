@@ -1,16 +1,12 @@
 @import "/~src/assets/scss/mixin";
 
-.user {
-  background-color: #9999990a;
-
-  .bg {
-    width: 100%;
-    background-size: cover;
-    background-image: url("../../../../assets/img/user_bg_default.jpg");
-    background-position: center center;
-    background-repeat: no-repeat;
-    min-height: 4rem;
-  }
+.maintain {
+  padding-top: 12%;
+  width: 100%;
+  background-size: cover;
+  background-image: url("../../../../assets/img/user_bg_default.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
 
   .fr {
     color: white;
@@ -18,6 +14,7 @@
     max-width: 1178px;
     margin: 0 auto;
     text-align: right;
+    padding-top: 6%;
 
     .avatar {
       border-radius: 100%;
@@ -63,9 +60,9 @@
 }
 
 .note-body {
-  .catalog-warp{
+  .catalog-warp {
     display: none;
-    @include media(lg){
+    @include media(lg) {
       display: block;
     }
 
@@ -78,13 +75,15 @@
       width: 210px;
       background-color: #ffffff;
       border-radius: 0.5rem;
-      .scroll{
+
+      .scroll {
         max-height: 9rem;
         overflow-y: auto;
       }
+
       @include media(lg) {
         width: 210px;
-        &.action{
+        &.action {
           position: fixed;
           top: 56px;
         }
@@ -119,13 +118,14 @@
         }
       }
     }
-    &.open{
-      @include media-max(lg){
+
+    &.open {
+      @include media-max(lg) {
         position: fixed;
         display: flex;
         bottom: 48px;
         z-index: 90;
-        .nav{
+        .nav {
           flex-direction: column;
         }
       }
@@ -133,11 +133,14 @@
   }
 
 
-  img {
-    max-width: 100%;
-    padding: 0 8px;
-  }
 
+  .content{
+    padding: 0 16px;
+    ::ng-deep img {
+      max-width: 100%;
+      padding: 0 8px;
+    }
+  }e
   .content-warp {
     padding-top: 16px;
   }
@@ -195,6 +198,7 @@
   background-color: #f8f9fa;
   padding: 6px;
   z-index: 99;
+
   .item {
     text-align: center;
     width: calc(100% / 4);

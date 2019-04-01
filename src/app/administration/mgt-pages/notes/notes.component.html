@@ -1,7 +1,44 @@
 <app-content-header
   [icon]="'supervisor_account'"
-  [title]="'管理員管理'"
-  [desc]="'浏览，新增，修改，删除，搜索管理員信息'"
+  [title]="'游记管理'"
+  [desc]="'浏览，删除，搜索游记信息'"
   [hideBreadcrumb]="false"
   [hasBgImage]="true"
   [class]="'pb-5'"></app-content-header>
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center" class="px-2 user-toolbar">
+  <div fxLayout="row">
+    <button mat-icon-button (click)="showSearch = !showSearch" class="mx-2">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+  <form class="user-search" [class.show]="showSearch">
+    <mat-form-field class="user-search-input">
+      <input matInput placeholder="输入要搜索的游记" name="search">
+    </mat-form-field>
+  </form>
+</mat-toolbar>
+<mat-drawer-container class="page-wrapper">
+  <div fxLayout="column" class="p-2">
+    <div class="p-2">
+      <mat-table #table [dataSource]="notes" class="mat-elevation-z8">
+        <ng-container matColumnDef="title">
+          <mat-header-cell *matHeaderCellDef> 标题</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="username">
+          <mat-header-cell *matHeaderCellDef> 用户名</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.userNickname}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="ops">
+          <mat-header-cell *matHeaderCellDef> 操作</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <mat-icon class="mr-2" (click)="openDialog(element)" style="cursor: pointer">visibility</mat-icon>
+            <mat-icon style="cursor: pointer" (click)="delete(element.id)">delete_forever</mat-icon>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
+  </div>
+</mat-drawer-container>

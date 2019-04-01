@@ -1,6 +1,6 @@
 <app-content-header
   [icon]="'supervisor_account'"
-  [title]="'美食管理'"
+  [title]="'文章管理'"
   [desc]="'浏览，新增，修改，删除，美食信息'"
   [hideBreadcrumb]="false"
   [hasBgImage]="true"
@@ -8,15 +8,19 @@
 <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center"
              class="px-2 bg-transparent" style="height: 40px;margin-top: -40px">
   <div fxLayout="row">
-    <button mat-icon-button [routerLink]="'./add'">
+    <button mat-icon-button [routerLink]="'./article'">
       <mat-icon>add_circle</mat-icon>
     </button>
   </div>
 </mat-toolbar>
 <mat-drawer-container class="page-wrapper">
+  <mat-button-toggle-group class="bg-white ml-3 mt-3" (valueChange)="changeTopic(group.value)" #group="matButtonToggleGroup" [value]="'FOOD'">
+    <mat-button-toggle value="FOOD">美食</mat-button-toggle>
+    <mat-button-toggle value="SCENERY">景点</mat-button-toggle>
+  </mat-button-toggle-group>
   <div fxLayout="column" class="p-2">
     <div class="p-2">
-      <mat-table #table [dataSource]="banners" class="mat-elevation-z8">
+      <mat-table #table [dataSource]="articles" class="mat-elevation-z8">
         <ng-container matColumnDef="title">
           <mat-header-cell *matHeaderCellDef> 标题</mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
@@ -28,8 +32,9 @@
         <ng-container matColumnDef="ops">
           <mat-header-cell *matHeaderCellDef> 操作</mat-header-cell>
           <mat-cell *matCellDef="let element">
-            <mat-icon class="mr-2" (click)="openDialog(element)" style="cursor: pointer">visibility</mat-icon>
-            <mat-icon style="cursor: pointer" (click)="delete(element.id)">delete_forever</mat-icon>
+            <mat-icon  (click)="jump(element.id)" style="cursor: pointer">visibility</mat-icon>
+            <mat-icon class="mx-2" style="cursor: pointer" (click)="delete(element.id)">delete_forever</mat-icon>
+            <mat-icon style="cursor: pointer" (click)="openMapDialog(element.id)">map</mat-icon>
           </mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

@@ -7,18 +7,18 @@
   <ng-template #elseBlock>
     <div id="user-info">
           <span class="user-name btn">
-          {{username}}
+          {{user.nickname}}
           </span>
       <div class="user-tip rounded">
         <div>
-          <a [routerLink]="['/user', uid]" >
-             <img class="user-pic rounded-circle" src="./assets/img/userPic.png" [alt]="username" >
+          <a [routerLink]="['/user', user.id]" >
+             <img class="user-pic rounded-circle" [src]="user.picture" [alt]="user.username" >
           </a>
-          <a [routerLink]="['/user', uid]" [queryParams]="{select: 'news'}"><span class="fa fa-bell"></span> 消息(0)</a>
-          <a [routerLink]="['/user', uid]" [queryParams]="{select: 'info'}"><span class="fa fa-home"></span> 个人中心</a>
-          <a [routerLink]="['/user', uid]" [queryParams]="{select: 'collection'}"><span class="far fa-star"></span> 个人收藏</a>
-          <a [routerLink]="['/user', uid]" [queryParams]="{select: 'publish'}"><span class="fa fa-columns"></span> 我的发表</a>
-          <a href="javascript:void(0)" (click)="openPublishDialog()"><span class="far fa-file"></span> 发表游记</a>
+          <a [routerLink]="['/user', user.id]" [queryParams]="{select: 'news'}"><span class="fa fa-bell"></span> 消息(0)</a>
+          <a [routerLink]="['/user', user.id]" [queryParams]="{select: 'info'}"><span class="fa fa-home"></span> 个人中心</a>
+          <a [routerLink]="['/user', user.id]" [queryParams]="{select: 'collection'}"><span class="far fa-star"></span> 个人收藏</a>
+          <a [routerLink]="['/user', user.id]" [queryParams]="{select: 'publish'}"><span class="fa fa-columns"></span> 我的发表</a>
+          <a [routerLink]="['/note/publish',user.id]"><span class="far fa-file"></span> 发表游记</a>
           <a href="javascript:void(0)" (click)="logout()"><span class="fa fa-sign-out-alt"></span> 退出登录</a>
         </div>
       </div>

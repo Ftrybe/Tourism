@@ -14,7 +14,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
   // 监听方法
   overlayListenFun: Function;
   collapseListenFun: Function;
-  constructor(private renderer: Renderer2) {}
+
+  constructor(private renderer: Renderer2) {
+  }
 
   ngOnInit() {
     this.overlayListenFun = this.renderer.listen(this.overlay.nativeElement, 'click', () => {
@@ -34,18 +36,22 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.changeShowState('show');
 
     } else {
-     this.changeShowState();
+      this.changeShowState();
     }
   }
+
   changeShowState(state = 'hidden') {
+    this.changedShow(this.navbCollapse.nativeElement, state);
+    this.changedShow(this.overlay.nativeElement, state);
+  }
+
+  changedShow(element: ElementRef, state) {
     switch (state) {
       case 'show':
-        this.renderer.addClass(this.navbCollapse.nativeElement, 'show');
-        this.renderer.addClass(this.overlay.nativeElement, 'show');
+        this.renderer.addClass(element, 'show');
         break;
       case 'hidden':
-        this.renderer.removeClass(this.navbCollapse.nativeElement, 'show');
-        this.renderer.removeClass(this.overlay.nativeElement, 'show');
+        this.renderer.removeClass(element, 'show');
         break;
     }
   }

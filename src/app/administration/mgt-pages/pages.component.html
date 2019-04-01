@@ -14,19 +14,6 @@
             <mat-icon>menu</mat-icon>
           </button>
         </div>
-        <div fxLayout="row" fxLayoutAlign="end center">
-          <div fxLayout="row" fxLayoutAlign="start center" fxShow="false" fxShow.gt-xs class="search-bar">
-            <form method="get">
-              <input type="text" placeholder="Type to search..." class="mat-elevation-z3"  [class.show]="toggleSearchBar">
-              <button mat-icon-button (click)="toggleSearchBar = !toggleSearchBar" type="button">
-                <mat-icon>search</mat-icon>
-              </button>
-            </form>
-          </div>
-          <app-fullscreen></app-fullscreen>
-          <app-messages fxShow="false" fxShow.gt-xs></app-messages>
-          <app-user-menu></app-user-menu>
-        </div>
       </div>
     </mat-toolbar>
   </header>
@@ -44,16 +31,13 @@
     </mat-drawer>
 
     <mat-drawer-content>
-
       <mat-toolbar *ngIf="settings.menu == 'horizontal'" class="horizontal-menu px-0" >
         <div fxLayout="row" fxLayoutAlign="center center" class="w-100">
           <app-horizontal-menu [menuParentId]="0" [class.w-100]="(settings.menuType!='mini')"></app-horizontal-menu>
         </div>
       </mat-toolbar>
       <router-outlet></router-outlet>
-
     </mat-drawer-content>
-
   </mat-drawer-container>
 
   <div #backToTop fxLayout="row" fxLayoutAlign="center center" class="back-to-top" (click)="scrollToTop()">

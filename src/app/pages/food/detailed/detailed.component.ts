@@ -11,6 +11,8 @@ import {
   NavigationControlType,
   Point
 } from 'angular2-baidu-map';
+import {BannerService} from '../../../core/services/banner.service';
+import {Topic} from '../../../core/models/topic';
 
 @Component({
   selector: 'app-detailed',
@@ -22,8 +24,9 @@ export class DetailedComponent implements OnInit {
   public markers: Array<{ point: Point; options?: MarkerOptions }>;
   controlOpts: NavigationControlOptions;
   geolocationOpts: GeolocationControlOptions;
+  banner: any;
 
-  constructor(private previewDialog: FilePreviewOverlayService) {
+  constructor(private previewDialog: FilePreviewOverlayService, private bannerService: BannerService) {
     this.mapOptions = {
       centerAndZoom: {
         lat: 26.4896,
@@ -54,7 +57,11 @@ export class DetailedComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log(this.markers);
+    this.bannerService.getBanner(Topic.FOOD).subscribe(
+      data => {
+        this.banner = data;
+      }
+    );
   }
 
   public setAnimation(marker: BMarker): void {
@@ -75,7 +82,4 @@ export class DetailedComponent implements OnInit {
     const dialogRef: FilePreviewOverlayRef = this.previewDialog.open({});
   }
 
-  clickMap(e) {
-    console.log(e);
-  }
 }

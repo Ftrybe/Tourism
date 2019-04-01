@@ -14,12 +14,18 @@ label {
 .ops{
   height: 38px;
 }
-.lock{
-  background-color: #00000000;
-  border: 0;
-}
+
 .form-control{
   font-size: 14px;
   font-weight: 500;
   color: black;
+  background-color: #00000000;
+  border-color: transparent;
+}
+.lock{
+  background-color: #ffffff;
+  border-color: #e6e6e6;
+}
+*{
+  transition: all 2s;
 }

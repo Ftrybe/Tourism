@@ -1,8 +1,10 @@
-export class Articles {
-  id: number;
+import {Topic} from './topic';
+
+export class Article {
+  id: string;
   titile: string;
   name: string;
-  topic: string;
+  topic: Topic;
   declaration: string;
   create_time: Date;
   updateTime: Date;

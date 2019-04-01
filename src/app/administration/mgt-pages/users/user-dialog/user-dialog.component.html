@@ -8,8 +8,8 @@
           用户名
         </mat-placeholder>
         <input matInput formControlName="username" required>
-        <mat-error *ngIf="this.form.hasError('required','username')">Username is required</mat-error>
-        <mat-error *ngIf="this.form.hasError('minlength','username')">Username isn't long enough, minimum of 5
+        <mat-error *ngIf="this.form.hasError('required',['username'])">Username is required</mat-error>
+        <mat-error *ngIf="this.form.hasError('minlength',['username'])">Username isn't long enough, minimum of 5
           characters
         </mat-error>
       </mat-form-field>
@@ -21,8 +21,8 @@
         <input matInput formControlName="password" required [type]="passwordHide ? 'password' : 'text'">
         <mat-icon matSuffix
                   (click)="passwordHide = !passwordHide">{{passwordHide ? 'visibility' : 'visibility_off'}}</mat-icon>
-        <mat-error *ngIf="this.form.hasError('required','password')">必须输入密码</mat-error>
-        <mat-error *ngIf="this.form.hasError('minlength','password')">密码最少8位
+        <mat-error *ngIf="this.form.hasError('required',['password'])">必须输入密码</mat-error>
+        <mat-error *ngIf="this.form.hasError('minlength',['password'])">密码最少8位
         </mat-error>
       </mat-form-field>
       <mat-form-field class="w-100">

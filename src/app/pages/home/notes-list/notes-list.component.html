@@ -8,17 +8,17 @@
             <a class="font-weight-light">点赞数<i class="fa fa-sort-amount-down" aria-hidden="true"></i></a>
         </div>
           <div class="note-item text-left" *ngFor="let note of notes">
-            <a class="note-link" [href]="note.src">
-            <img class="note-img" [src]="note.imgSrc" >
+            <a [routerLink]="['/note/detailed',note.id]" class="note-link">
+            <img class="note-img" [src]="note.coverUrl" >
             <div class="note-overview">
               <div class="note-title">{{note.title}}</div>
-              <div class="note-content">
-                {{note.content}}
+              <div class="note-content" [innerText]="note.declaration">
+
               </div>
               <div class="opts">
-                <span class="fa fa-user">{{note.username}}</span>
-                <span class="fa fa-thumbs-up">{{note.thumbsUp}}</span>
-                <span class="fa fa-clock">{{note.commentNum}}</span>
+                <span class="fa fa-user">{{note.userNickname}}</span>
+                <span class="fa fa-thumbs-up">{{note.praiseCount | numberSimplify}}</span>
+                <span class="fa fa-star">{{note.collectionCount | numberSimplify}}</span>
               </div>
             </div>
             </a>

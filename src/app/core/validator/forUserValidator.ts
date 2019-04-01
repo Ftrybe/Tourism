@@ -2,7 +2,6 @@ import {FormControl, ValidatorFn, FormGroup} from '@angular/forms';
 
 export function forMobileValidator(len: number): ValidatorFn {
   return (control: FormControl): any => {
-
     if (control.value.length >= len) {
       const myreq = /^1(3|4|5|7|8)\d{9}$/;
       const valid = myreq.test(control.value);
@@ -10,10 +9,8 @@ export function forMobileValidator(len: number): ValidatorFn {
     } else {
       return null;
     }
-
   };
 }
-
 export function forEqualValidator(): ValidatorFn {
   return (group: FormGroup): any => {
     const password: FormControl = group.get('password') as FormControl;

@@ -15,15 +15,14 @@ $color: #f8f9fa;
     .navbar-collapse {
       position: fixed;
       top: 0;
-      left: 0;
-      width: 10rem;
-      padding-top: 16px;
+      right: -16rem;
+      width: 15rem;
+      padding-top: 56px;
+      padding-left: 16px;
       height: 100%;
       z-index: 99;
       background-color: $color;
-      font-size: 14px;
-      transform: translateX(-12.5rem);
-      transition: transform 0.5s;
+      transition: right 0.5s;
       li{
         padding-left: 16px;
         &:last-child{
@@ -31,10 +30,9 @@ $color: #f8f9fa;
         }
       }
     }
-
     .show {
-      transform: translateX(0);
-      transition: transform 0.5s;
+      right: 0;
+      transition: right 0.5s;
     }
   }
 
@@ -42,13 +40,13 @@ $color: #f8f9fa;
 .overlay{
   display: none;
   position: fixed;
-  width: calc(100% - 1px);
-  height: 2000px;
+  width: 100%;
+  padding-top: 2500px;
   background: rgba(0,0,0,.5);
   &.show{
     display: block;
   }
-  @media screen and (min-width: $media-md) {
+  @media screen and (min-width: $media-lg) {
     &.show{
       display: none;
     }

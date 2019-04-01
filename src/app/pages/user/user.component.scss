@@ -10,12 +10,11 @@
   .avatar{
     border-radius: 100%;
     display: inline-block;
-    margin: 0 0 2em 0;
     box-shadow: 0 0 5px 3px #f5f1f1df;
     img{
       border-radius: 100%;
       display: block;
-      width: 8em;
+      width: 6em;
     }
   }
   h1{
@@ -23,6 +22,7 @@
     max-width: 1178px;
     margin: 0 auto;
     color: #ffffffee;
+    padding: 1rem;
   }
 }
 

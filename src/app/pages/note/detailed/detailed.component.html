@@ -1,12 +1,12 @@
-<div class="user">
-  <div class="header text-center pt-4 bg" style="">
-    <h1>This is Visualize, a responsive site template designed by TEMPLATED
-      and released for free under the Creative Commons License.</h1>
+<div class="maintain"
+     [ngStyle]="note.coverUrl?{'background-image':'url('+note.coverUrl+')'} : null">
+  <div class="header text-center" style="">
+    <h1 [innerText]="note.title"></h1>
     <div class="fr">
-       <div class="avatar">
-        <img class="" src="./assets/img/userPic.png">
-       </div>
-        <div class="name">这是一个用户名</div>
+      <div class="avatar">
+        <img class="" [src]="note.userPicture">
+      </div>
+      <div class="name" [innerText]="note.userNickname">这是一个用户名</div>
     </div>
   </div>
 </div>
@@ -16,49 +16,32 @@
       <div class="col-12 col-lg-9 content-warp">
         <div class="control">
           <div class="fr">
-            <a href=""><i class="fa fa-thumbs-up"></i>点赞</a>
-            <a href=""><i class="fa fa-star"></i>收藏</a>
-            <a href=""><i class="fa fa-comment"></i>评论</a>
+            <a href=""><i class="fa fa-thumbs-up"></i>点赞 {{note.praiseCount}}</a>
+            <a href=""><i class="fa fa-star"></i>收藏 {{note.collectionCount}}</a>
+            <a href=""><i class="fa fa-comment"></i>评论 29</a>
             <a href=""><i class="fa fa-eye"></i>浏览</a>
           </div>
         </div>
         <div class="content">
-          <h1>这是一个标题</h1>
-          <p>这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长
-            这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长
-            这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长
-            这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长
-          </p>
-          <img src="../assets/img/1.jpg"> <h1>这是一个标题</h1>
-          <p>这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长
-            这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长
-            这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长
-            这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长
-          </p>
-          <img src="../assets/img/userPic.png"> <h1>这是一个标题</h1>
-          <p>这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长
-            这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长
-            这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长
-            这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长这是一段文字。现在开始他是一段文字了。对。你将看到他逐渐得变长
-          </p>
-          <img src="../assets/img/1.jpg">
-          <div class="text-center" style="font-size: 3rem;color: #aaaaaa;padding: 16px 0;border-top: 1px dashed #e6e6e6;margin-top: 16px">
-             ~END~
+          <div [innerHTML]="note.content"></div>
+          <div class="text-center"
+               style="font-size: 3rem;color: #aaaaaa;padding: 16px 0;border-top: 1px dashed #e6e6e6;margin-top: 16px">
+            ~END~
           </div>
         </div>
         <app-comment></app-comment>
       </div>
       <div class="col-lg-3 catalog-warp" #warp [class.open]="isOpen">
-        <div class="catalog"  #catalog>
-        <h3 class="catalog-header"><span class="fa fa-list"></span>游记目录</h3>
-        <ul class="nav scroll">
-          <li class="nav-item"><a href="#" class="catalog-link">这是一个目录吧</a> </li>
-          <li class="nav-item"><a href="#" class="catalog-link">这是一个目录吧</a> </li>
-          <li class="nav-item"><a href="#" class="catalog-link">这是一个目录吧</a> </li>
-          <li class="nav-item"><a href="#" class="catalog-link">这是一个目录吧</a> </li>
-          <li class="nav-item"><a href="#" class="catalog-link">这是一个目录吧</a> </li>
-        </ul>
-      </div>
+        <div class="catalog" #catalogWarp>
+          <h3 class="catalog-header"><span class="fa fa-list"></span>游记目录</h3>
+          <ng-container *ngIf="catalogs ? this.catalogs.toString().length < 1 : false">
+            <ul>当前文章无目录</ul>
+          </ng-container>
+          <ul class="nav scroll" *ngFor="let catalog of catalogs index as i">
+            <li class="nav-item" (click)="getAnchor(i)"><a href="javascript:void(0)" class="catalog-link"
+                                                           [innerText]="catalog.innerHTML">这是一个目录吧</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -71,11 +54,11 @@
   </div>
   <div class="thumbs-up item">
     <span class="fa fa-thumbs-up"></span>
-    <span class="d">点赞</span>
+    <span class="d">点赞 {{note.praiseCount}}</span>
   </div>
   <div class="collection item">
     <span class="fa fa-star"></span>
-    <span class="d">收藏</span>
+    <span class="d">收藏 {{note.collectionCount}}</span>
   </div>
   <div class="comment item">
     <span class="fa fa-comment"></span>

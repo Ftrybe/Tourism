@@ -1,11 +1,8 @@
-import {Component, OnInit, Inject} from '@angular/core';
-import {MatDialogRef, MAT_DIALOG_DATA, MatCheckboxChange} from '@angular/material';
-import {FormGroup, FormBuilder, Validators} from '@angular/forms';
-import {User} from '../../../../core/models/user.model';
-import {forMobileValidator, forPasswordValidator} from '../../../../core/validator/forUserValidator';
-import {Sex} from '../../../../core/models/sex.enum';
-import {forEach} from '@angular/router/src/utils/collection';
-import {id} from '@swimlane/ngx-charts/release/utils';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {User} from '../../../../core/models/user';
+import {forMobileValidator} from '../../../../core/validator/forUserValidator';
 
 @Component({
   selector: 'app-user-dialog',
@@ -29,8 +26,6 @@ export class UserDialogComponent implements OnInit {
     {value: 'gradient-brown', viewValue: 'Brown'},
     {value: 'gradient-lime', viewValue: 'Lime'}
   ];
-  public isAdmin: boolean = false;
-  public isUser: boolean = false;
   public list = [];
 
   constructor(public dialogRef: MatDialogRef<UserDialogComponent>,
@@ -47,15 +42,13 @@ export class UserDialogComponent implements OnInit {
       declaration: [''],
       enabled: [''],
       picture: null,
-      create_time: null,
-      authorities: null
     });
   }
 
   ngOnInit() {
     if (this.user) {
       this.user.birthday = new Date(this.user.birthday);
-      this.form.setValue(this.user);
+      this.form.patchValue(this.user);
     } else {
       this.user = new User();
     }

@@ -2,7 +2,7 @@
 @import "../src/assets/font/fontawasome/fontawesome-all.css";
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import "assets/scss/mixin";
-
+@import "~node_modules/quill/dist/quill.snow.css";
 // indigo-pink, deeppurple-amber, purple-green and pink-bluegrey.
 @import "app/administration/theme/styles/base";
 @import "app/administration/theme/styles/libs-override";
@@ -16,7 +16,7 @@
 }
 
   h1 {
-    font-size: 1rem !important;
+    font-size: 1.25rem !important;
     @include media(md) {
       font-size: 1.25rem !important;
     }

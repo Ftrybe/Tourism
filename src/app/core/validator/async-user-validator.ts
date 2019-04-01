@@ -14,7 +14,7 @@ export class AsyncUserValidator {
   searchUser(username) {
     return username.length === 11 ? timer(100).pipe(
       switchMap(() => {
-        return this.userService.getUsername(username);
+        return this.userService.isExistUsername(username);
       })
     ) : null;
   }

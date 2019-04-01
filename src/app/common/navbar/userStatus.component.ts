@@ -1,37 +1,41 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ApplicationRef, ChangeDetectorRef, Component, ComponentRef, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {SignComponent} from 'src/app/dialog/sign';
 import {MatDialog} from '@angular/material';
 import {UsersService} from '../../core/services/users.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {NotePublishDialogComponent} from '../../dialog/note-publish-dialog/note-publish-dialog.component';
+import {User} from '../../core/models/user';
 
 
 @Component({
   selector: 'app-user-status',
   templateUrl: './userStatus.component.html',
-  styleUrls: ['./userStatus.component.scss']
+  styleUrls: ['./userStatus.component.scss'],
 })
 export class UserStatusComponent implements OnInit, OnDestroy {
-
-  public username: string;
-  public uid: string;
+  // 登录
   public isLogin: boolean;
   public dialogRef;
   public menu: string;
-  public userSubscribe;
-  public dialogSubscribe;
+  public user: User;
 
   constructor(
     private usersService: UsersService,
     private dialog: MatDialog,
+    private cd: ChangeDetectorRef
   ) {
   }
 
   ngOnInit(): void {
-    if (this.usersService.getUser()) {
-      this.isLogin = true;
-      this.username = this.usersService.getUser().sub;
-      this.uid = this.usersService.getUserId();
+    // 更新信息
+    if (this.usersService.isLoggedIn()) {
+      this.usersService.change.subscribe(
+        (data: User) => {
+          if (data) {
+            this.user = data;
+            this.cd.detectChanges();
+          }
+        }
+      );
+      this.getUser();
     }
   }
 
@@ -41,6 +45,20 @@ export class UserStatusComponent implements OnInit, OnDestroy {
     this.isLogin = false;
   }
 
+  getUser() {
+    // 登录信息验证
+    this.usersService.getSelf().subscribe(
+      (data: User) => {
+        if (data) {
+          this.isLogin = true;
+          this.user = data;
+          this.cd.detectChanges();
+        }
+      }
+    );
+  }
+
+  // 登录窗口
   openDialog() {
     // 防止多开登录窗口
     if (this.dialogRef) {
@@ -53,22 +71,16 @@ export class UserStatusComponent implements OnInit, OnDestroy {
         this.dialogRef = '';
       });
       // 获取子组件传来得登录状态
-      this.dialogSubscribe = this.dialog.getDialogById('signDialog').componentInstance.isLogin.subscribe(status => {
-        this.isLogin = status;
-        this.username = this.usersService.getUser().sub;
+      this.dialog.getDialogById('signDialog').componentInstance.isLogin.subscribe(status => {
+        if (status) {
+          this.isLogin = status;
+          this.getUser();
+        }
       });
     }
   }
 
-  openPublishDialog() {
-    this.dialog.closeAll();
-    this.dialog.open(NotePublishDialogComponent, {
-      width: 800
-    });
+  ngOnDestroy(): void {
   }
 
-  ngOnDestroy(): void {
-    this.dialogRef ? this.dialogRef.unsubscribe() : console.log('');
-    this.userSubscribe ? this.userSubscribe.unsubscribe() : console.log('');
-  }
 }

@@ -1,12 +1,8 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {Router, ActivatedRoute, NavigationEnd} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 
 import {filter, map, mergeMap} from 'rxjs/operators';
-import {log} from 'util';
-import {Settings} from './administration/app.settings.model';
-import {AppSettings} from './administration/app.settings';
-import {JwtHelperService} from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-root',

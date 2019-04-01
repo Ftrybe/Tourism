@@ -1,42 +1,101 @@
-@import "/~src/assets/scss/varible";
-.food{
-  &-ttl{
-    span{
-      border-bottom: 1px solid black;
-      display: inline-block;
-      padding-bottom: 1.25rem;
-    }
-  }
-  &-item{
-    padding:0 4%;
-    margin-bottom: 3rem;
-    .box{
+@import "/~src/assets/scss/mixin";
+
+.food {
+  padding-top: 1rem;
+
+  &-item {
+    margin: .25rem 0;
+    width: 100%;
+    display: flex;
+    float: left;
+    overflow: hidden;
+    background: black;
+    box-shadow: 0 0 5px #f8f9fa;
+    border-radius: 5px;
+
+    .box {
       width: 100%;
+      height: 100%;
+      padding-bottom: 66.66%;
       text-decoration: none;
       color: #fcf8e3;
-      p{
-        padding:0 1rem;
-        // font-size: 1.5rem;
-        font-family:400 1.5rem/160% "仿宋",sans-serif;
-        position: absolute;
-        left: 0;
-        bottom: 0;
+      position: relative;
 
+      .item-img {
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50%;
+        position: absolute;
+        opacity: .9;
+        transform: scale(1);
+        transition: all 0.5s;
+      }
+
+      .food-mate {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+
+        .food-cat-warp {
+          span {
+            margin: 10px 0;
+            padding: 0 1rem;
+            letter-spacing: 2px;
+
+            &:not(:first-child) {
+              border-left: 1px solid #fff;
+            }
+          }
+        }
+
+        .food-title {
+          margin: 20px 0;
+          letter-spacing: 2px;
+
+          p {
+            margin: 20px 0;
+            font-size: 1.4rem;
+            font-style: italic;
+            font-weight: normal;
+            @include media-max(md){
+              font-size: .8rem;
+            }
+            @include media-max(lg){
+              font-size: 1rem;
+            }
+          }
+
+        }
+      }
+
+      &:hover {
+        .item-img {
+          opacity: .4;
+          transform: scale(1.02);
+          transition: all 0.5s;
+        }
       }
     }
-    &-ttl{
-      padding:1rem;
-      font-family:400 1.3rem/160% "仿宋",sans-serif;
-      height: 1rem;
-      line-height: 1.5rem;
-    }
-  }
-  .item-img{
-    width: 100%;
-    height: 100%;
-    padding-top:58.25%;
-    position: relative;
 
+    &:nth-child(3n+1) {
+      width: calc(100% - 0.5rem);
+    }
+
+    @include media(md) {
+      & {
+        width: calc(50% - .5rem);
+        margin: .25rem;
+      }
+      .box {
+        padding-bottom: 45%;
+      }
+    }
   }
 }
 

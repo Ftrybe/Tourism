@@ -1,23 +1,24 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {ImageCroppedEvent} from 'ngx-image-cropper';
 import {MAT_DIALOG_DATA, MatDialogRef, MatSnackBar} from '@angular/material';
-import {Banner} from '../banner';
+import {Banner} from '../../../../../core/models/banner';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {BannerService} from '../banner.service';
+import {BannerService} from '../../../../../core/services/banner.service';
 import {catchError} from 'rxjs/operators';
 import {of} from 'rxjs';
-import {Topic} from '../topic';
 
 
 @Component({
   selector: 'app-banner-dialog',
   templateUrl: './banner-dialog.component.html',
-  styleUrls: ['./banner-dialog.component.scss']
+  styleUrls: ['./banner-dialog.component.scss'],
 })
 export class BannerDialogComponent implements OnInit {
+  // 表单
   public form: FormGroup;
   imageChangedEvent: any = '';
   checked: boolean = false;
+  // 获得图片nase64编码
   croppedImage: any = '';
   // banner: Banner;
   file;
@@ -50,17 +51,6 @@ export class BannerDialogComponent implements OnInit {
       this.checked = true;
       this.croppedImage = this.banner.url;
       this.form.setValue(this.banner);
-      // switch (this.banner.topic) {
-      //   case 'HOME':
-      //     this.form.get('topic').setValue('0');
-      //     break;
-      //   case 'FOOD':
-      //     this.form.get('topic').setValue('1');
-      //     break;
-      //   case 'SCENERY':
-      //     this.form.get('topic').setValue('2');
-      //     break;
-      // }
     } else {
       this.banner = new Banner();
       this.isNew = true;
@@ -68,34 +58,17 @@ export class BannerDialogComponent implements OnInit {
   }
 
   fileChangeEvent(event: any): void {
-    this.form.get('topic').value === 0 ? this.aspectRatio = 16 / 9 : this.aspectRatio = 4;
+    this.form.get('topic').value === 'HOME' ? this.aspectRatio = 16 / 9 : this.aspectRatio = 4;
     this.imageChangedEvent = event;
   }
 
   imageCropped(event: ImageCroppedEvent) {
-    this.file = event.file;
     this.croppedImage = event.base64;
   }
 
-  imageLoaded() {
-    // show cropper
-  }
-
-  cropperReady() {
-    // cropper ready
-  }
-
-  loadImageFailed() {
-    // show message
-  }
-
   submit() {
-    const rbanner: Banner = new Banner();
-    rbanner.title = this.form.get('title').value;
-    rbanner.subtitle = this.form.get('subtitle').value;
-    rbanner.topic = this.form.get('topic').value;
-    // this.bannerService.add(this.form.value).pipe(
-    this.bannerService.add(this.file, rbanner).pipe(
+    this.form.get('url').setValue(this.croppedImage);
+    this.bannerService.add(this.form.value).pipe(
       catchError(err => {
         this.snackBar.open('添加失败', '关闭', {
           duration: 2000
@@ -115,42 +88,20 @@ export class BannerDialogComponent implements OnInit {
   }
 
   update() {
-    const rbanner: Banner = new Banner();
-    rbanner.title = this.form.get('title').value;
-    rbanner.subtitle = this.form.get('subtitle').value;
-    rbanner.topic = this.form.get('topic').value;
-    console.log(rbanner.topic);
-    rbanner.id = this.banner.id;
-    if (this.file) {
-      this.bannerService.updateFile(this.file, rbanner).subscribe(
-        data => {
-          if (data) {
-            this.snackBar.open('更新成功', '关闭', {
-              duration: 2000
-            });
-            this.onNoClick();
-          } else {
-            this.snackBar.open('更新失败', '关闭', {
-              duration: 2000
-            });
-          }
+    this.croppedImage.length > 1 ? this.form.get('url').setValue(this.croppedImage) : null;
+    this.bannerService.update(this.form.value).subscribe(
+      data => {
+        if (data) {
+          this.snackBar.open('更新成功', '关闭', {
+            duration: 2000
+          });
+          this.onNoClick();
+        } else {
+          this.snackBar.open('更新失败', '关闭', {
+            duration: 2000
+          });
         }
-      );
-    } else {
-      this.bannerService.update(rbanner).subscribe(
-        data => {
-          if (data) {
-            this.snackBar.open('更新成功', '关闭', {
-              duration: 2000
-            });
-            this.onNoClick();
-          } else {
-            this.snackBar.open('更新失败', '关闭', {
-              duration: 2000
-            });
-          }
-        }
-      );
-    }
+      }
+    );
   }
 }

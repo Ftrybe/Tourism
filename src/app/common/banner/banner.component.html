@@ -1,9 +1,9 @@
-<div class="card banner" [class.subBanner]="isSubBanner">
-  <img class="img-fluid card-img" [src]="imgSrc">
+<div class="card banner" [class.subBanner]="isSubBanner" *ngIf="b">
+  <img class="img-fluid card-img" [src]="b.url">
   <div class="card-img-overlay d-flex justify-content-sm-center">
     <div class="align-self-center">
-        <ng-content select="h1"></ng-content>
-        <ng-content select="p"></ng-content>
+      <h1 class="card-title">{{b.title}}</h1>
+      <p class="card-text text-light"> {{b.subtitle}}</p>
     </div>
   </div>
 </div>

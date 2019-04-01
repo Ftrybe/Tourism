@@ -2,6 +2,7 @@ import {ModuleWithProviders, NgModule} from '@angular/core';
 import {Routes, RouterModule, PreloadAllModules} from '@angular/router';
 import {PageComponent} from './pages/page.component';
 import {HomeContentComponent} from './pages/home/content/content.component';
+import {CanActivateAuthGuard} from './core/interceptors/can-activate.authguard';
 
 
 const routes: Routes = [
@@ -17,7 +18,10 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'manager', loadChildren: './administration/administration.module#AdministrationModule', data: {title: '后台'}
+    path: 'manager',
+    loadChildren: './administration/administration.module#AdministrationModule',
+    data: {title: '后台'},
+    canActivate: [CanActivateAuthGuard]
   },
   {path: '**', redirectTo: '/index'}
 ];

@@ -24,12 +24,9 @@
         [aspectRatio]="aspectRatio"
         [resizeToWidth]="1920"
         [cropperMinWidth]="1080"
-        format="png"
-        outputType="both"
+        format="jpeg"
+        outputType="base64"
         (imageCropped)="imageCropped($event)"
-        (imageLoaded)="imageLoaded()"
-        (cropperReady)="cropperReady()"
-        (loadImageFailed)="loadImageFailed()"
       ></image-cropper>
     </div>
   </form>
@@ -37,7 +34,7 @@
     [(ngModel)]="checked">
     预览
   </mat-checkbox>
-    <div class="card banner" [class.subBanner]="banner.topic!=0" *ngIf="checked">
+    <div class="card banner" [class.subBanner]="aspectRatio != (16/9)" *ngIf="checked">
       <img class="img-fluid card-img" [src]="croppedImage">
       <div class="card-img-overlay d-flex justify-content-sm-center">
         <div class="align-self-center">

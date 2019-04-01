@@ -1,13 +1,14 @@
 import {Sex} from './sex.enum';
 
 export class User {
-  id: number;
+  id: string;
   username: string;
   password: string;
   nickname?: string;
   email?: string;
   sex: Sex;
-  picture?: string;
-  create_time: Date;
+  picture: string;
+  createTime: Date;
   birthday?: Date;
+  declaration: string;
 }

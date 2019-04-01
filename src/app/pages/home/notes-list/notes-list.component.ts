@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NoteService} from '../../../core/services/note.service';
 import {Note} from '../../../core/models/note';
 import {Observable} from 'rxjs';
@@ -14,14 +14,16 @@ export class NotesListComponent implements OnInit {
   public isShowMenu: boolean;
   public notes: Note[];
   public errorMsg;
+
   getSortMenu(envent) {
-    console.log(event);
     this.isShowMenu = true;
   }
-  constructor(private noteService: NoteService) { }
+
+  constructor(private noteService: NoteService) {
+  }
 
   ngOnInit() {
-    this.noteService.getList().subscribe(data => this.notes = data);
+    this.noteService.getRandom().subscribe(data => this.notes = data);
   }
 
 }

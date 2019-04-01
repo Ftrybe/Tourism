@@ -8,6 +8,6 @@ export class TokenService {
   }
 
   public getAsyncToken(): string {
-    return localStorage.getItem('access_token');
+    return  localStorage.getItem('access_token');
   }
 }

@@ -1,6 +1,6 @@
 import {BrowserModule, Title} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule, routingComponents} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {FooterComponent} from './common/footer/footer.component';
@@ -19,14 +19,14 @@ import {WINDOW_PROVIDERS} from './core/services/window.service';
 import {BackToTopDirective} from './core/directive/back-to-top.directive';
 import {JWT_OPTIONS, JwtModule} from '@auth0/angular-jwt';
 import {TokenService} from './core/services/token.service';
-import {NotePublishDialogComponent} from './dialog/note-publish-dialog/note-publish-dialog.component';
+import {ImageCropperModule} from 'ngx-image-cropper';
 
 export function jwtOptionsFactory(tokenService) {
   return {
     tokenGetter: () => {
       return tokenService.getAsyncToken();
     },
-    whitelistedDomains: ['localhost:8080', 'ftrybe.com', '127.0.0.1:8080'],
+    whitelistedDomains: ['localhost:8080', 'ftrybe.com', '127.0.0.1:8080', 'api.ftrybe.com'],
     blacklistedRoutes: []
   };
 }
@@ -39,7 +39,6 @@ export function jwtOptionsFactory(tokenService) {
     FooterComponent,
     NavbarComponent,
     SignComponent,
-    NotePublishDialogComponent,
     HasRoleDirective,
     UserStatusComponent,
     NotesListComponent,
@@ -51,10 +50,12 @@ export function jwtOptionsFactory(tokenService) {
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     ShareModule,
     CustomMaterialModule,
     OverlayModule,
     SignModule,
+    ImageCropperModule,
     JwtModule.forRoot({
       jwtOptionsProvider: {
         provide: JWT_OPTIONS,
@@ -67,7 +68,6 @@ export function jwtOptionsFactory(tokenService) {
   entryComponents:
     [
       SignComponent,
-      NotePublishDialogComponent
     ],
   providers:
     [

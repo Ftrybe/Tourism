@@ -1,9 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ArticlesRoutes, RoutingComponents} from './articles.routing';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ArticlesRoutes, RoutingComponents} from './articles.routing';
 import {SharedModule} from '../../shared/shared.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ImageCropperModule} from 'ngx-image-cropper';
+import { QuillModule} from 'ngx-quill';
+import { ArticleMapDialogComponent } from './article-map-dialog/article-map-dialog.component';
+import {BaiduMapModule} from 'angular2-baidu-map';
 
 @NgModule({
   imports: [
@@ -12,8 +15,12 @@ import {ImageCropperModule} from 'ngx-image-cropper';
     FormsModule,
     ReactiveFormsModule,
     ImageCropperModule,
-    ArticlesRoutes
+    ArticlesRoutes,
+    QuillModule,
+    BaiduMapModule.forRoot({ak: '8F1HxkUfqSGRywCZYdEZqw4DGLX5glk2'})
   ],
-  declarations: [RoutingComponents]
+  declarations: [RoutingComponents, ArticleMapDialogComponent],
+  entryComponents: [ArticleMapDialogComponent]
 })
-export class ArticlesModule { }
+export class ArticlesModule {
+}

@@ -2,9 +2,9 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {AppSettings} from '../../app.settings';
 import {Settings} from '../../app.settings.model';
-import {User} from '../../../core/models/user.model';
-import {UsersService} from './users.service';
+import {User} from '../../../core/models/user';
 import {UserDialogComponent} from './user-dialog/user-dialog.component';
+import {UsersService} from '../../../core/services/users.service';
 
 @Component({
   selector: 'app-users',
@@ -31,7 +31,7 @@ export class UsersComponent implements OnInit {
   }
 
   public getUsers(): void {
-    this.users = null; //for show spinner each time
+    this.users = null;
     this.usersService.getUsers().subscribe(users => {
       this.users = users;
     });

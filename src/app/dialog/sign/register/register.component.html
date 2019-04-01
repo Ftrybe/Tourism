@@ -35,7 +35,7 @@
     <label for="smsCode">验证码</label>
     <div class="form-inline">
       <input type="text" class="form-control col-7" id="smsCode" formControlName="smsCode" name="randomCode" placeholder="请输入验证码">
-      <input type="button" class="form-control col-5" [value]="smsValue" (click)="getSMSCode()" [disabled]="disabled" >
+      <input type="button" class="form-control col-5" [value]="smsValue" (click)="getSMSCode()" [disabled]="this.formModel.get('username').invalid" >
     </div>
   </div>
   <div *ngIf="isValid" class="alert alert-danger">注册失败，请检查</div>

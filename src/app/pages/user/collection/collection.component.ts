@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {UsersService} from '../../../core/services/users.service';
+import {HotService} from '../../../core/services/hot.service';
+import {User} from '../../../core/models/user';
 
 @Component({
   selector: 'app-user-collection',
@@ -6,10 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./collection.component.scss']
 })
 export class CollectionComponent implements OnInit {
-
-  constructor() { }
+  @Input() private user: User;
+  constructor(private hotService: HotService) { }
 
   ngOnInit() {
-  }
 
+  }
+  getList(){
+
+  }
 }

@@ -1,31 +1,53 @@
-import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
 import {Note} from 'src/app/core/models/note';
-import {catchError} from 'rxjs/operators';
+import {environment} from '../../../environments/environment';
+import {flatMap, map} from 'rxjs/operators';
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
+
 @Injectable({
   providedIn: 'root'
 })
 export class NoteService {
-  constructor(private  http: HttpClient) { }
-  private _url  = '../../../assets/data/notes.json';
-  errorHandler(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error.message);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
-    }
-    // return an observable with a user-facing error message
-    return throwError(
-      'Something bad happened; please try again later.');
+  constructor(private  http: HttpClient) {
   }
 
-  public getList(): Observable<Note[]> {
-    return this.http.get<Note[]>(this._url).pipe(catchError(this.errorHandler));
+  private url = `${environment.apiUrl}/notes/`;
+
+  public getList(currPage): Observable<Note[]> {
+    const params = {
+      currPage: currPage,
+      pageSize: '12'
+    };
+    // return this.http.get<Note[]>(this._url);
+    return this.http.post<Note[]>(this.url + 'getList', params);
+  }
+
+  public getRandom(): Observable<Note[]> {
+    return this.http.get<Note[]>(this.url + 'random');
+  }
+
+  public getNote(id): Observable<Note> {
+    return this.http.get<Note>(this.url + 'get', {params: {id: id}});
+  }
+
+  public update(note): any {
+    return this.http.put(this.url + 'update', note);
+  }
+
+  public delete(id): Observable<boolean> {
+    return this.http.delete<boolean>(this.url + 'del/' + id);
+  }
+
+  public add(note): any {
+    return this.http.post(this.url + 'add', note);
+  }
+
+  public uploadImage(imageFile: string): any {
+    return this.http.post(this.url + 'uploadImage', imageFile);
   }
 }

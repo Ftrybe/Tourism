@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {ImageCroppedEvent} from 'ngx-image-cropper';
 import {ArticlesService} from '../../../../core/services/articles.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Article} from '../../../../core/models/article';
 
 @Component({
   selector: 'app-article',
@@ -13,8 +15,9 @@ export class ArticleComponent implements OnInit {
   imageChangedEvent: any = '';
   croppedImage: any = '';
   file: any = '';
+  oldCoverImage: string = './assets/img/upload_bg.png';
 
-  constructor(private fb: FormBuilder, private articlesService: ArticlesService) {
+  constructor(private fb: FormBuilder, private articlesService: ArticlesService, private router: Router, private route: ActivatedRoute) {
     this.form = this.fb.group({
       id: null,
       title: null,
@@ -25,11 +28,13 @@ export class ArticleComponent implements OnInit {
       address: null,
       contact: null,
       topic: null,
-      declaration: null
+      declaration: null,
+      state: null
     });
   }
 
   fileChangeEvent(event: any): void {
+    this.croppedImage = '';
     this.imageChangedEvent = event;
   }
 
@@ -37,26 +42,41 @@ export class ArticleComponent implements OnInit {
     this.croppedImage = event.base64;
   }
 
-  imageLoaded() {
-    // show cropper
-  }
+  startCropImage() {
 
-  cropperReady() {
-    // cropper ready
-  }
-
-  loadImageFailed() {
-    // show message
   }
 
   ngOnInit() {
-
+    this.route.data.subscribe(
+      data => {
+        if (data[0]) {
+          this.form.patchValue(data[0]);
+          this.oldCoverImage = data[0].coverUrl;
+        }
+      }
+    );
   }
 
   submit() {
-    this.form.get('coverUrl').setValue(this.croppedImage);
-    this.articlesService.addArticle(this.form.value).subscribe(
-      data => console.log(data)
-  );
+    const article: Article = this.form.value as Article;
+    console.log(article.id);
+    if (article.id) {
+      this.croppedImage.length > 1 ?
+        article.coverUrl = this.croppedImage : article.coverUrl = this.oldCoverImage;
+      this.articlesService.updateArticle(article).subscribe(
+        data => {
+          this.router.navigate(['/manager/articles']);
+        }
+      );
+    } else {
+      article.coverUrl = this.croppedImage;
+      this.articlesService.addArticle(article).subscribe(
+        data => {
+          this.router.navigate(['/manager/articles']);
+        }
+      );
+    }
   }
+
+
 }
