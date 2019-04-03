@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material';
+import {NoteReplyDialogComponent} from '../note-reply-dialog/note-reply-dialog.component';
 
 @Component({
   selector: 'app-comment',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialog: MatDialog) {
+  }
 
   ngOnInit() {
   }
 
+  openReplyDialog(id: string) {
+    this.dialog.open(NoteReplyDialogComponent, {
+      width: '800px'
+    });
+  }
 }

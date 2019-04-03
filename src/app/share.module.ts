@@ -6,6 +6,7 @@ import {FilePreviewOverlayToolbarComponent} from './common/file-preview-overlay/
 import {FilePreviewOverlayComponent} from './common/file-preview-overlay/file-preview-overlay.component';
 import {FilePreviewOverlayService} from './common/file-preview-overlay/file-preview-overlay.service';
 import {NumberSimplifyPipe} from './core/pipe/number-simplify.pipe';
+import {LetterLengthLimitDirective} from './core/directive/letter-length-limit.directive';
 
 @NgModule({
   imports: [
@@ -16,11 +17,13 @@ import {NumberSimplifyPipe} from './core/pipe/number-simplify.pipe';
     BannerComponent,
     FilePreviewOverlayToolbarComponent,
     FilePreviewOverlayComponent,
-    NumberSimplifyPipe
+    NumberSimplifyPipe,
+    LetterLengthLimitDirective
   ],
   exports: [
     BannerComponent,
-    NumberSimplifyPipe
+    NumberSimplifyPipe,
+    LetterLengthLimitDirective
   ],
   providers: [
     FilePreviewOverlayService

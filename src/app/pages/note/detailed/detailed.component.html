@@ -16,10 +16,10 @@
       <div class="col-12 col-lg-9 content-warp">
         <div class="control">
           <div class="fr">
-            <a href=""><i class="fa fa-thumbs-up"></i>点赞 {{note.praiseCount}}</a>
-            <a href=""><i class="fa fa-star"></i>收藏 {{note.collectionCount}}</a>
-            <a href=""><i class="fa fa-comment"></i>评论 29</a>
-            <a href=""><i class="fa fa-eye"></i>浏览</a>
+            <a href="javascript:void(0)"><i class="fa fa-thumbs-up"></i>点赞 {{note.praiseCount}}</a>
+            <a href="javascript:void(0)"><i class="fa fa-star"></i>收藏 {{note.collectionCount}}</a>
+            <a href="javascript:void(0)" (click)="getAnchor('comment')"><i class="fa fa-comment" ></i>评论 29</a>
+            <a href="javascript:void(0)"><i class="fa fa-eye"></i>浏览</a>
           </div>
         </div>
         <div class="content">
@@ -29,12 +29,12 @@
             ~END~
           </div>
         </div>
-        <app-comment></app-comment>
+        <app-comment class="anchor d-block" id="comment"></app-comment>
       </div>
       <div class="col-lg-3 catalog-warp" #warp [class.open]="isOpen">
         <div class="catalog" #catalogWarp>
           <h3 class="catalog-header"><span class="fa fa-list"></span>游记目录</h3>
-          <ng-container *ngIf="catalogs ? this.catalogs.toString().length < 1 : false">
+          <ng-container *ngIf="catalogs ? catalogs.toString().length < 1 : false">
             <ul>当前文章无目录</ul>
           </ng-container>
           <ul class="nav scroll" *ngFor="let catalog of catalogs index as i">
@@ -62,6 +62,6 @@
   </div>
   <div class="comment item">
     <span class="fa fa-comment"></span>
-    <span class="d">评论</span>
+    <span class="d" (click)="getAnchor('comment')">评论</span>
   </div>
 </div>

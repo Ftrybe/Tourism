@@ -1,13 +1,15 @@
-@import "/~src/assets/scss/varible";
 @import "/~src/assets/scss/mixin";
-
-.warp {
-  position: relative;
+.warp{
+  column-width: 260px;
 }
-
+.item{
+  height: 100%;
+  overflow: auto;
+  padding: 7px;
+}
 .note-card {
-  position: absolute;
-  width: calc(100% - 10px);
+  // position: absolute;
+ // width: calc(100% - 10px);
   .mat-card-content {
     display: none;
   }
@@ -36,40 +38,6 @@
       font-size: 11px;
     }
   }
-
-  @include media(sm) {
-    width: 245px;
-    .mat-card-header {
-      .mat-card-subtitle,
-      .mat-card-title{
-        font-size: 14px;
-        margin-bottom: 16px;
-      }
-    }
-    .mat-card-content {
-      display: block;
-    }
-    .note-header-image {
-      width: 40px;
-      height: 40px;
-    }
-    .mat-card-footer {
-      .mat-card-time {
-        font-size: 14px;
-      }
-    }
-  }
-  @include media(md) {
-    width: 220px;
-  }
-  @include media(lg) {
-    width: 222px;
-  }
-  @include media(xl) {
-    width: 267px;
-  }
-
-
 }
 
 .note-header-image {

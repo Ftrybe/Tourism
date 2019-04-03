@@ -16,6 +16,7 @@ import {ImageUploadModule} from 'angular2-image-upload';
 import {ImageCropperDialogModule} from '../../dialog/image-cropper-dialog/image-cropper-dialog.module';
 import {OnlyTextForEditorPipe} from '../../core/pipe/only-text-for-editor.pipe';
 import {NoteService} from '../../core/services/note.service';
+import { NoteReplyDialogComponent } from './note-reply-dialog/note-reply-dialog.component';
 
 @NgModule({
   imports: [
@@ -29,8 +30,8 @@ import {NoteService} from '../../core/services/note.service';
     ImageUploadModule.forRoot(),
     ImageCropperDialogModule
   ],
-  declarations: [NoteComponent, DetailedComponent, CommentComponent, MaintainComponent, SearchComponent],
-  entryComponents: [],
+  declarations: [NoteComponent, DetailedComponent, CommentComponent, MaintainComponent, SearchComponent, NoteReplyDialogComponent],
+  entryComponents: [NoteReplyDialogComponent],
   providers: [WINDOW_PROVIDERS, NoteService]
 })
 export class NoteModule {

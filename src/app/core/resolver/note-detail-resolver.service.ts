@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot} from '@angular/router';
 import {EMPTY, Observable, of} from 'rxjs';
-import {mergeMap, take} from 'rxjs/operators';
+import {flatMap, mergeMap, take} from 'rxjs/operators';
 import {Note} from '../models/note';
 import {NoteService} from '../services/note.service';
 

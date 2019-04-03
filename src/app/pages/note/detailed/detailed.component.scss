@@ -132,15 +132,15 @@
     }
   }
 
-
-
-  .content{
+  .content {
     padding: 0 16px;
+
     ::ng-deep img {
       max-width: 100%;
       padding: 0 8px;
     }
-  }e
+  }
+
   .content-warp {
     padding-top: 16px;
   }
@@ -221,4 +221,9 @@
       color: rgba(128, 143, 157, 0.93);
     }
   }
+}
+
+::ng-deep .anchor {
+  padding-top: 64px !important;
+  margin-top: -64px !important;
 }
