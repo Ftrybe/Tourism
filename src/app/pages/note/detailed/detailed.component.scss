@@ -94,6 +94,9 @@
 
       li {
         font-size: 18px;
+        a{
+          color: #333;
+        }
       }
 
       &-link {
@@ -135,9 +138,15 @@
   .content {
     padding: 0 16px;
 
-    ::ng-deep img {
-      max-width: 100%;
-      padding: 0 8px;
+    ::ng-deep {
+      img{
+        max-width: 100%;
+        padding: 0 8px;
+      }
+      p{
+        font-size: 16px;
+        line-height: 32px;
+      }
     }
   }
 

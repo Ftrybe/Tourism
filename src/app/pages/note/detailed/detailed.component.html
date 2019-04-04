@@ -38,7 +38,7 @@
             <ul>当前文章无目录</ul>
           </ng-container>
           <ul class="nav scroll" *ngFor="let catalog of catalogs index as i">
-            <li class="nav-item" (click)="getAnchor(i)"><a href="javascript:void(0)" class="catalog-link"
+            <li class="nav-item catalog-link" (click)="getAnchor(i)"><a href="javascript:void(0)"
                                                            [innerText]="catalog.innerHTML">这是一个目录吧</a></li>
           </ul>
         </div>
