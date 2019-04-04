@@ -9,7 +9,6 @@
       [resizeToWidth]="info.resizeToWidth"
       [cropperMinWidth]="info.cropperMinWidth"
       [aspectRatio]="info.aspectRatio"
-      (cropperReady)="cropperReady()"
 
       format="jpeg"
       outputType="base64"
@@ -19,6 +18,6 @@
 
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button (click)="closeDialog()">取消</button>
-  <button mat-button (click)="save()">完成</button>
+  <button class="mat-button" mat-button mat-dialog-close="">取消</button>
+  <button class="mat-button btn-success" mat-button (click)="save()">完成</button>
 </mat-dialog-actions>

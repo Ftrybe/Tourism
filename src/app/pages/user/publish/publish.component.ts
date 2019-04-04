@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {UsersService} from '../../../core/services/users.service';
 import {Note} from '../../../core/models/note';
 import {NoteService} from '../../../core/services/note.service';
-import {MatDialog, MatSnackBar} from '@angular/material';
+import {MatDialog} from '@angular/material';
+import {ConfirmRequestDialogComponent} from '../../../dialog/confirm-request-dialog/confirm-request-dialog.component';
 
 @Component({
   selector: 'app-user-publish',
@@ -27,10 +28,20 @@ export class PublishComponent implements OnInit {
   }
 
   deleteNote(id) {
-    this.noteService.delete(id).subscribe(
+    const dialogRef  = this.dialog.open(ConfirmRequestDialogComponent, {
+      data: '确认删除？'
+    });
+    dialogRef.afterClosed().subscribe(
       state => {
-        console.log(state);
+        if(state){
+          this.noteService.delete(id).subscribe(
+            data => {
+              console.log(data);
+            }
+          );
+        }
       }
     );
+
   }
 }

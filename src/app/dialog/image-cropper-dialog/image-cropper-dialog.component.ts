@@ -12,8 +12,7 @@ interface Data {
 }
 @Component({
   selector: 'app-image-cropper-dialog',
-  templateUrl: './image-cropper-dialog.component.html',
-  styleUrls: ['./image-cropper-dialog.component.scss']
+  templateUrl: './image-cropper-dialog.component.html'
 })
 export class ImageCropperDialogComponent implements OnInit {
   imageChangedEvent: any = '';
@@ -36,19 +35,7 @@ export class ImageCropperDialogComponent implements OnInit {
     this.croppedImage = event.base64;
   }
 
-  closeDialog() {
-    this.dialogRef.close();
-  }
-
   save() {
     this.dialogRef.close(this.croppedImage);
-  }
-
-  cropperReady() {
-
-  }
-
-  ratioChanged(event: Event) {
-    console.log(event);
   }
 }

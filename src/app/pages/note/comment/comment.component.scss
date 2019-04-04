@@ -1,5 +1,13 @@
-*{
+h5,p,span{
   font-size: 14px;
+  text-align: justify;
+}
+p{
+  margin-bottom: .2rem;
+}
+.rpy-btn{
+  cursor: pointer;
+  font-size: 13px;
 }
 .comment-list-item{
   padding: 4px;
@@ -16,8 +24,15 @@
   margin-top: 8px;
 }
 .media{
+  margin-top: .5rem;
   img{
     width: 48px;
+    border-radius: 100%;
+  }
+  .media{
+    img{
+      width: 24px;
+    }
   }
 }
 .media-footer{

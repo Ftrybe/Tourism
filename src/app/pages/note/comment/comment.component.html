@@ -8,12 +8,40 @@
         <div class="media-body">
           <h5 class="mt-0">Top-aligned media</h5>
           <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-          <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
           <div class="media-footer">
             <div class="fl">
               <span>time:2019.12.31 23:12:43</span>
             </div>
-            <div class="fr" (click)="openReplyDialog('id')" style="cursor: pointer">回复</div>
+            <div class="fr text-secondary rpy-btn" (click)="getReply('id')">查看回复</div>
+            <div class="ml-2 text-secondary rpy-btn" (click)="openReplyDialog('id')">回复</div>
+          </div>
+
+          <div class="media" *ngIf="hasData">
+            <img class="align-self-start mr-3" src="../assets/img/userPic.png" alt="Generic place holder image">
+            <div class="media-body">
+              <h5 class="mt-0">张三</h5>
+              <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+              <div class="media-footer">
+                <div class="fl">
+                  <span> {{ '2018.12.31 23:12:43' | dateConvertPass}}</span>
+                </div>
+                <div class="fr text-secondary rpy-btn" (click)="openReplyDialog('id')">回复</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="media" *ngIf="hasData" @organ>
+            <img class="align-self-start mr-3" src="../assets/img/userPic.png" alt="Generic place holder image">
+            <div class="media-body">
+              <h5 class="mt-0">张三 <span>回复 @王五</span></h5>
+              <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+              <div class="media-footer">
+                <div class="fl">
+                  <span> {{ '2018.12.31 23:12:43' | dateConvertPass}}</span>
+                </div>
+                <div class="fr text-secondary rpy-btn" (click)="openReplyDialog('id')">回复</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

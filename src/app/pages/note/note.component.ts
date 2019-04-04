@@ -17,9 +17,7 @@ export class NoteComponent implements OnInit {
   public oWrap;
   public array;
   currPage = 1;
-  mt = 10;
-  ml = 10;
-  ch;
+
 
   constructor(private render: Renderer2, private changeDetectorRef: ChangeDetectorRef,
               private noteService: NoteService) {
