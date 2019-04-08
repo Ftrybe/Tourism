@@ -8,32 +8,50 @@
   height: 0px;
   border: 1rem solid transparent;
 }
+
 .notes-list {
   &:before {
     border-top: 1rem solid #f8f9fa;
   }
 }
+
 .food-list {
   &:before {
     border-top: 1rem solid white;
   }
 }
+
 .scenery-list-title {
-  background: linear-gradient(to right, #fff,rgba($color:#ddd,$alpha:.01), #fff);
+  background: linear-gradient(to right, #fff, rgba($color: #ddd, $alpha: .01), #fff);
   padding-top: 3rem;
   padding-bottom: 1rem;
 }
+
 .content {
   a {
     color: #111;
+
     &:hover {
       text-decoration: none;
       color: #666;
     }
   }
-  .card p{
-    font-size: 14px;
-    text-align: justify;
-    padding: 0 16px 16px 16px;
+
+  .card {
+    p {
+      font-size: 14px;
+      text-align: justify;
+      padding: 0 16px 16px 16px;
+    }
+
+    img {
+      height: 232px;
+    }
+
+    &-text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      height: 4rem;
+    }
   }
 }
