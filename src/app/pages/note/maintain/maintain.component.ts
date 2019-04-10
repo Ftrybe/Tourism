@@ -70,18 +70,26 @@ export class MaintainComponent implements OnInit {
     }
     if (this.formModel.valid) {
       // 更新
-        if (this.formModel.get('id').value) {
-          this.noteService.update(this.formModel.value);
-        } else {
-          // 增加
-          this.noteService.add(this.formModel.value).subscribe(
-            data => {
-              if (data) {
-                this.router.navigate(['/note/modify', data]);
-              }
+      if (this.formModel.get('id').value) {
+        this.noteService.update(this.formModel.value).subscribe(
+          data => {
+            if (data) {
+              this.snackBar.open('更新成功', '关闭', {
+                duration: 3000
+              });
             }
-          );
-        }
+          }
+        );
+      } else {
+        // 增加
+        this.noteService.add(this.formModel.value).subscribe(
+          data => {
+            if (data) {
+              this.router.navigate(['/note/modify', data]);
+            }
+          }
+        );
+      }
     } else {
       this.snackBar.open('内容不完整，请检查后重新发表', '关闭', {
         duration: 3000
@@ -98,10 +106,12 @@ export class MaintainComponent implements OnInit {
       this.imageHandler();
     });
   }
+
   imageHandler() {
     const fileUpload: HTMLElement = this.document.querySelector('#upload_image input') as HTMLElement;
     fileUpload.click();
   }
+
   onUploadFinished(file: FileHolder) {
     this.noteService.uploadImage(file.src).subscribe(
       data => {
@@ -112,10 +122,12 @@ export class MaintainComponent implements OnInit {
       }
     );
   }
-  insertToEditor(url: string){
+
+  insertToEditor(url: string) {
     const range = this.quillEditorRef.getSelection();
     this.quillEditorRef.insertEmbed(range.index, 'image', `${url}`);
   }
+
   openCropperDialog() {
     const dialogRef = this.dialog.open(ImageCropperDialogComponent, {
       width: '900px',

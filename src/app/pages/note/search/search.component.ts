@@ -1,9 +1,11 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Output, ViewChild} from '@angular/core';
 import {MatAutocomplete, MatAutocompleteSelectedEvent, MatChipInputEvent} from '@angular/material';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {map, startWith} from 'rxjs/operators';
+import {SearchService} from '../../../core/services/search.service';
+import {Note} from '../../../core/models/note';
 
 @Component({
   selector: 'app-search',
@@ -18,13 +20,14 @@ export class SearchComponent {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   fruitCtrl = new FormControl();
   filteredFruits: Observable<string[]>;
-  fruits: string[] = ['Lemon'];
-  allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
+  fruits: string[] = [];
+  allFruits: string[] = [];
 
   @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
+  @Output() search = new EventEmitter<Note>();
 
-  constructor() {
+  constructor(private searchService: SearchService) {
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
       map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
@@ -46,7 +49,7 @@ export class SearchComponent {
       if (input) {
         input.value = '';
       }
-
+     this.searchNote(1);
       this.fruitCtrl.setValue(null);
     }
   }
@@ -69,5 +72,16 @@ export class SearchComponent {
     const filterValue = value.toLowerCase();
 
     return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  private searchNote(currentPage) {
+    this.searchService.search(this.fruits, currentPage).subscribe(
+      (data: Note) => {
+
+        if (data) {
+          this.search.emit(data);
+        }
+      }
+    );
   }
 }

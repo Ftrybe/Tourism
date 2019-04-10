@@ -11,7 +11,7 @@ import {CommentComponent} from './comment/comment.component';
 import {QuillModule} from 'ngx-quill';
 import {MaintainComponent} from './maintain/maintain.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {SearchComponent} from '../../common/search/search.component';
+import {SearchComponent} from './search/search.component';
 import {ImageUploadModule} from 'angular2-image-upload';
 import {ImageCropperDialogModule} from '../../dialog/image-cropper-dialog/image-cropper-dialog.module';
 import {OnlyTextForEditorPipe} from '../../core/pipe/only-text-for-editor.pipe';

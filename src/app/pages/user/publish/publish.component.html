@@ -1,8 +1,18 @@
-<div class="list-group" *ngFor="let note of notes">
-  <li class="list-group-item list-group-item-action d-flex"><a [routerLink]="['/note/detailed',note.id]" href="#" [innerText]="note.title"></a>
-    <div class="ml-auto">
-      <a [routerLink]="['/note/modify',note.id]" class="fa fa-pen-square"></a>
-      <a  href="javascript:void(0)" (click)="deleteNote(note.id)" class="fa fa-trash mx-2"></a>
-      <a  [routerLink]="['/note/detailed',note.id]" class="fa fa-eye"></a></div>
-  </li>
-</div>
+<ng-template [ngIf]="notes!=null" [ngIfElse]="emptyNote">
+  <div class="list-group" *ngFor="let note of notes">
+    <li class="list-group-item list-group-item-action d-flex"><a [routerLink]="['/note/detailed',note.id]" href="#"
+                                                                 [innerText]="note.title"></a>
+      <div class="ml-auto">
+        <a [routerLink]="['/note/modify',note.id]" class="fa fa-pen-square"></a>
+        <a href="javascript:void(0)" (click)="deleteNote(note.id)" class="fa fa-trash mx-2"></a>
+        <a [routerLink]="['/note/detailed',note.id]" class="fa fa-eye"></a></div>
+    </li>
+  </div>
+</ng-template>
+<ng-template #emptyNote>
+
+  您没有发表过游记呢 (>_<)
+
+</ng-template>
+
+

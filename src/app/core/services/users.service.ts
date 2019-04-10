@@ -6,6 +6,7 @@ import {catchError, tap} from 'rxjs/operators';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {User} from '../models/user';
 import {AuthorityName} from '../models/authority-name.enum';
+import {Note} from '../models/note';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})

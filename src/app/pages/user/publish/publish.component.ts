@@ -12,7 +12,7 @@ import {ConfirmRequestDialogComponent} from '../../../dialog/confirm-request-dia
 })
 export class PublishComponent implements OnInit {
 
-  notes: Note[];
+  notes: Note[] = null;
 
   constructor(private userService: UsersService, private noteService: NoteService, private dialog: MatDialog) {
   }

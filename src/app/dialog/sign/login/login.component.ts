@@ -1,5 +1,4 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {forMobileValidator, forPasswordValidator} from '../../../core/validator/forUserValidator';
@@ -47,6 +46,9 @@ export class LoginComponent implements OnInit {
         this.loginService.unsubscribe();
       } else {
         this.isValid = true;
+        setTimeout(() => {
+          this.isValid = false;
+        }, 3000);
       }
     });
   }

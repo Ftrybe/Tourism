@@ -35,8 +35,8 @@ export class NoteService {
     return this.http.get<Note>(this.url + 'get', {params: {id: id}});
   }
 
-  public update(note): any {
-    return this.http.put(this.url + 'update', note);
+  public update(note): Observable<boolean> {
+    return this.http.put<boolean>(this.url + 'update', note);
   }
 
   public delete(id): Observable<boolean> {

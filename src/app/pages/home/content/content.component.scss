@@ -1,4 +1,4 @@
-
+@import "../../../../assets/scss/mixin";
 .notes-list::before,
 .food-list::before {
   margin: 0 auto;
@@ -45,7 +45,12 @@
     }
 
     img {
-      height: 232px;
+      @include media(md){
+        height: 138px;
+      }
+      @include media(lg){
+        height: 232px;
+      }
     }
 
     &-text {
