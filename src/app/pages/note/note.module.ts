@@ -14,7 +14,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SearchComponent} from './search/search.component';
 import {ImageUploadModule} from 'angular2-image-upload';
 import {ImageCropperDialogModule} from '../../dialog/image-cropper-dialog/image-cropper-dialog.module';
-import {OnlyTextForEditorPipe} from '../../core/pipe/only-text-for-editor.pipe';
 import {NoteService} from '../../core/services/note.service';
 import { NoteReplyDialogComponent } from './note-reply-dialog/note-reply-dialog.component';
 
