@@ -11,9 +11,12 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
   animations: [
     trigger('organ', [
       transition(':enter', [
-        style({ opacity: 0 }),
-        animate('1s', style({ opacity: 1 })),
+        style({opacity: 0}),
+        animate('1s', style({opacity: 1})),
       ]),
+      transition(':leave', [
+        animate('1s', style({ opacity: 0 }))
+      ])
     ]),
   ]
 })
@@ -34,6 +37,7 @@ export class CommentComponent implements OnInit {
   }
 
   getReply(id: string) {
-    this.hasData = true;
+    this.hasData = !this.hasData;
   }
+
 }
