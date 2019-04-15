@@ -10,14 +10,8 @@ import {Observable} from 'rxjs';
   providers: [NoteService]
 })
 export class NotesListComponent implements OnInit {
-
-  public isShowMenu: boolean;
   public notes: Note[];
   public errorMsg;
-
-  getSortMenu(envent) {
-    this.isShowMenu = true;
-  }
 
   constructor(private noteService: NoteService) {
   }

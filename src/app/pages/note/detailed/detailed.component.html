@@ -16,10 +16,11 @@
       <div class="col-12 col-lg-9 content-warp">
         <div class="control">
           <div class="fr">
-            <a href="javascript:void(0)"><i class="fa fa-thumbs-up"></i>点赞 {{note.praiseCount}}</a>
-            <a href="javascript:void(0)"><i class="fa fa-star"></i>收藏 {{note.collectionCount}}</a>
-            <a href="javascript:void(0)" (click)="getAnchor('comment')"><i class="fa fa-comment" ></i>评论 29</a>
-            <a href="javascript:void(0)"><i class="fa fa-eye"></i>浏览</a>
+            <a href="javascript:void(0)"><i class="fa fa-thumbs-up" [class.active]="isPraise"
+                                            (click)="praise(note.id)"></i>点赞 {{note.praiseCount}}</a>
+            <a href="javascript:void(0)"><i class="fa fa-star" [class.active]="isCollection"
+                                            (click)="collection(note.id)"></i>收藏 {{note.collectionCount}}</a>
+            <a href="javascript:void(0)" (click)="getAnchor('comment')"><i class="fa fa-comment"></i>评论 29</a>
           </div>
         </div>
         <div class="content">
@@ -35,11 +36,11 @@
         <div class="catalog" #catalogWarp>
           <h3 class="catalog-header"><span class="fa fa-list"></span>游记目录</h3>
           <ng-container *ngIf="catalogs ? catalogs.toString().length < 1 : false">
-            <ul>当前文章无目录</ul>
+            <ul class="p-0">当前文章无目录</ul>
           </ng-container>
           <ul class="nav scroll" *ngFor="let catalog of catalogs index as i">
             <li class="nav-item catalog-link" (click)="getAnchor(i)"><a href="javascript:void(0)"
-                                                           [innerText]="catalog.innerHTML">这是一个目录吧</a></li>
+                                                                        [innerText]="catalog.innerHTML">这是一个目录吧</a></li>
           </ul>
         </div>
       </div>
@@ -53,11 +54,11 @@
     <span class="d">目录</span>
   </div>
   <div class="thumbs-up item">
-    <span class="fa fa-thumbs-up"></span>
+    <span class="fa fa-thumbs-up" [class.active]="isPraise" (click)="praise(note.id)"></span>
     <span class="d">点赞 {{note.praiseCount}}</span>
   </div>
   <div class="collection item">
-    <span class="fa fa-star"></span>
+    <span class="fa fa-star" [class.active]="isCollection" (click)="collection(note.id)"></span>
     <span class="d">收藏 {{note.collectionCount}}</span>
   </div>
   <div class="comment item">
