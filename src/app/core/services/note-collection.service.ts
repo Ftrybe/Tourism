@@ -3,10 +3,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
 import {NoteCollection} from '../models/note-collection';
+import {Constant} from './constant';
 
-const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
-};
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +16,7 @@ export class NoteCollectionService {
   }
 
   collection(id) {
-    return this.http.put(this.url + 'collection', id, httpOptions);
+    return this.http.put(this.url + 'collection', id, Constant.httpOptions);
   }
 
   queryCollection(id): Observable<boolean> {

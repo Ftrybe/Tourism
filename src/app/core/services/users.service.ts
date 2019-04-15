@@ -7,10 +7,7 @@ import {JwtHelperService} from '@auth0/angular-jwt';
 import {User} from '../models/user';
 import {AuthorityName} from '../models/authority-name.enum';
 import {Note} from '../models/note';
-
-const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
-};
+import {Constant} from './constant';
 
 @Injectable({
   providedIn: 'root'
@@ -53,7 +50,7 @@ export class UsersService {
 
   // 登录
   public login(value: any): Observable<boolean> {
-    return this.http.post<any>(this.auth + 'login', value, httpOptions).pipe(
+    return this.http.post<any>(this.auth + 'login', value, Constant.httpOptions).pipe(
       tap(response => {
         if (response && response.token) {
           // login successful, store username and jwt token in local storage to keep user logged in between page refreshes
@@ -77,7 +74,7 @@ export class UsersService {
       pconfirm: value[2],
       smsCode: value[3],
       phoneToken: value[4]
-    }), httpOptions).pipe(
+    }), Constant.httpOptions).pipe(
       tap(response => {
         if (response === 1) {
           // login successful, store username and jwt token in local storage to keep user logged in between page refreshes
@@ -127,7 +124,7 @@ export class UsersService {
 
   // 获取短信验证码
   public getSmsCode(mobile): Observable<boolean> {
-    return this.http.post<any>(this.auth + 'getSmsCode', mobile, httpOptions).pipe(
+    return this.http.post<any>(this.auth + 'getSmsCode', mobile, Constant.httpOptions).pipe(
       tap(data => {
         if (data) {
           localStorage.setItem('phoneToken', data.phoneToken);
@@ -154,7 +151,7 @@ export class UsersService {
 
   // 获取用户名，判断用户是否被注册
   public isExistUsername(username): Observable<boolean> {
-    return this.http.post<any>(this.auth + 'getUsername', username, httpOptions).pipe(
+    return this.http.post<any>(this.auth + 'getUsername', username, Constant.httpOptions).pipe(
       tap((data: boolean) => {
         return of(data);
       }),
@@ -166,7 +163,7 @@ export class UsersService {
 
   // 更改头像
   changePicture(picture: any): Observable<boolean> {
-    return this.http.put<boolean>(this.url + 'changePicture', picture, httpOptions).pipe(
+    return this.http.put<boolean>(this.url + 'changePicture', picture, Constant.httpOptions).pipe(
       tap(state => {
         if (state) {
           return of(true);

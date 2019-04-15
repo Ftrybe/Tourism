@@ -50,6 +50,8 @@ export class DetailedComponent implements OnInit, OnDestroy, AfterViewInit {
         this.note = data[0];
       }
     );
+    this.getCollectionCount(this.note.id);
+    this.getPraiseCount(this.note.id);
   }
 
   changeCatalogModel() {
@@ -112,7 +114,6 @@ export class DetailedComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
 
-
   getPraiseCount(noteId) {
     this.praiseService.count(noteId).subscribe(
       count => {
@@ -136,6 +137,7 @@ export class DetailedComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     );
   }
+
   ngOnDestroy(): void {
     // 销毁混动监听
     this.window.removeEventListener('scroll', this.handle, false);

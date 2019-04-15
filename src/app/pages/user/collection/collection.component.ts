@@ -1,6 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {UsersService} from '../../../core/services/users.service';
-import {HotService} from '../../../core/services/hot.service';
 import {User} from '../../../core/models/user';
 import {NoteCollectionService} from '../../../core/services/note-collection.service';
 import {NoteCollection} from '../../../core/models/note-collection';

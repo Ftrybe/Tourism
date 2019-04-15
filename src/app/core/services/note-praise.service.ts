@@ -4,10 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {b} from '@angular/core/src/render3';
 import {NotePraise} from '../models/note-praise';
-
-const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
-};
+import {Constant} from './constant';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +16,7 @@ export class NotePraiseService {
   }
 
   praise(noteId) {
-    return this.http.put(this.url + 'praise', noteId, httpOptions);
+    return this.http.put(this.url + 'praise', noteId, Constant.httpOptions);
   }
 
   queryPraise(id): Observable<boolean> {
