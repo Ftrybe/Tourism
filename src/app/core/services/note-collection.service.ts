@@ -14,19 +14,9 @@ export class NoteCollectionService {
 
   constructor(private http: HttpClient) {
   }
-
-<<<<<<< HEAD
-  getList() {
-    return this.http.get(this.url + 'list');
-  }
-
-  collection(id) {
-    return this.http.put(this.url + 'collection', id);
-  }
-
   closeCollection(id) {
     return this.http.delete(this.url + 'del/' + id);
-=======
+  }
   collection(id) {
     return this.http.put(this.url + 'collection', id, Constant.httpOptions);
   }
@@ -43,7 +33,6 @@ export class NoteCollectionService {
     return this.http.get<NoteCollection[]>(this.url + 'list', {
       params: {currentPage: page}
     });
->>>>>>> b58823c007b97bc0329aed6ec5fb4ccf79c25ffe
   }
 }
 
