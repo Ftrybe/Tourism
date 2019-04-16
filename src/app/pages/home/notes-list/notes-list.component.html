@@ -1,15 +1,11 @@
 <div class="notes-list">
   <div class="container">
-    <h2 class="notes-list-title my-3 text-secondary">游记推荐</h2>
+    <p class="notes-list-title my-3 text-secondary">游记推荐</p>
     <div class="row">
       <div class="card w-100 border-0">
-        <div class="notes-sort  ml-auto pr-4">
-            <a class="font-weight-light">时间<i class="fa fa-sort-amount-down" aria-hidden="true"></i></a>
-            <a class="font-weight-light">点赞数<i class="fa fa-sort-amount-down" aria-hidden="true"></i></a>
-        </div>
-          <div class="note-item text-left" *ngFor="let note of notes">
-            <a [routerLink]="['/note/detailed',note.id]" class="note-link">
-            <img class="note-img" [src]="note.coverUrl" >
+        <div class="note-item text-left" *ngFor="let note of notes">
+          <a [routerLink]="['/note/detailed',note.id]" class="note-link">
+            <img class="note-img" [src]="note.coverUrl">
             <div class="note-overview">
               <div class="note-title">{{note.title}}</div>
               <div class="note-content" [innerText]="note.declaration">
@@ -18,10 +14,10 @@
               <div class="opts">
                 <span class="fa fa-user"> <span class="px-1">{{note.userNickname}}</span></span>
                 <span class="fa fa-thumbs-up"><span class="px-1">{{note.praiseCount | numberSimplify}}</span></span>
-                  <span class="fa fa-star"><span class="px-1">{{note.collectionCount | numberSimplify}}</span></span>
+                <span class="fa fa-star"><span class="px-1">{{note.collectionCount | numberSimplify}}</span></span>
               </div>
             </div>
-            </a>
+          </a>
         </div>
       </div>
     </div>
