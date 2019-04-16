@@ -1,8 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialog} from '@angular/material';
+import {Component, Input, OnInit} from '@angular/core';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {NoteReplyDialogComponent} from '../note-reply-dialog/note-reply-dialog.component';
-import has = Reflect.has;
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import {animate, style, transition, trigger} from '@angular/animations';
+import {NoteCommentService} from '../../../core/services/note-comment.service';
+import {Note} from '../../../core/models/note';
+import {NoteComment} from '../../../core/models/note-comment';
+import {NoteReplyService} from '../../../core/services/note-reply.service';
 
 @Component({
   selector: 'app-comment',
@@ -15,7 +18,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
         animate('1s', style({opacity: 1})),
       ]),
       transition(':leave', [
-        animate('1s', style({ opacity: 0 }))
+        animate('1s', style({opacity: 0}))
       ])
     ]),
   ]
@@ -23,11 +26,18 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 export class CommentComponent implements OnInit {
 
   hasData: boolean;
+  content: string;
+  comments: NoteComment[];
+  @Input() note: Note;
 
-  constructor(private dialog: MatDialog) {
+  constructor(private dialog: MatDialog,
+              private commentService: NoteCommentService,
+              private replyService: NoteReplyService,
+              private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
+    this.getComment();
   }
 
   openReplyDialog(id: string) {
@@ -38,6 +48,27 @@ export class CommentComponent implements OnInit {
 
   getReply(id: string) {
     this.hasData = !this.hasData;
+    this.replyService.list(id);
   }
 
+  getComment() {
+    this.commentService.getList(1).subscribe(
+      data => {
+        this.comments = data;
+        console.log(data);
+      }
+    );
+  }
+
+  publish() {
+    let comment: NoteComment = new NoteComment;
+    comment.noteId = this.note.id;
+    comment.fromUserId = this.note.userId;
+    comment.content = this.content;
+    this.commentService.save(comment).subscribe(
+      data => {
+        this.snackBar.open('回复成功', '关闭', {duration: 2000});
+      }
+    );
+  }
 }
