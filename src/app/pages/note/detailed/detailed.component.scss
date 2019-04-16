@@ -1,5 +1,36 @@
 @import "/~src/assets/scss/mixin";
 
+
+i {
+  margin-right: 4px;
+}
+
+.fa {
+  font-weight: 400;
+}
+
+.fa-thumbs-up {
+  color: #D50000;
+}
+
+.fa-comment {
+  color: #2ec6ff;
+}
+
+.fa-star {
+  color: #ffc107;
+}
+
+.fa-list {
+  color: #541148;
+  font-weight: 800;
+}
+
+.active {
+  font-weight: 800;
+}
+
+
 .maintain {
   padding-top: 12%;
   width: 100%;
@@ -76,6 +107,7 @@
       background-color: #ffffff;
       border-radius: 0.5rem;
 
+
       .scroll {
         max-height: 9rem;
         overflow-y: auto;
@@ -94,7 +126,8 @@
 
       li {
         font-size: 18px;
-        a{
+
+        a {
           color: #333;
         }
       }
@@ -139,11 +172,12 @@
     padding: 0 16px;
 
     ::ng-deep {
-      img{
+      img {
         max-width: 100%;
         padding: 0 8px;
       }
-      p{
+
+      p {
         font-size: 16px;
         line-height: 32px;
       }
@@ -169,22 +203,6 @@
         font-size: 14px;
         color: #000000a0;
         margin-right: 8px;
-
-        i {
-          margin-right: 4px;
-        }
-
-        .fa-thumbs-up {
-          color: #D50000;
-        }
-
-        .fa-comment {
-          color: #2ec6ff;
-        }
-
-        .fa-star {
-          color: #ffc107;
-        }
       }
     }
   }
@@ -213,10 +231,8 @@
     width: calc(100% / 4);
     color: #3b4248d4;
     cursor: pointer;
-
-    &:not(last-child) {
-      border-right: 1px solid rgba(214, 214, 214, 0.81);
-    }
+    border-right: 1px solid rgba(214, 214, 214, 0.81);
+    border-left: 1px solid rgba(214, 214, 214, 0.81);
 
     span {
       display: block;

@@ -1,57 +1,23 @@
+@import "../../../../assets/scss/mixin";
+
 @mixin notes-list($imgWidth,$imgHeight,$titleSize,$contentSize,$contentHeight) {
   & {
     .note-item {
       .note-link {
-        position: relative;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-orient: horizontal;
-        -webkit-flex-direction: row;
-        flex-direction: row;
-        padding: 8px;
-        overflow: hidden;
-        text-decoration: none;
-        &:hover{
-          box-shadow: 3px 5px 3px 0px rgba(6, 16, 1, 0.15);;
-          border-radius:5px;
-          border: 1px solid rgba(0,0,0,.4);
-        }
         .note-img {
-          padding: 8px;
           width: $imgWidth;
           height: $imgHeight;
         }
+
         .note-overview {
-          flex: 1;
-          padding: 8px;
-          overflow: hidden;
-          position: relative;
           .note-title {
-            color: #222;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
             font-size: $titleSize;
           }
+
           .note-content {
             font-size: $contentSize;
-            color: #666;
             height: $contentHeight;
             line-height: $contentHeight/3;
-            overflow: hidden;
-          }
-          .opts {
-            color: #6c757d;
-            font-size: 11px;
-            position: absolute;
-            bottom: 5px;
-            right: 0;
-            .fa {
-              font-size: small;
-              font-weight: 400;
-              padding-left: 1rem;
-            }
           }
         }
       }
@@ -59,14 +25,69 @@
   }
 }
 
-@media screen and (min-width: 0) {
-  .notes-list {
-      @include notes-list(110px, 125px, 17px, 13px, 3rem);
+.notes-list {
+  .note-item {
+    .note-link {
+      position: relative;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-flex-direction: row;
+      flex-direction: row;
+      overflow: hidden;
+      padding: 1px;
+      text-decoration: none;
+
+      &:hover {
+        .note-overview {
+          background: linear-gradient(to right, #fff, #fff), #e6e6e6;
+          background-clip: content-box, padding-box;
+        }
+      }
+
+      .note-img {
+        padding: 8px 0;
+      }
+
+      .note-overview {
+        flex: 1;
+        padding: 1px 1px 1px 0;
+        margin: 8px 0;
+        overflow: hidden;
+        position: relative;
+
+        .note-title {
+          color: #222;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+
+        .note-content {
+          color: #666;
+          overflow: hidden;
+        }
+
+        .opts {
+          color: #6c757d;
+          font-size: 10px;
+          position: absolute;
+          bottom: 4px;
+          right: 0;
+          text-indent: .3rem;
+
+          .fa {
+            font-weight: 400;
+          }
+        }
+      }
+    }
+  }
+
+  @include notes-list(110px, 90px, 17px, 13px, 3rem);
+  @include media(md) {
+    @include notes-list(330px, 220px, 23px, 14px, 4rem);
   }
 }
-@media screen and (min-width: 768px) {
-  .notes-list {
-      @include notes-list(330px, 220px, 23px, 14px, 4rem);
-  }
-}
+
+
 

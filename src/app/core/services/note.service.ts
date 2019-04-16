@@ -5,10 +5,6 @@ import {Note} from 'src/app/core/models/note';
 import {environment} from '../../../environments/environment';
 import {flatMap, map} from 'rxjs/operators';
 
-const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
-};
-
 @Injectable({
   providedIn: 'root'
 })

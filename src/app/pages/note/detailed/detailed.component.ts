@@ -7,8 +7,6 @@ import {Note} from '../../../core/models/note';
 import {NoteCollectionService} from '../../../core/services/note-collection.service';
 import {NotePraiseService} from '../../../core/services/note-praise.service';
 import {debounce} from '../../../core/directive/debounce';
-import {MatDialog} from '@angular/material';
-import {NoteReplyDialogComponent} from '../note-reply-dialog/note-reply-dialog.component';
 
 @Component({
   selector: 'app-detailed',
@@ -25,6 +23,8 @@ export class DetailedComponent implements OnInit, OnDestroy, AfterViewInit {
   public note: Note;
   public isOpen: boolean;
   public catalogs: any;
+  public isCollection: boolean;
+  public isPraise: boolean;
 
   constructor(private render: Renderer2,
               @Inject(DOCUMENT) private document: Document,
@@ -34,12 +34,14 @@ export class DetailedComponent implements OnInit, OnDestroy, AfterViewInit {
               private noteService: NoteService,
               private route: ActivatedRoute,
               private changeRef: ChangeDetectorRef
-) {
+  ) {
   }
 
   ngOnInit() {
     this.initData();
     this.changeCatalogModel();
+    this.getSelfCollectionState(this.note.id);
+    this.getSelfPraiseState(this.note.id);
   }
 
   initData() {
@@ -48,6 +50,8 @@ export class DetailedComponent implements OnInit, OnDestroy, AfterViewInit {
         this.note = data[0];
       }
     );
+    this.getCollectionCount(this.note.id);
+    this.getPraiseCount(this.note.id);
   }
 
   changeCatalogModel() {
@@ -71,11 +75,21 @@ export class DetailedComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @debounce(300)
   praise(id) {
-    this.praiseService.praise(id).subscribe();
+    this.praiseService.praise(id).subscribe(
+      data => {
+        this.getSelfPraiseState(id);
+        this.getPraiseCount(id);
+      }
+    );
   }
 
-  collection() {
-
+  collection(id) {
+    this.collectionService.collection(id).subscribe(
+      data => {
+        this.getCollectionCount(id);
+        this.getSelfCollectionState(id);
+      }
+    );
   }
 
   setAnchor() {
@@ -91,8 +105,37 @@ export class DetailedComponent implements OnInit, OnDestroy, AfterViewInit {
     this.window.location.hash = id;
   }
 
-  getPraiseState(noteId) {
-    this.praiseService.queryPraise(noteId);
+  getSelfPraiseState(noteId) {
+    this.praiseService.queryPraise(noteId).subscribe(
+      isPraise => {
+        this.isPraise = isPraise;
+      }
+    );
+  }
+
+
+  getPraiseCount(noteId) {
+    this.praiseService.count(noteId).subscribe(
+      count => {
+        this.note.praiseCount = count as number;
+      }
+    );
+  }
+
+  getCollectionCount(noteId) {
+    this.collectionService.count(noteId).subscribe(
+      count => {
+        this.note.collectionCount = count as number;
+      }
+    );
+  }
+
+  getSelfCollectionState(noteId) {
+    this.collectionService.queryCollection(noteId).subscribe(
+      isCollection => {
+        this.isCollection = isCollection;
+      }
+    );
   }
 
   ngOnDestroy(): void {

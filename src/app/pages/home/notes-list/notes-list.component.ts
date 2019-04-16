@@ -10,8 +10,13 @@ import {Observable} from 'rxjs';
   providers: [NoteService]
 })
 export class NotesListComponent implements OnInit {
+<<<<<<< HEAD
 
   public notes: Note[];
+=======
+  public notes: Note[];
+  public errorMsg;
+>>>>>>> b58823c007b97bc0329aed6ec5fb4ccf79c25ffe
 
   constructor(private noteService: NoteService) {
   }

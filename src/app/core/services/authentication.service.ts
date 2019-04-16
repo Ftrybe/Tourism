@@ -3,10 +3,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {environment} from '../../../environments/environment';
+import {Constant} from './constant';
 
-const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
-};
 
 @Injectable({providedIn: 'root'})
 export class AuthenticationService {
@@ -18,7 +16,7 @@ export class AuthenticationService {
     return this.http.post<any>(`${environment.apiUrl}/user/auth/login`, JSON.stringify({
       username: username,
       password: password
-    }), httpOptions).pipe(
+    }), Constant.httpOptions).pipe(
       tap(response => {
         if (response && response.token) {
           // login successful, store username and jwt token in local storage to keep user logged in between page refreshes
@@ -68,6 +66,6 @@ export class AuthenticationService {
       return false;
     }
     const authorities: string[] = currentUser.authorities;
-    return authorities.indexOf('ROLE_' + role) != -1;
+    return authorities.indexOf('ROLE_' + role) !== -1;
   }
 }

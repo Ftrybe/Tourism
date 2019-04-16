@@ -3,14 +3,18 @@
     <p class="notes-list-title my-3 text-secondary">游记推荐</p>
     <div class="row">
       <div class="card w-100 border-0">
+<<<<<<< HEAD
         <div class="note-item text-left" *ngFor="let note of notes">
           <a [routerLink]="['/note/detailed',note.id]" class="note-link">
             <img class="note-img" [src]="note.coverUrl">
+=======
+          <div class="note-item text-left" *ngFor="let note of notes">
+            <a [routerLink]="['/note/detailed',note.id]" class="note-link">
+            <img class="note-img" [src]="note.coverUrl" >
+>>>>>>> b58823c007b97bc0329aed6ec5fb4ccf79c25ffe
             <div class="note-overview">
-              <div class="note-title">{{note.title}}</div>
-              <div class="note-content" [innerText]="note.declaration">
-
-              </div>
+              <div class="note-title pl-2">{{note.title}}</div>
+              <div class="note-content pl-2" [innerText]="note.declaration"></div>
               <div class="opts">
                 <span class="fa fa-user"> <span class="px-1">{{note.userNickname}}</span></span>
                 <span class="fa fa-thumbs-up"><span class="px-1">{{note.praiseCount | numberSimplify}}</span></span>
