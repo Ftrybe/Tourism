@@ -28,12 +28,12 @@ export class PublishComponent implements OnInit {
   }
 
   deleteNote(id) {
-    const dialogRef  = this.dialog.open(ConfirmRequestDialogComponent, {
+    const dialogRef = this.dialog.open(ConfirmRequestDialogComponent, {
       data: '确认删除？'
     });
     dialogRef.afterClosed().subscribe(
       state => {
-        if(state){
+        if (state) {
           this.noteService.delete(id).subscribe(
             data => {
               console.log(data);

@@ -20,7 +20,7 @@
                                             (click)="praise(note.id)"></i>点赞 {{note.praiseCount ? note.praiseCount:0 }}</a>
             <a href="javascript:void(0)"><i class="fa fa-star" [class.active]="isCollection"
                                             (click)="collection(note.id)"></i>收藏 {{note.collectionCount ? note.collectionCount:0 }}</a>
-            <a href="javascript:void(0)" (click)="getAnchor('comment')"><i class="fa fa-comment"></i>评论 29</a>
+            <a href="javascript:void(0)" (click)="getAnchor('comment')"><i class="fa fa-comment"></i>评论</a>
           </div>
         </div>
         <div class="content">
@@ -40,7 +40,7 @@
           </ng-container>
           <ul class="nav scroll" *ngFor="let catalog of catalogs index as i">
             <li class="nav-item catalog-link" (click)="getAnchor(i)"><a href="javascript:void(0)"
-                                                                        [innerText]="catalog.innerHTML">这是一个目录吧</a></li>
+                                                                        [innerText]="catalog.innerHTML"></a></li>
           </ul>
         </div>
       </div>

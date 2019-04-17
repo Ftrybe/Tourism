@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {User} from '../../../core/models/user';
 import {MatDialog} from '@angular/material';
 import {ConfirmRequestDialogComponent} from '../../../dialog/confirm-request-dialog/confirm-request-dialog.component';
@@ -12,14 +12,15 @@ import {NoteCollection} from '../../../core/models/note-collection';
 })
 export class CollectionComponent implements OnInit {
   @Input() private user: User;
-  collection: NoteCollection[];
+  collections: NoteCollection[] = null;
 
-  constructor(private collectionService: NoteCollectionService, private dialog: MatDialog) {
+  constructor(private collectionService: NoteCollectionService, private dialog: MatDialog, private detectorRef: ChangeDetectorRef) {
   }
 
 
   ngOnInit() {
     this.getList(1);
+
   }
 
   openDialog(id) {
@@ -29,7 +30,6 @@ export class CollectionComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       state => {
         if (state) {
-          console.log(state);
           this.closeCollection(id);
         }
       }
@@ -37,13 +37,19 @@ export class CollectionComponent implements OnInit {
   }
 
   closeCollection(id) {
-    this.collectionService.closeCollection(id).subscribe();
+    this.collectionService.closeCollection(id).subscribe(
+      data => {
+        this.getList(1);
+      }
+    );
   }
 
   getList(page) {
     this.collectionService.list(page).subscribe(
       data => {
-        this.collection = data;
+        if (data.length) {
+          this.collections = data;
+        }
       }
     );
   }
