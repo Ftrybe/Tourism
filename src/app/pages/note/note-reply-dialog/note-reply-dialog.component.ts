@@ -1,5 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {NoteReplyService} from '../../../core/services/note-reply.service';
 
 @Component({
   selector: 'app-note-reply-dialog',
@@ -8,10 +9,22 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 })
 export class NoteReplyDialogComponent implements OnInit {
 
+  content: string;
+  currentSelectUser: string;
+
   constructor(private dialogRef: MatDialogRef<NoteReplyDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) private data: any) { }
+              @Inject(MAT_DIALOG_DATA) private data: any,
+              private replyService: NoteReplyService) {
+  }
 
   ngOnInit() {
   }
 
+  selectUser(id) {
+    this.currentSelectUser = id;
+  }
+
+  closeDialog() {
+    this.dialogRef.close();
+  }
 }
