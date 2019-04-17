@@ -15,7 +15,7 @@ export class NoteCollectionService {
   constructor(private http: HttpClient) {
   }
   closeCollection(id) {
-    return this.http.delete(this.url + 'del/' + id);
+    return this.http.delete(this.url + 'delete/' + id);
   }
   collection(id) {
     return this.http.put(this.url + 'collection', id, Constant.httpOptions);

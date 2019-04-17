@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {NoteComponent} from '../../pages/note/note.component';
 import {Constant} from './constant';
 import {NoteComment} from '../models/note-comment';
+import {PageHelper} from '../models/page-helper';
 
 @Injectable({
   providedIn: 'root'
@@ -28,11 +29,11 @@ export class NoteCommentService {
 
   }
 
-  getList(currentPage): Observable<NoteComment[]> {
-    return this.http.get<NoteComment[]>(this.url + 'list', {
+  getList(currentPage, noteId): Observable<PageHelper<NoteComment>> {
+    return this.http.get<PageHelper<NoteComment>>(this.url + 'list', {
       params: {
         currentPage: currentPage,
-        pageSize: '20'
+        noteId: noteId
       }
     });
   }
