@@ -3,8 +3,8 @@
   <input (click)="publish()" class="btn btn-success cmt-btn" type="button" value="发表评论">
   <div class="comment-list">
     <div class="comment-list-item">
-      <div class="media" *ngFor="let comment of comments ">
-        <img class="align-self-start mr-3 user-picture" src="{{comment.userPicture}}" alt="Generic place holder image">
+      <div class="media" *ngFor="let comment of comments;let i = index ">
+        <img class="align-self-start mr-3 user-picture" [src]="comment.userPicture" alt="Generic place holder image">
         <div class="media-body">
           <h5 class="mt-0"> {{comment.userNickname}} </h5>
           <p>{{comment.content}}</p>
@@ -12,24 +12,7 @@
             <div class="fl">
               <span class="text-secondary">{{comment.commentTime | dateConvertPass}}</span>
             </div>
-            <div class="fr text-secondary rpy-btn" (click)="getReply(comment.id)">查看回复</div>
-            <div class="ml-2 text-secondary rpy-btn" (click)="openReplyDialog(comment.id)">回复</div>
-          </div>
-
-          <div class="media" *ngIf="hasData" @organ>
-            <img class="align-self-start mr-3" src="../assets/img/userPic.png" alt="Generic place holder image">
-            <div class="media-body">
-              <h5 class="mt-0">张三 <span>回复 @王五</span></h5>
-              <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus
-                odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-                fringilla. Donec lacinia congue felis in faucibus.</p>
-              <div class="media-footer">
-                <div class="fl">
-                  <span> {{ '2018.12.31 23:12:43' | dateConvertPass}}</span>
-                </div>
-                <div class="fr text-secondary rpy-btn" (click)="openReplyDialog('id')">回复</div>
-              </div>
-            </div>
+            <div class="fr text-secondary rpy-btn" (click)="openReplyDialog(comment.id)">详细评论</div>
           </div>
         </div>
       </div>

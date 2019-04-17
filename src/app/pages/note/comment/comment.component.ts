@@ -6,6 +6,7 @@ import {NoteCommentService} from '../../../core/services/note-comment.service';
 import {Note} from '../../../core/models/note';
 import {NoteComment} from '../../../core/models/note-comment';
 import {NoteReplyService} from '../../../core/services/note-reply.service';
+import {PageHelper} from '../../../core/models/page-helper';
 
 @Component({
   selector: 'app-comment',
@@ -27,6 +28,7 @@ export class CommentComponent implements OnInit {
 
   hasData: boolean;
   content: string;
+  pageInfo: PageHelper<NoteComment>;
   comments: NoteComment[];
   @Input() note: Note;
 
@@ -42,20 +44,16 @@ export class CommentComponent implements OnInit {
 
   openReplyDialog(id: string) {
     this.dialog.open(NoteReplyDialogComponent, {
+      panelClass: 'full-width',
       width: '800px'
     });
   }
 
-  getReply(id: string) {
-    this.hasData = !this.hasData;
-    this.replyService.list(id);
-  }
-
   getComment() {
-    this.commentService.getList(1).subscribe(
+    this.commentService.getList(1, this.note.id).subscribe(
       data => {
-        this.comments = data;
-        console.log(data);
+        this.pageInfo = data;
+        this.comments = data.list;
       }
     );
   }
@@ -68,6 +66,7 @@ export class CommentComponent implements OnInit {
     this.commentService.save(comment).subscribe(
       data => {
         this.snackBar.open('回复成功', '关闭', {duration: 2000});
+        this.getComment();
       }
     );
   }
