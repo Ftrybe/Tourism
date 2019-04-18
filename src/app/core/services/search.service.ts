@@ -15,7 +15,7 @@ export class SearchService {
     return this.http.get(this.url + 'list');
   }
 
-  search(arg, currPage) {
+  search(arg , currPage) {
     return this.http.get(this.url + 'search', {params: {currentPage: currPage, fileds: arg}});
   }
 }

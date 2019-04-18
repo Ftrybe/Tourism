@@ -26,7 +26,6 @@ import {PageHelper} from '../../../core/models/page-helper';
 })
 export class CommentComponent implements OnInit {
 
-  hasData: boolean;
   content: string;
   pageInfo: PageHelper<NoteComment>;
   comments: NoteComment[];
@@ -42,10 +41,11 @@ export class CommentComponent implements OnInit {
     this.getComment();
   }
 
-  openReplyDialog(id: string) {
+  openReplyDialog(comment) {
     this.dialog.open(NoteReplyDialogComponent, {
       panelClass: 'full-width',
-      width: '800px'
+      width: '800px',
+      data: comment
     });
   }
 
@@ -61,11 +61,10 @@ export class CommentComponent implements OnInit {
   publish() {
     let comment: NoteComment = new NoteComment;
     comment.noteId = this.note.id;
-    comment.fromUserId = this.note.userId;
     comment.content = this.content;
     this.commentService.save(comment).subscribe(
       data => {
-        this.snackBar.open('回复成功', '关闭', {duration: 2000});
+        this.snackBar.open(data.message, '关闭', {duration: 2000});
         this.getComment();
       }
     );

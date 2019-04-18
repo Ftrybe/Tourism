@@ -25,7 +25,7 @@ export class SearchComponent {
 
   @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
-  @Output() search = new EventEmitter<Note>();
+  @Output() search = new EventEmitter<Note[]>();
 
   constructor(private searchService: SearchService) {
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
@@ -39,17 +39,17 @@ export class SearchComponent {
     if (!this.matAutocomplete.isOpen) {
       const input = event.input;
       const value = event.value;
-
       // Add our fruit
       if ((value || '').trim()) {
         this.fruits.push(value.trim());
+        this.searchNote(1);
       }
 
       // Reset the input value
       if (input) {
         input.value = '';
       }
-     this.searchNote(1);
+
       this.fruitCtrl.setValue(null);
     }
   }
@@ -59,6 +59,7 @@ export class SearchComponent {
 
     if (index >= 0) {
       this.fruits.splice(index, 1);
+      this.searchNote(1);
     }
   }
 
@@ -70,14 +71,12 @@ export class SearchComponent {
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-
     return this.allFruits.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
   }
 
   private searchNote(currentPage) {
     this.searchService.search(this.fruits, currentPage).subscribe(
-      (data: Note) => {
-
+      (data: Note[]) => {
         if (data) {
           this.search.emit(data);
         }

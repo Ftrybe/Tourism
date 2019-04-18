@@ -6,6 +6,10 @@ import {NoteComponent} from '../../pages/note/note.component';
 import {Constant} from './constant';
 import {NoteComment} from '../models/note-comment';
 import {PageHelper} from '../models/page-helper';
+import {error} from '@angular/compiler/src/util';
+import {catchError, tap} from 'rxjs/operators';
+import {of} from 'rxjs/internal/observable/of';
+import {AjaxResponse} from '../models/ajax-response';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +21,8 @@ export class NoteCommentService {
   constructor(private http: HttpClient) {
   }
 
-  save(comment) {
-    return this.http.post(this.url + 'save', comment, Constant.httpOptions);
+  save(comment): Observable<AjaxResponse> {
+    return this.http.post<AjaxResponse>(this.url + 'save', comment, Constant.httpOptions);
   }
 
   delete(id) {
