@@ -12,33 +12,25 @@ export class NoteComponent implements OnInit {
   // 辣鸡代码！
   @ViewChild('warp')
   warp: ElementRef;
-  isCanGetData: boolean = true;
   public notes: Note[];
   public oWrap;
-  public array;
   currPage = 1;
 
 
   constructor(private render: Renderer2, private changeDetectorRef: ChangeDetectorRef,
               private noteService: NoteService) {
   }
-  @HostListener('window:scroll')
-  @debounce()
-  public onWindowScroll(): void {
-    if (this.isCanGetData) {
-      const arr = this.array;
-      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-      this.isCanGetData = false;
-    }
-  }
 
   ngOnInit() {
     this.oWrap = this.warp.nativeElement;
-     this.noteService.getList(this.currPage).subscribe(
+    this.noteService.getList(this.currPage).subscribe(
       data => {
-         this.array = data;
-         this.notes = data;
+        this.notes = data;
       }
     );
+  }
+
+  search(note: Note[]) {
+    this.notes = note;
   }
 }
