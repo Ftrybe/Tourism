@@ -2,18 +2,18 @@
   <span class="fa fa-angle-left pl-2 pt-1" (click)="closeDialog()"></span>
   <p class="text-center mt-1 mx-auto" style="line-height: 14px">评论详细</p>
 </div>
-<mat-dialog-content class="mh-100" style="padding-bottom: 60px">
-
+<mat-dialog-content class="mh-100" style="padding-bottom: 60px" *ngFor="let reply of replies">
   <div class="media">
-    <img class="align-self-start mr-3" src="../assets/img/userPic.png" alt="Generic place holder image">
+    <img class="align-self-start mr-3" [src]="reply.fromUserPicture" alt="头像">
     <div class="media-body">
-      <h5 class="mt-0" (click)="selectUser('id')">张三 <span>回复 @王五</span></h5>
-      <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus
-        odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-        fringilla. Donec lacinia congue felis in faucibus.</p>
+      <h5 class="mt-0" (click)="selectUser(reply)">{{reply.fromUserNickname}} 回复: <span>@{{reply.toUserNickname}}</span></h5>
+      <p>{{reply.content}}</p>
       <div class="media-footer">
         <div class="fl">
-          <span> {{ '2018.12.31 23:12:43' | dateConvertPass}}</span>
+          <span> {{ reply.replyTime | dateConvertPass}}</span>
+        </div>
+        <div class="fr">
+          <span style="cursor: pointer" *ngIf="currentUserId === reply.fromUserId" (click)="delete(reply.id)">删除</span>
         </div>
       </div>
     </div>
@@ -22,5 +22,5 @@
 </mat-dialog-content>
 <div class="reply-textarea">
   <textarea class="form-control overflow-hidden" cols="1" [placeholder]="'@:' + (currentSelectUser ? currentSelectUser : '楼主')" appLetterLengthLimit="200" [(ngModel)]="content"> </textarea>
-  <button class="btn btn-primary">提交</button>
+  <button class="btn btn-primary" (click)="publish()">回复</button>
 </div>

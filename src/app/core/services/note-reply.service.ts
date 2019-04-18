@@ -1,6 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
+import {Constant} from './constant';
+import {Observable} from 'rxjs';
+import {AjaxResponse} from '../models/ajax-response';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +15,8 @@ export class NoteReplyService {
   constructor(private http: HttpClient) {
   }
 
-  save(reply) {
-    return this.http.post(this.url + 'save', reply);
+  save(reply): Observable<AjaxResponse> {
+    return this.http.post<AjaxResponse>(this.url + 'save', reply, Constant.httpOptions);
   }
 
   delete(id) {
@@ -24,7 +27,12 @@ export class NoteReplyService {
 
   }
 
-  list(id) {
-    return this.http.get(this.url + 'list/' + id);
+  list(id, currentPage = '1') {
+    return this.http.get(this.url + 'list', {
+      params: {
+        id: id,
+        currentPage: currentPage
+      }
+    });
   }
 }
