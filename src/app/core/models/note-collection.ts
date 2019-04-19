@@ -4,4 +4,6 @@ export class NoteCollection {
   userId: string;
   noteTitle: string;
   state: number;
+  createTime: Date;
+  modifyTime: Date;
 }

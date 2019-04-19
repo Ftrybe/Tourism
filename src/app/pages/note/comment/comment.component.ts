@@ -7,6 +7,7 @@ import {Note} from '../../../core/models/note';
 import {NoteComment} from '../../../core/models/note-comment';
 import {NoteReplyService} from '../../../core/services/note-reply.service';
 import {PageHelper} from '../../../core/models/page-helper';
+import {UsersService} from '../../../core/services/users.service';
 
 @Component({
   selector: 'app-comment',
@@ -29,16 +30,19 @@ export class CommentComponent implements OnInit {
   content: string;
   pageInfo: PageHelper<NoteComment>;
   comments: NoteComment[];
+  currentUserId: string;
   @Input() note: Note;
 
   constructor(private dialog: MatDialog,
               private commentService: NoteCommentService,
               private replyService: NoteReplyService,
+              private userService: UsersService,
               private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
     this.getComment();
+    this.currentUserId = this.userService.getUserId();
   }
 
   openReplyDialog(comment) {
@@ -65,6 +69,14 @@ export class CommentComponent implements OnInit {
     this.commentService.save(comment).subscribe(
       data => {
         this.snackBar.open(data.message, '关闭', {duration: 2000});
+        this.getComment();
+      }
+    );
+  }
+
+  delete(id: string) {
+    this.commentService.delete(id).subscribe(
+      data => {
         this.getComment();
       }
     );

@@ -1,49 +1,59 @@
-h5,p,span{
+h5, p, span {
   font-size: 14px;
   text-align: justify;
 }
-p{
+
+p {
   margin-bottom: .2rem;
 }
-.rpy-btn{
+
+.rpy-btn {
   cursor: pointer;
   font-size: 11px;
 }
-.comment-list-item{
+
+.comment-list-item {
   padding: 4px;
   margin-top: 16px;
 }
-.inp{
+
+.inp {
   width: 100%;
   resize: none;
 }
-.cmt-btn{
+
+.cmt-btn {
   margin-top: 8px;
 }
-.media{
+
+.media {
   margin-top: .5rem;
-  img{
+
+  img {
     width: 36px;
     border-radius: 100%;
   }
-  .media{
-    img{
+
+  .media {
+    img {
       width: 24px;
     }
   }
 }
-.media-footer{
+
+.media-footer {
   display: flex;
-  &:not(last-child){
+
+  &:not(last-child) {
     border-bottom: 1px solid #f0f0f0;
   }
-  .fl{
-    span{
-      font-size: 12px;
-      color: #6c757d;
-    }
+
+  span {
+    font-size: 11px;
+    color: #6c757d;
   }
-  .fr{
+
+  .fr {
     margin-left: auto;
   }
 }

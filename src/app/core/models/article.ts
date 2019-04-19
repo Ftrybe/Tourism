@@ -6,8 +6,8 @@ export class Article {
   name: string;
   topic: Topic;
   declaration: string;
-  create_time: Date;
-  updateTime: Date;
+  createTime: Date;
+  modifyTime: Date;
   businessHours: string;
   address: string;
   coverUrl: string;

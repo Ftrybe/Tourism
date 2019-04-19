@@ -11,7 +11,7 @@
     手机号码输入错误
   </div>
   <div *ngIf="formModel.hasError('usernameExist',['username']) || smsClick" class="alert alert-danger">
-    手机号码已被注册
+    账号存在，点击<span style="cursor: pointer;color: red" (click)="clearAsyncValidators()">重置密码</span>重新注册
   </div>
   <div formGroupName="passwordGroup" class="passwordGroup">
     <div class="form-group">

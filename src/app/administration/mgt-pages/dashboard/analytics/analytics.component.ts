@@ -1,5 +1,5 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { analytics } from '../dashboard.data';
+import {Component, OnInit, ElementRef, ViewChild} from '@angular/core';
+import {analytics} from '../dashboard.data';
 
 @Component({
   selector: 'app-analytics',
@@ -18,24 +18,25 @@ export class AnalyticsComponent implements OnInit {
   public yAxisLabel = 'Profit';
   public colorScheme = {
     domain: ['#283593', '#039BE5', '#FF5252']
-  }; 
+  };
   public autoScale = true;
   public roundDomains = true;
-  @ViewChild('resizedDiv') resizedDiv:ElementRef;
-  public previousWidthOfResizedDiv:number = 0; 
+  @ViewChild('resizedDiv') resizedDiv: ElementRef;
+  public previousWidthOfResizedDiv: number = 0;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
-    this.analytics = analytics; 
+    this.analytics = analytics;
   }
 
   onSelect(event) {
     console.log(event);
   }
 
-  ngAfterViewChecked() {    
-    if(this.previousWidthOfResizedDiv != this.resizedDiv.nativeElement.clientWidth){
+  ngAfterViewChecked() {
+    if (this.previousWidthOfResizedDiv != this.resizedDiv.nativeElement.clientWidth) {
       this.analytics = [...analytics];
     }
     this.previousWidthOfResizedDiv = this.resizedDiv.nativeElement.clientWidth;

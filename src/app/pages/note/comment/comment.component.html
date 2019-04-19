@@ -10,9 +10,10 @@
           <p>{{comment.content}}</p>
           <div class="media-footer">
             <div class="fl">
-              <span class="text-secondary">{{comment.commentTime | dateConvertPass}}</span>
+              <span class="text-secondary">{{comment.createTime | dateConvertPass}}</span>
             </div>
             <div class="fr text-secondary rpy-btn" (click)="openReplyDialog(comment)">详细评论</div>
+            <span  class="ml-2 rpy-btn" *ngIf="comment.fromUserId === currentUserId" (click)="delete(comment.id)">删除</span>
           </div>
         </div>
       </div>

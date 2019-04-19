@@ -10,7 +10,7 @@
       <p>{{reply.content}}</p>
       <div class="media-footer">
         <div class="fl">
-          <span> {{ reply.replyTime | dateConvertPass}}</span>
+          <span> {{ reply.createTime | dateConvertPass}}</span>
         </div>
         <div class="fr">
           <span style="cursor: pointer" *ngIf="currentUserId === reply.fromUserId" (click)="delete(reply.id)">删除</span>

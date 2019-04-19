@@ -9,6 +9,7 @@ export class User {
   sex: Sex;
   picture: string;
   createTime: Date;
+  modifyTime: Date;
   birthday?: Date;
   declaration: string;
 }

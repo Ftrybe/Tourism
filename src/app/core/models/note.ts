@@ -4,7 +4,7 @@ export class Note {
   declaration: string;
   content: string;
   createTime: Date;
-  updateTime: Date;
+  modifyTime: Date;
   coverUrl: string;
   userId: string;
   userNickname: string;

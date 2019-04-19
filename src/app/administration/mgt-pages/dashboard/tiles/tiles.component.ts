@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {DashboardService} from '../../../../core/services/dashboard.service';
+import {AjaxResponse} from '../../../../core/models/ajax-response';
+import {Dashboard} from '../../../../core/models/dashboard';
 
 @Component({
   selector: 'app-tiles',
@@ -6,10 +9,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tiles.component.scss']
 })
 export class TilesComponent implements OnInit {
-
-  constructor() { }
+  dashboard: Dashboard;
+  constructor(private dashboardService: DashboardService) { }
 
   ngOnInit() {
-  }
+    this.initData();
 
+  }
+  initData(){
+    this.dashboardService.countAll().subscribe(
+      (data: AjaxResponse) => {
+        this.dashboard = data.data;
+    }
+    );
+  }
 }

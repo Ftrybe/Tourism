@@ -47,6 +47,14 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.smsValue = '获取验证码';
+
+  }
+
+  clearAsyncValidators() {
+    const control = this.formModel.get('username');
+    const val = control.value;
+    control.clearAsyncValidators();
+    control.setValue(val);
   }
 
   onSubmit() {

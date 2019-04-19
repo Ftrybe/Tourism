@@ -5,4 +5,6 @@ export class ArticleMap {
   lng: number;
   title: string;
   address: string;
+  createTime: Date;
+  modifyTime: Date;
 }

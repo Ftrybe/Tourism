@@ -3,4 +3,6 @@ export class NotePraise {
   note_id: string;
   user_id: string;
   state: number;
+  createTime: Date;
+  modifyTime: Date;
 }
