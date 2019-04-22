@@ -12,8 +12,8 @@ import {ChartsData} from '../../../../core/models/charts-data';
   styleUrls: ['./info-cards.component.scss']
 })
 export class InfoCardsComponent implements OnInit, OnDestroy, AfterViewChecked {
-  public users: any;
-  public notes: any;
+  public users: any[] = [];
+  public notes: any[] = [];
   public colorScheme = {
     domain: ['rgba(255,255,255,0.8)']
   };
@@ -41,25 +41,28 @@ export class InfoCardsComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   getListUsers() {
     this.dashboardService.listUserByHalfMonth().subscribe(
-      (data: AjaxResponse) => {
+      (data: AjaxResponse<ChartsData[]>) => {
         this.users = data.data;
-        Object.assign(this, this.users);
-        console.log(data);
       }
     );
   }
+
   getListNotes() {
     this.dashboardService.listNoteByHalfMonth().subscribe(
-      (data: AjaxResponse) => {
+      (data: AjaxResponse<ChartsData[]>) => {
         this.notes = data.data;
       }
     );
   }
 
+  addEmptyTime() {
+
+  }
+
   ngAfterViewChecked() {
     if (this.previousWidthOfResizedDiv != this.resizedDiv.nativeElement.clientWidth) {
-      this.getListNotes();
-      this.getListUsers();
+      setTimeout(() => this.getListNotes());
+      setTimeout(() => this.getListUsers());
 
     }
     this.previousWidthOfResizedDiv = this.resizedDiv.nativeElement.clientWidth;

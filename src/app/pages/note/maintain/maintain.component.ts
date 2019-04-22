@@ -9,6 +9,8 @@ import {UsersService} from '../../../core/services/users.service';
 import {User} from '../../../core/models/user';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Note} from '../../../core/models/note';
+import {ConfirmRequestDialogComponent} from '../../../dialog/confirm-request-dialog/confirm-request-dialog.component';
+import {NoteDeclarationDialogComponent} from '../note-declaration-dialog/note-declaration-dialog.component';
 
 @Component({
   selector: 'app-maintain',
@@ -71,24 +73,10 @@ export class MaintainComponent implements OnInit {
     if (this.formModel.valid) {
       // 更新
       if (this.formModel.get('id').value) {
-        this.noteService.update(this.formModel.value).subscribe(
-          data => {
-            if (data) {
-              this.snackBar.open('更新成功', '关闭', {
-                duration: 3000
-              });
-            }
-          }
-        );
+        this.updateNote();
       } else {
         // 增加
-        this.noteService.add(this.formModel.value).subscribe(
-          data => {
-            if (data) {
-              this.router.navigate(['/note/modify', data]);
-            }
-          }
-        );
+        this.addNote();
       }
     } else {
       this.snackBar.open('内容不完整，请检查后重新发表', '关闭', {
@@ -98,6 +86,27 @@ export class MaintainComponent implements OnInit {
 
   }
 
+  updateNote() {
+    this.noteService.update(this.formModel.value).subscribe(
+      data => {
+        if (data) {
+          this.snackBar.open('更新成功', '关闭', {
+            duration: 3000
+          });
+        }
+      }
+    );
+  }
+
+  addNote() {
+    this.noteService.add(this.formModel.value).subscribe(
+      data => {
+        if (data) {
+          this.router.navigate(['/note/modify', data]);
+        }
+      }
+    );
+  }
 
   getEditorInstance(editorInstance: any) {
     this.quillEditorRef = editorInstance;
@@ -142,5 +151,25 @@ export class MaintainComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.cover_image_base64 = result;
     });
+  }
+
+  openDeclareDialog() {
+    const dialogRef = this.dialog.open(NoteDeclarationDialogComponent, {
+      width: '800px'
+    });
+    dialogRef.afterClosed().subscribe();
+  }
+
+  openConfirmDialog() {
+    const dialogRef = this.dialog.open(ConfirmRequestDialogComponent, {
+      data: '是否添加游记简介'
+    });
+    dialogRef.afterClosed().subscribe(
+      data => {
+        if (data) {
+          this.openDeclareDialog();
+        }
+      }
+    );
   }
 }

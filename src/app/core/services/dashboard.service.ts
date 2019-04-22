@@ -34,11 +34,11 @@ export class DashboardService {
     return this.http.get(this.url + 'countAll');
   }
 
-  listUserByHalfMonth(): Observable<AjaxResponse> {
-    return this.http.get<AjaxResponse>(this.url + 'listUsers');
+  listUserByHalfMonth(): Observable<AjaxResponse<any>> {
+    return this.http.get<AjaxResponse<any>>(this.url + 'listUsers');
   }
 
-  listNoteByHalfMonth(): Observable<AjaxResponse> {
-    return this.http.get<AjaxResponse>(this.url + 'listNotes');
+  listNoteByHalfMonth(): Observable<AjaxResponse<any>> {
+    return this.http.get<AjaxResponse<any>>(this.url + 'listNotes');
   }
 }

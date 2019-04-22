@@ -27,12 +27,11 @@
                 </div>
             </div>          
             <div class="w-100 h-100p">
-                <ngx-charts-line-chart
+              <ngx-charts-bar-vertical
                     [scheme]="colorScheme"
                     [results]="notes"
-                    [autoScale]="autoScale"
                     (select)="onSelect($event)">
-                </ngx-charts-line-chart>                  
+              </ngx-charts-bar-vertical>
             </div>
         </mat-card>
     </div>

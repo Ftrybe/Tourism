@@ -79,6 +79,14 @@
     }
   }
 }
+.p-btn{
+  float: right;
+  width: 5rem;
+  &::after{
+    clear: both;
+    content: none;
+  }
+}
 ::ng-deep #quill-editor{
   p{
     font-size: 1rem;

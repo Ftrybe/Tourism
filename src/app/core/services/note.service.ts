@@ -14,13 +14,8 @@ export class NoteService {
 
   private url = `${environment.apiUrl}/notes/`;
 
-  public getList(currPage): Observable<Note[]> {
-    const params = {
-      currPage: currPage,
-      pageSize: '12'
-    };
-    // return this.http.get<Note[]>(this._url);
-    return this.http.post<Note[]>(this.url + 'getList', params);
+  public getList(currPage) {
+    return this.http.get(this.url + 'getList', {params: {currPage: currPage}});
   }
 
   public getRandom(): Observable<Note[]> {

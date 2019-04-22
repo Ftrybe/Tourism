@@ -8,6 +8,7 @@ import {NoteComment} from '../../../core/models/note-comment';
 import {NoteReplyService} from '../../../core/services/note-reply.service';
 import {PageHelper} from '../../../core/models/page-helper';
 import {UsersService} from '../../../core/services/users.service';
+import {ConfirmRequestDialogComponent} from '../../../dialog/confirm-request-dialog/confirm-request-dialog.component';
 
 @Component({
   selector: 'app-comment',
@@ -63,21 +64,35 @@ export class CommentComponent implements OnInit {
   }
 
   publish() {
-    let comment: NoteComment = new NoteComment;
-    comment.noteId = this.note.id;
-    comment.content = this.content;
-    this.commentService.save(comment).subscribe(
-      data => {
-        this.snackBar.open(data.message, '关闭', {duration: 2000});
-        this.getComment();
-      }
-    );
+    if (this.content) {
+      let comment: NoteComment = new NoteComment;
+      comment.noteId = this.note.id;
+      comment.content = this.content;
+      this.commentService.save(comment).subscribe(
+        data => {
+          this.snackBar.open(data.message, '关闭', {duration: 2000});
+          this.getComment();
+        }
+      );
+    } else {
+      this.snackBar.open('请输入评论内容', '关闭', {duration: 2000});
+    }
   }
 
   delete(id: string) {
-    this.commentService.delete(id).subscribe(
+    const dialogRef = this.dialog.open(ConfirmRequestDialogComponent, {
+      data: '您确定要删除本条评论吗'
+    });
+    dialogRef.afterClosed().subscribe(
       data => {
-        this.getComment();
+        if (data) {
+          this.commentService.delete(id).subscribe(
+            state => {
+              this.getComment();
+              console.log(1);
+            }
+          );
+        }
       }
     );
   }

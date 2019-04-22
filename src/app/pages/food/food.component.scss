@@ -15,9 +15,7 @@
     float: left;
     overflow: hidden;
     background: black;
-    box-shadow: 0 0 5px #f8f9fa;
-    border-radius: 5px;
-    border: 1px solid #dddddd;
+    border: 1px solid #ddd;
     .box {
       width: 100%;
       height: 100%;
@@ -90,13 +88,16 @@
     }
 
     &:nth-child(3n+1) {
-      width: calc(100% - 0.5rem);
+      width: calc(100% );
     }
 
     @include media(md) {
       & {
         width: calc(50% - .5rem);
         margin: .25rem;
+      }
+      &:nth-child(3n+1) {
+        width: calc(100% - 0.5rem);
       }
       .box {
         padding-bottom: 45%;

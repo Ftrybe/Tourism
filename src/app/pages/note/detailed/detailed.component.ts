@@ -93,7 +93,7 @@ export class DetailedComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   setAnchor() {
-    this.catalogs = Array.from(this.document.querySelectorAll('.content h1'));
+    this.catalogs = Array.from(this.document.querySelectorAll('.content h2'));
     for (const catalogsKey in this.catalogs) {
       this.render.setAttribute((this.catalogs[catalogsKey] as Element), 'id', catalogsKey);
       this.render.addClass((this.catalogs[catalogsKey] as Element), 'anchor');

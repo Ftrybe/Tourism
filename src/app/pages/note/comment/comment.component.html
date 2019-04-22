@@ -1,5 +1,5 @@
 <div class="container">
-  <textarea [(ngModel)]="content" class="inp form-control" rows="3" placeholder="在这里输入你想说的话"></textarea>
+  <textarea [(ngModel)]="content" class="inp form-control" rows="3" placeholder="在这里输入你想说的话" maxlength="100"></textarea>
   <input (click)="publish()" class="btn btn-success cmt-btn" type="button" value="发表评论">
   <div class="comment-list">
     <div class="comment-list-item">
