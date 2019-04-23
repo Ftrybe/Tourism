@@ -26,9 +26,10 @@ export class MaintainComponent implements OnInit {
   // 上传返回的图片路径
   res_image_url: any;
   // 富文本编辑器配置，添加自定义事件
-  public quillEditorRef: any;
+  quillEditorRef: any;
   user: User;
   note: Note;
+  noteDeclare: boolean;
 
   // 上传按钮
   constructor(private fb: FormBuilder,
@@ -66,23 +67,24 @@ export class MaintainComponent implements OnInit {
   }
 
   public publish() {
+    this.openDeclareDialog();
     // 增加
-    if (this.cover_image_base64) {
-      this.formModel.get('coverUrl').setValue(this.cover_image_base64);
-    }
-    if (this.formModel.valid) {
-      // 更新
-      if (this.formModel.get('id').value) {
-        this.updateNote();
-      } else {
-        // 增加
-        this.addNote();
-      }
-    } else {
-      this.snackBar.open('内容不完整，请检查后重新发表', '关闭', {
-        duration: 3000
-      });
-    }
+    /*    if (this.cover_image_base64) {
+          this.formModel.get('coverUrl').setValue(this.cover_image_base64);
+        }
+        if (this.formModel.valid) {
+          // 更新
+          if (this.formModel.get('id').value) {
+            this.updateNote();
+          } else {
+            // 增加
+            this.addNote();
+          }
+        } else {
+          this.snackBar.open('内容不完整，请检查后重新发表', '关闭', {
+            duration: 3000
+          });
+        }*/
 
   }
 
@@ -157,7 +159,13 @@ export class MaintainComponent implements OnInit {
     const dialogRef = this.dialog.open(NoteDeclarationDialogComponent, {
       width: '800px'
     });
-    dialogRef.afterClosed().subscribe();
+    dialogRef.afterClosed().subscribe(
+      data => {
+        if (data) {
+          this.noteDeclare = data;
+        }
+      }
+    );
   }
 
   openConfirmDialog() {

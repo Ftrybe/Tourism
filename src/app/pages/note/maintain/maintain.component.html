@@ -1,4 +1,4 @@
-<form  [formGroup]="formModel">
+<form [formGroup]="formModel">
   <div class="maintain"
        [ngStyle]="this.cover_image_base64?{'background-image':'url('+this.cover_image_base64+')'} : null">
     <div class="header text-center">
@@ -17,8 +17,8 @@
       id="upload_image" hidden
       (uploadFinished)="onUploadFinished($event)"
     ></image-upload>
-
-    <quill-editor id="quill-editor" [style]="{minHeight:'150px'}" formControlName="content" (onEditorCreated)="getEditorInstance($event)">
+    <quill-editor id="quill-editor" [style]="{minHeight:'150px'}" formControlName="content"
+                  (onEditorCreated)="getEditorInstance($event)" placeholder="输入游记内容">
       <div quill-editor-toolbar>
           <span class="ql-formats">
             <button class="ql-bold" [title]="'加粗'"></button>
@@ -42,7 +42,7 @@
           </span>
       </div>
     </quill-editor>
-    <button class="btn btn-success py-2 p-btn" (click)="publish()">发 表</button>
+    <button class="btn btn-success my-2 p-btn" (click)="publish()">发 表</button>
     <span class="clearfix"></span>
   </div>
 </form>

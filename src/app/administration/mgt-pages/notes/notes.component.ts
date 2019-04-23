@@ -24,7 +24,7 @@ export class NotesComponent implements OnInit {
 
   getList() {
     this.noteService.getList('1').subscribe(
-      (data) => {
+      (data: Note[]) => {
         if (data) {
           this.notes = data;
           console.log(this.notes);

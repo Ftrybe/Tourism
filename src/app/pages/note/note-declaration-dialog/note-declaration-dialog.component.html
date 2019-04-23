@@ -1,5 +1,10 @@
+<h4>添加简介</h4>
 <mat-dialog-content>
   <div class="form-group">
-    <textarea class="form-control" type="text"></textarea>
+    <textarea class="form-control" type="text" style="height: 8rem;resize: none" cols="8" [(ngModel)]="content"></textarea>
   </div>
 </mat-dialog-content>
+<mat-dialog-actions>
+  <button class="btn btn-success ml-auto" [mat-dialog-close]="content">提交</button>
+  <button class="btn btn-light ml-2" mat-dialog-close="">取消</button>
+</mat-dialog-actions>
