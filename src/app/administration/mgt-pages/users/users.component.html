@@ -28,8 +28,8 @@
             <mat-card fxLayout="row" class="p-0 user-content">  
                 <div fxFlex="35" fxLayout="column" fxLayoutAlign="center center" class="bg-primary" [ngClass]="(user.enable) ? '' : 'gradient-gray'">
                     <div class="user-img">
-                        <img *ngIf="user.image" [src]="user.picture" class="transition mb-2" [class.blocked]="user.enable">
-                        <img *ngIf="!user.image" src="./assets/img/user/default-user.jpg" class="transition mb-2" [class.blocked]="user.enable">
+                        <img *ngIf="user.picture" [src]="user.picture" class="transition mb-2" [class.blocked]="user.enable">
+                        <img *ngIf="!user.picture" src="./assets/img/user/default-user.jpg" class="transition mb-2" [class.blocked]="user.enable">
                         <mat-icon *ngIf="user.enable" class="warn-color block-icon">block</mat-icon>
                     </div>
                 </div>

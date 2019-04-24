@@ -10,6 +10,7 @@ import {CustomMaterialModule} from '../../customMaterial.module';
 import {PublishComponent} from './publish/publish.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ImageCropperDialogModule} from '../../dialog/image-cropper-dialog/image-cropper-dialog.module';
+import {ShareModule} from '../../share.module';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import {ImageCropperDialogModule} from '../../dialog/image-cropper-dialog/image-
     CustomMaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    ImageCropperDialogModule
+    ImageCropperDialogModule,
+    ShareModule
   ],
   declarations: [InfoComponent, SettingComponent, CollectionComponent,
     NewsComponent, UserComponent, PublishComponent],

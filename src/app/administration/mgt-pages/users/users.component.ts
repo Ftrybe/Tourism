@@ -56,12 +56,13 @@ export class UsersComponent implements OnInit {
   }
 
   public openUserDialog(user: User) {
-    let dialogRef = this.dialog.open(UserDialogComponent, {
+    const dialogRef = this.dialog.open(UserDialogComponent, {
       data: user
     });
     dialogRef.afterClosed().subscribe(user => {
       if (user) {
-        (user.id) ? this.updateUser(user) : this.addUser(user);
+        console.log(user);
+        // (user.id) ? this.updateUser(user) : this.addUser(user);
       }
     });
     this.showSearch = false;

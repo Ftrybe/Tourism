@@ -10,13 +10,14 @@
             <img mat-card-image="" [src]="note.coverUrl"
                  [alt]="note.title">
             <mat-card-content >
-              测试一下顺序
+              <div>{{note.title}}</div>
+              <p style="color: #aaa;">{{note.declaration}}</p>
             </mat-card-content>
             <mat-card-header>
               <div mat-card-avatar="" class="note-header-image"
                    [ngStyle]="{'background-image':'url('+note.userPicture+')'}"></div>
               <mat-card-title [innerText]="note.userNickname"></mat-card-title>
-              <mat-card-subtitle [innerText]="note.title"></mat-card-subtitle>
+
             </mat-card-header>
 
             <mat-card-footer>

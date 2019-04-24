@@ -12,9 +12,10 @@ export class NoteDeclarationDialogComponent implements OnInit {
   content: any;
 
   constructor(private dialogRef: MatDialogRef<NoteReplyDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) private comment: any ) { }
+              @Inject(MAT_DIALOG_DATA) private declaration: any ) { }
 
   ngOnInit() {
+    this.content = this.declaration;
   }
 
 }

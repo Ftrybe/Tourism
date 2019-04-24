@@ -11,18 +11,7 @@
       <mat-form-field class="w-100">
         <input matInput placeholder="标题" formControlName="title">
       </mat-form-field>
-      <label for="uploadImage" class="label_upload" [ngStyle]="{'background-image': 'url('+ oldCoverImage+')'}">点击更改图片</label>
-      <input type="file" (change)="fileChangeEvent($event)" id="uploadImage" hidden/>
-      <image-cropper
-        [imageChangedEvent]="imageChangedEvent"
-        [maintainAspectRatio]="true"
-        [aspectRatio]="16/9"
-        [resizeToWidth]="480"
-        [cropperMinWidth]="300"
-        (startCropImage)="startCropImage()"
-        format="png"
-        (imageCropped)="imageCropped($event)"
-      ></image-cropper>
+      <label  class="label_upload" [ngStyle]="{'background-image': 'url('+ oldCoverImage+')'}" (click)="openCropperDialog()">点击更改图片</label>
       <div>
         <button mat-button matStepperNext type="button">下一项</button>
       </div>

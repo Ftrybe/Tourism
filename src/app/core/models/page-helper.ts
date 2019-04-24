@@ -1,4 +1,4 @@
-export class PageHelper<T> {
+export class PageHelper<T = any> {
   total: number;
   pageNum: number;
   size: number;

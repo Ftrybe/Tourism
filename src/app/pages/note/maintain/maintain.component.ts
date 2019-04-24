@@ -45,7 +45,8 @@ export class MaintainComponent implements OnInit {
       id: null,
       title: ['', Validators.compose([Validators.minLength(3), Validators.maxLength(50)])],
       coverUrl: ['', Validators.required],
-      content: ['', Validators.required]
+      content: ['', Validators.required],
+      declaration: ['', Validators.required]
     });
   }
 
@@ -66,26 +67,15 @@ export class MaintainComponent implements OnInit {
     this.changeRef.detectChanges();
   }
 
+  // 先判断基本内容是否填写完整，完整则可以点击发表，并且弹出添加简介，简介写完后可以进行提交
   public publish() {
-    this.openDeclareDialog();
-    // 增加
-    /*    if (this.cover_image_base64) {
-          this.formModel.get('coverUrl').setValue(this.cover_image_base64);
-        }
-        if (this.formModel.valid) {
-          // 更新
-          if (this.formModel.get('id').value) {
-            this.updateNote();
-          } else {
-            // 增加
-            this.addNote();
-          }
-        } else {
-          this.snackBar.open('内容不完整，请检查后重新发表', '关闭', {
-            duration: 3000
-          });
-        }*/
 
+
+    // 增加
+    if (this.cover_image_base64) {
+      this.formModel.get('coverUrl').setValue(this.cover_image_base64);
+    }
+    this.openDeclareDialog();
   }
 
   updateNote() {
@@ -157,12 +147,26 @@ export class MaintainComponent implements OnInit {
 
   openDeclareDialog() {
     const dialogRef = this.dialog.open(NoteDeclarationDialogComponent, {
-      width: '800px'
+      width: '800px',
+      data: this.formModel.get('declaration').value
     });
     dialogRef.afterClosed().subscribe(
       data => {
         if (data) {
-          this.noteDeclare = data;
+          console.log(data);
+          this.formModel.get('declaration').setValue(data);
+          if (this.formModel.valid) {
+            if (this.formModel.get('id').value) {
+              this.updateNote();
+            } else {
+              // 增加
+              this.addNote();
+            }
+          } else {
+            this.snackBar.open('内容不完整，请检查后重新发表', '关闭', {
+              duration: 3000
+            });
+          }
         }
       }
     );

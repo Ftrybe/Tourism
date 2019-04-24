@@ -3,6 +3,9 @@ import {NoteService} from '../../../core/services/note.service';
 import {Note} from '../../../core/models/note';
 import {MatDialog, MatDialogRef} from '@angular/material';
 import {NoteDialogComponent} from './note-dialog/note-dialog.component';
+import {AjaxResponse} from '../../../core/models/ajax-response';
+import {PageHelper} from '../../../core/models/page-helper';
+import {ConfirmRequestDialogComponent} from '../../../dialog/confirm-request-dialog/confirm-request-dialog.component';
 
 @Component({
   selector: 'app-notes',
@@ -24,10 +27,9 @@ export class NotesComponent implements OnInit {
 
   getList() {
     this.noteService.getList('1').subscribe(
-      (data: Note[]) => {
+      (data: AjaxResponse<PageHelper<Note>>) => {
         if (data) {
-          this.notes = data;
-          console.log(this.notes);
+          this.notes = data.data.list;
         }
       }
     );
@@ -38,10 +40,26 @@ export class NotesComponent implements OnInit {
   }
 
   delete(id: any) {
-
+    const dialogRef = this.dialog.open(ConfirmRequestDialogComponent, {
+      data: '确认删除该用户游记？'
+    });
+    dialogRef.afterClosed().subscribe(
+      data => {
+        if (data) {
+          this.noteService.delete(id).subscribe(
+            d => {
+              this.getList();
+            }
+          );
+        }
+      }
+    );
   }
 
   openDialog(element: any) {
-    this.dialog.open(NoteDialogComponent, {});
+    this.dialog.open(NoteDialogComponent, {
+      width: '1278px',
+      data: element
+    });
   }
 }

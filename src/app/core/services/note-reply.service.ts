@@ -23,14 +23,24 @@ export class NoteReplyService {
     return this.http.delete(this.url + 'delete/' + id);
   }
 
-  get() {
-
+  get(commentId) {
+    return this.http.get(this.url + 'listDetailed', { params: {
+      commentId: commentId
+      }});
   }
 
-  list(id, currentPage = '1') {
+  listNews(pageNum): Observable<AjaxResponse> {
+    return this.http.get<AjaxResponse>(this.url + 'listNews', {
+      params: {
+        pageNum: pageNum
+      }
+    });
+  }
+
+  list(userId, currentPage = '1') {
     return this.http.get(this.url + 'list', {
       params: {
-        id: id,
+        id: userId,
         currentPage: currentPage
       }
     });

@@ -3,7 +3,6 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {ArticleMap} from '../../../../core/models/article-map';
 import {Animation, BMarker, MapOptions, MarkerOptions, Point} from 'angular2-baidu-map';
 import {ArticlesService} from '../../../../core/services/articles.service';
-import {a} from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-article-map-dialog',

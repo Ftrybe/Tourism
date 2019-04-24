@@ -7,6 +7,7 @@ import {ImageCropperModule} from 'ngx-image-cropper';
 import { QuillModule} from 'ngx-quill';
 import { ArticleMapDialogComponent } from './article-map-dialog/article-map-dialog.component';
 import {BaiduMapModule} from 'angular2-baidu-map';
+import {ImageCropperDialogModule} from '../../../dialog/image-cropper-dialog/image-cropper-dialog.module';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import {BaiduMapModule} from 'angular2-baidu-map';
     ImageCropperModule,
     ArticlesRoutes,
     QuillModule,
+    ImageCropperDialogModule,
     BaiduMapModule.forRoot({ak: '8F1HxkUfqSGRywCZYdEZqw4DGLX5glk2'})
   ],
   declarations: [RoutingComponents, ArticleMapDialogComponent],

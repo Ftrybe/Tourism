@@ -16,7 +16,6 @@ import {ImageCropperDialogModule} from '../../dialog/image-cropper-dialog/image-
 import {NoteService} from '../../core/services/note.service';
 import {NoteReplyDialogComponent} from './note-reply-dialog/note-reply-dialog.component';
 import {NoteDeclarationDialogComponent} from './note-declaration-dialog/note-declaration-dialog.component';
-import {ConfirmRequestDialogComponent} from '../../dialog/confirm-request-dialog/confirm-request-dialog.component';
 
 @NgModule({
   imports: [
@@ -32,13 +31,16 @@ import {ConfirmRequestDialogComponent} from '../../dialog/confirm-request-dialog
   ],
   declarations: [
     NoteComponent,
+     CommentComponent,
     DetailedComponent,
-    CommentComponent,
     MaintainComponent,
     SearchComponent,
     NoteReplyDialogComponent,
     NoteDeclarationDialogComponent],
   entryComponents: [NoteReplyDialogComponent, NoteDeclarationDialogComponent],
+  exports: [
+    NoteComponent
+  ],
   providers: [WINDOW_PROVIDERS, NoteService]
 })
 export class NoteModule {

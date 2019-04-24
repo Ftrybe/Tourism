@@ -4,16 +4,23 @@ import {NotesRoutes, RoutingComponents} from './notes.routing';
 import {SharedModule} from '../../shared/shared.module';
 import {QuillModule} from 'ngx-quill';
 import {NoteDialogComponent} from './note-dialog/note-dialog.component';
+import {ShareModule} from '../../../share.module';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     NotesRoutes,
-    QuillModule
+    QuillModule,
+    ShareModule
   ],
-  declarations: [RoutingComponents, NoteDialogComponent],
-  entryComponents: [NoteDialogComponent]
+  declarations: [
+    RoutingComponents,
+    NoteDialogComponent
+  ],
+  entryComponents: [
+    NoteDialogComponent
+  ]
 })
 export class NotesModule {
 }
