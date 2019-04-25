@@ -29,7 +29,6 @@ export class MaintainComponent implements OnInit {
   quillEditorRef: any;
   user: User;
   note: Note;
-  noteDeclare: boolean;
 
   // 上传按钮
   constructor(private fb: FormBuilder,
@@ -45,7 +44,7 @@ export class MaintainComponent implements OnInit {
       id: null,
       title: ['', Validators.compose([Validators.minLength(3), Validators.maxLength(50)])],
       coverUrl: ['', Validators.required],
-      content: ['', Validators.required],
+      content: [null, Validators.required],
       declaration: ['', Validators.required]
     });
   }
@@ -64,13 +63,10 @@ export class MaintainComponent implements OnInit {
         this.user = data;
       }
     );
-    this.changeRef.detectChanges();
   }
 
   // 先判断基本内容是否填写完整，完整则可以点击发表，并且弹出添加简介，简介写完后可以进行提交
   public publish() {
-
-
     // 增加
     if (this.cover_image_base64) {
       this.formModel.get('coverUrl').setValue(this.cover_image_base64);
@@ -126,7 +122,7 @@ export class MaintainComponent implements OnInit {
 
   insertToEditor(url: string) {
     const range = this.quillEditorRef.getSelection();
-    this.quillEditorRef.insertEmbed(range.index, 'image', `${url}`);
+    const delta = this.quillEditorRef.insertEmbed(range.index, 'image', `${url}`);
   }
 
   openCropperDialog() {

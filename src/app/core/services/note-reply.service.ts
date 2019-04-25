@@ -45,4 +45,8 @@ export class NoteReplyService {
       }
     });
   }
+
+  countUnread() {
+    return this.http.get(this.url + 'countUnread');
+  }
 }

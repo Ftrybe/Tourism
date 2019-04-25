@@ -8,6 +8,7 @@ import { QuillModule} from 'ngx-quill';
 import { ArticleMapDialogComponent } from './article-map-dialog/article-map-dialog.component';
 import {BaiduMapModule} from 'angular2-baidu-map';
 import {ImageCropperDialogModule} from '../../../dialog/image-cropper-dialog/image-cropper-dialog.module';
+import { ArticlesImageDialogComponent } from './articles-image-dialog/articles-image-dialog.component';
 
 @NgModule({
   imports: [
@@ -21,8 +22,8 @@ import {ImageCropperDialogModule} from '../../../dialog/image-cropper-dialog/ima
     ImageCropperDialogModule,
     BaiduMapModule.forRoot({ak: '8F1HxkUfqSGRywCZYdEZqw4DGLX5glk2'})
   ],
-  declarations: [RoutingComponents, ArticleMapDialogComponent],
-  entryComponents: [ArticleMapDialogComponent]
+  declarations: [RoutingComponents, ArticleMapDialogComponent, ArticlesImageDialogComponent],
+  entryComponents: [ArticleMapDialogComponent,ArticlesImageDialogComponent]
 })
 export class ArticlesModule {
 }

@@ -1,0 +1,54 @@
+h5,p,span{
+  font-size: 14px;
+  text-align: justify;
+}
+p{
+  margin-bottom: .2rem;
+}
+.media{
+  margin-top: .5rem;
+  img{
+    width: 36px;
+    border-radius: 100%;
+  }
+  .media{
+    img{
+      width: 24px;
+    }
+  }
+}
+.media-footer{
+  display: flex;
+  &:not(last-child){
+    border-bottom: 1px solid #f0f0f0;
+  }
+  span{
+    font-size: 12px;
+    color: #6c757d;
+  }
+  .fr{
+    margin-left: auto;
+  }
+}
+.mat-dialog-header,
+.reply-textarea{
+  display: flex;
+  position: fixed;
+  width: 800px;
+  margin-left: -24px;
+}
+.reply-textarea{
+  bottom: 0;
+    textarea{
+      max-width: 80vw;
+      resize: none;
+      width: 800px;
+    }
+  button{
+    width: 120px;
+    max-width: 20vw;
+  }
+}
+.mat-dialog-header{
+  top: 0;
+}

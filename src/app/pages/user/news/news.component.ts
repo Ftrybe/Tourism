@@ -3,6 +3,8 @@ import {NoteReply} from '../../../core/models/note-reply';
 import {NoteReplyService} from '../../../core/services/note-reply.service';
 import {AjaxResponse} from '../../../core/models/ajax-response';
 import {PageHelper} from '../../../core/models/page-helper';
+import {MatDialog} from '@angular/material';
+import {UserReplyDialogComponent} from './user-reply-dialog/user-reply-dialog.component';
 
 @Component({
   selector: 'app-user-news',
@@ -12,7 +14,7 @@ import {PageHelper} from '../../../core/models/page-helper';
 export class NewsComponent implements OnInit {
   replies: NoteReply[] = [];
 
-  constructor(private replyService: NoteReplyService) {
+  constructor(private replyService: NoteReplyService, private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -23,14 +25,14 @@ export class NewsComponent implements OnInit {
     this.replyService.listNews(1).subscribe(
       (data: AjaxResponse<PageHelper>) => {
         this.replies = data.data.list;
-        console.log(data);
       }
     );
   }
-  getDetailed(commentId){
-    this.replyService.get(commentId).subscribe();
-  }
-  delete(id: string) {
+
+  getDetailed(reply) {
+    const dialogRef = this.dialog.open(UserReplyDialogComponent, {
+      data: reply
+    });
 
   }
 }

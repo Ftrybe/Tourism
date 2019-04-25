@@ -11,6 +11,7 @@ import {PublishComponent} from './publish/publish.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ImageCropperDialogModule} from '../../dialog/image-cropper-dialog/image-cropper-dialog.module';
 import {ShareModule} from '../../share.module';
+import {UserReplyDialogComponent} from './news/user-reply-dialog/user-reply-dialog.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import {ShareModule} from '../../share.module';
     ShareModule
   ],
   declarations: [InfoComponent, SettingComponent, CollectionComponent,
-    NewsComponent, UserComponent, PublishComponent],
+    NewsComponent, UserComponent, PublishComponent, UserReplyDialogComponent],
+  entryComponents: [UserReplyDialogComponent]
 })
 export class UserModule {
 }

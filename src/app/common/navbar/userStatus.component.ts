@@ -3,6 +3,8 @@ import {SignComponent} from 'src/app/dialog/sign';
 import {MatDialog} from '@angular/material';
 import {UsersService} from '../../core/services/users.service';
 import {User} from '../../core/models/user';
+import {NoteReplyService} from '../../core/services/note-reply.service';
+import {AjaxResponse} from '../../core/models/ajax-response';
 
 
 @Component({
@@ -16,11 +18,12 @@ export class UserStatusComponent implements OnInit, OnDestroy {
   public dialogRef;
   public menu: string;
   public user: User;
-
+  public countUnread: number;
   constructor(
     private usersService: UsersService,
     private dialog: MatDialog,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private replyService: NoteReplyService
   ) {
   }
 
@@ -36,6 +39,7 @@ export class UserStatusComponent implements OnInit, OnDestroy {
         }
       );
       this.getUser();
+      this.getNews();
     }
   }
 
@@ -82,5 +86,11 @@ export class UserStatusComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
   }
-
+  getNews(){
+    this.replyService.countUnread().subscribe(
+      (data: AjaxResponse<number>) => {
+        this.countUnread = data.data;
+      }
+    );
+  }
 }

@@ -14,7 +14,7 @@
           <a [routerLink]="['/user', user.id]" >
              <img class="user-pic rounded-circle" [src]="user.picture" [alt]="user.username" >
           </a>
-          <a [routerLink]="['/user', user.id]" [queryParams]="{select: 'news'}"><span class="fa fa-bell"></span> 消息(0)</a>
+          <a [routerLink]="['/user', user.id]" [queryParams]="{select: 'news'}"><span class="fa fa-bell"></span> 消息({{countUnread}})</a>
           <a [routerLink]="['/user', user.id]" [queryParams]="{select: 'info'}"><span class="fa fa-home"></span> 个人中心</a>
           <a [routerLink]="['/user', user.id]" [queryParams]="{select: 'collection'}"><span class="far fa-star"></span> 个人收藏</a>
           <a [routerLink]="['/user', user.id]" [queryParams]="{select: 'publish'}"><span class="fa fa-columns"></span> 我的发表</a>
