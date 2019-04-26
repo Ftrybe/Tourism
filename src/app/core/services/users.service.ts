@@ -1,12 +1,11 @@
 import {EventEmitter, Injectable, Output} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {catchError, tap} from 'rxjs/operators';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {User} from '../models/user';
 import {AuthorityName} from '../models/authority-name.enum';
-import {Note} from '../models/note';
 import {Constant} from './constant';
 
 @Injectable({
@@ -181,5 +180,9 @@ export class UsersService {
   // 获得发表得游记列表
   getPublish() {
     return this.http.get(this.url + 'listNote');
+  }
+
+  lockUser(id: string) {
+    return this.http.put(this.url + 'lock', id, Constant.httpOptions);
   }
 }

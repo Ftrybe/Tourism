@@ -12,4 +12,5 @@ export class User {
   modifyTime: Date;
   birthday?: Date;
   declaration: string;
+  isAccountNonLocked: boolean;
 }

@@ -25,18 +25,18 @@
 <div class="users-wrapper p-2">
     <div *ngIf="viewType == 'grid'" fxLayout="row wrap">    
         <div *ngFor="let user of users | UserSearchPipe : searchText | paginate: { itemsPerPage: 6, currentPage: page }" fxFlex="100" fxFlex.gt-md="33.3" fxFlex.md="50" fxFlex.sm="50" class="p-2"> 
-            <mat-card fxLayout="row" class="p-0 user-content">  
-                <div fxFlex="35" fxLayout="column" fxLayoutAlign="center center" class="bg-primary" [ngClass]="(user.enable) ? '' : 'gradient-gray'">
+            <mat-card fxLayout="row" class="p-0 user-content">
+                <div fxFlex="35" fxLayout="column" fxLayoutAlign="center center" class="bg-primary" [ngClass]="(user.isAccountNonLocked) ?  'gradient-gray': ''">
                     <div class="user-img">
-                        <img *ngIf="user.picture" [src]="user.picture" class="transition mb-2" [class.blocked]="user.enable">
-                        <img *ngIf="!user.picture" src="./assets/img/user/default-user.jpg" class="transition mb-2" [class.blocked]="user.enable">
-                        <mat-icon *ngIf="user.enable" class="warn-color block-icon">block</mat-icon>
+                        <img *ngIf="user.picture" [src]="user.picture" class="transition mb-2" [class.blocked]="!user.isAccountNonLocked">
+                        <img *ngIf="!user.picture" src="./assets/img/user/default-user.jpg" class="transition mb-2" [class.blocked]="!user.isAccountNonLocked">
+                        <mat-icon *ngIf="!user.isAccountNonLocked" class="warn-color block-icon">block</mat-icon>
                     </div>
                 </div>
-                <div fxFlex="65" [class.blocked]="user.enable" class="user-details"> 
+                <div fxFlex="65" [class.blocked]="!user.isAccountNonLocked" class="user-details">
                     <div fxLayout="row" fxLayoutAlign="space-between center">
-                        <h4 *ngIf="!user.enable" class="user-name px-2">{{user.nickname}}</h4>
-                        <h4 *ngIf="user.enable" class="user-name px-2">该用户被限制</h4>
+                        <h4 *ngIf="user.isAccountNonLocked" class="user-name px-2">{{user.nickname}}</h4>
+                        <h4 *ngIf="!user.isAccountNonLocked" class="user-name px-2">该用户被限制</h4>
                         <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger">
                             <mat-icon>more_vert</mat-icon>
                         </button>
@@ -51,15 +51,15 @@
                                 <mat-icon>delete</mat-icon>
                                 <span>删除</span>
                             </button>
-                            <button mat-menu-item (click)="user.enable = !user.enable">
-                                <mat-icon>block</mat-icon>
-                                <span *ngIf="!user.enable">禁用</span>
-                                <span *ngIf="user.enable">启用</span>
+                            <button mat-menu-item (click)="lockUser(user); user.isAccountNonLocked = !user.isAccountNonLocked">
+                                <mat-icon >block</mat-icon>
+                                <span *ngIf="user.isAccountNonLocked">冻结</span>
+                                <span *ngIf="!user.isAccountNonLocked">恢复</span>
                             </button>
                         </span>
                     </mat-menu>
                     <mat-divider></mat-divider>
-                    <div class="info-list mx-2" [class.blocked]="user.enable">
+                    <div class="info-list mx-2" [class.blocked]="!user.isAccountNonLocked">
                         <p fxLayout="row" fxLayoutAlign="start center">
                             <mat-icon class="secondary-text-color">wc</mat-icon>
                             <span>{{user.sex}}</span>

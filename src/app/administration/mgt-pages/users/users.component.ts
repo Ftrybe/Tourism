@@ -28,6 +28,7 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
     this.getUsers();
+
   }
 
   public getUsers(): void {
@@ -38,15 +39,22 @@ export class UsersComponent implements OnInit {
   }
 
   public addUser(user: User) {
-    this.usersService.addUser(user).subscribe(user => this.getUsers());
+    this.usersService.addUser(user).subscribe(data => this.getUsers());
   }
 
   public updateUser(user: User) {
-    this.usersService.updateUser(user).subscribe(user => this.getUsers());
+    this.usersService.updateUser(user).subscribe(data => this.getUsers());
   }
 
   public deleteUser(user: User) {
-    this.usersService.deleteUser(user.id).subscribe(user => this.getUsers());
+    this.usersService.deleteUser(user.id).subscribe(data => this.getUsers());
+  }
+
+  public lockUser(user: User) {
+    this.usersService.lockUser(user.id).subscribe(
+      data => {
+      }
+    );
   }
 
   public onPageChanged(event) {
@@ -59,10 +67,9 @@ export class UsersComponent implements OnInit {
     const dialogRef = this.dialog.open(UserDialogComponent, {
       data: user
     });
-    dialogRef.afterClosed().subscribe(user => {
-      if (user) {
-        console.log(user);
-        // (user.id) ? this.updateUser(user) : this.addUser(user);
+    dialogRef.afterClosed().subscribe(data => {
+      if (data) {
+         (user.id) ? this.updateUser(user) : this.addUser(user);
       }
     });
     this.showSearch = false;
