@@ -25,7 +25,6 @@
     "@angular/router": "^6.1.10",
     "@auth0/angular-jwt": "^2.1.0",
     "@swimlane/ngx-charts": "^10.0.0",
-    "angular-baidu-map": "^3.3.0",
     "angular2-baidu-map": "^4.5.0",
     "angular2-image-upload": "^1.0.0-rc.2",
     "core-js": "^2.5.4",
