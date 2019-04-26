@@ -31,8 +31,14 @@ export class NewsComponent implements OnInit {
 
   getDetailed(reply) {
     const dialogRef = this.dialog.open(UserReplyDialogComponent, {
+      panelClass: 'full-width',
+      width: '800px',
       data: reply
     });
-
+    dialogRef.afterClosed().subscribe(
+      data => {
+        this.getList();
+      }
+    );
   }
 }

@@ -28,6 +28,12 @@ export class NoteReplyService {
       commentId: commentId
       }});
   }
+  getReolyList(fromUserId, commentId) {
+    return this.http.get(this.url + 'listReply', { params: {
+      commentId: commentId,
+        fromUserId : fromUserId
+      }});
+  }
 
   listNews(pageNum): Observable<AjaxResponse> {
     return this.http.get<AjaxResponse>(this.url + 'listNews', {

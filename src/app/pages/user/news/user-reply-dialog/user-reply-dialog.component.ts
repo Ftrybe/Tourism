@@ -3,7 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {NoteReply} from '../../../../core/models/note-reply';
 import {PageHelper} from '../../../../core/models/page-helper';
 import {NoteReplyService} from '../../../../core/services/note-reply.service';
-import {UsersService} from '../../../../core/services/users.service';
+import {AjaxResponse} from '../../../../core/models/ajax-response';
 
 @Component({
   selector: 'app-user-reply-dialog',
@@ -13,20 +13,16 @@ import {UsersService} from '../../../../core/services/users.service';
 export class UserReplyDialogComponent implements OnInit {
 
   content: string;
-  currentUserId: string;
-  canDelete: boolean;
-  replies: NoteReply[] = null;
+  replies: NoteReply[] = [];
   pageInfo: PageHelper<NoteReply>;
 
   constructor(private dialogRef: MatDialogRef<UserReplyDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) private reply: NoteReply,
-              private replyService: NoteReplyService,
-              private userService: UsersService) {
+              @Inject(MAT_DIALOG_DATA) private noteReply: NoteReply,
+              private replyService: NoteReplyService,) {
   }
 
   ngOnInit() {
-    // this.getList(this.comment.id);
-    this.currentUserId = this.userService.getUserId();
+    this.replies = [this.noteReply];
   }
 
   closeDialog() {
@@ -35,20 +31,27 @@ export class UserReplyDialogComponent implements OnInit {
 
   publish() {
     let reply = new NoteReply();
-    reply.toUserId = this.reply.toUserId;
+    reply.toUserId = this.noteReply.fromUserId;
     reply.content = this.content;
-    reply.commentId = this.reply.fromUserId;
+    reply.commentId = this.noteReply.toUserId;
     this.replyService.save(reply).subscribe(
       data => {
-        // this.getList(this.comment.id);
+        this.getReplyList();
       }
     );
   }
+
   delete(id: string) {
     this.replyService.delete(id).subscribe(
       data => {
-        //  this.getList(this.comment.id);
+        this.getReplyList();
       }
     );
+  }
+
+  getReplyList() {
+    this.replyService.getReolyList(this.noteReply.fromUserId, this.noteReply.commentId).subscribe((data: AjaxResponse<NoteReply[]>) => {
+      this.replies = data.data;
+    });
   }
 }
