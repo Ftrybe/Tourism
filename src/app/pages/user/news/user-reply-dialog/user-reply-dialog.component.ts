@@ -30,7 +30,7 @@ export class UserReplyDialogComponent implements OnInit {
   }
 
   publish() {
-    let reply = new NoteReply();
+    const reply = new NoteReply();
     reply.toUserId = this.noteReply.fromUserId;
     reply.content = this.content;
     reply.commentId = this.noteReply.toUserId;

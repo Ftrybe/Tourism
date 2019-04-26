@@ -14,11 +14,10 @@ import {MatDialog} from '@angular/material';
 })
 export class ArticleComponent implements OnInit {
   form: FormGroup;
-  imageChangedEvent: any = '';
   croppedImage: any = '';
   file: any = '';
   oldCoverImage: string = './assets/img/upload_bg.png';
-
+  article: Article;
   constructor(private fb: FormBuilder, private articlesService: ArticlesService, private router: Router, private route: ActivatedRoute, private dialog: MatDialog) {
     this.form = this.fb.group({
       id: null,
@@ -40,6 +39,7 @@ export class ArticleComponent implements OnInit {
       data => {
         if (data[0]) {
           this.form.patchValue(data[0]);
+          this.article = data[0];
           this.oldCoverImage = data[0].coverUrl;
         }
       }
@@ -66,7 +66,6 @@ export class ArticleComponent implements OnInit {
       );
     }
   }
-
 
   openCropperDialog() {
     const dialogRef = this.dialog.open(ImageCropperDialogComponent, {

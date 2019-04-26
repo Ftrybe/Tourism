@@ -1,6 +1,6 @@
 <app-content-header
   [icon]="'supervisor_account'"
-  [title]="'添加美食'"
+  [title]="article.topic.valueOf() == 0 ? '添加美食': '添加景点'"
   [hideBreadcrumb]="false"
   [hasBgImage]="true"
   [class]="'pb-5'"></app-content-header>
@@ -11,7 +11,8 @@
       <mat-form-field class="w-100">
         <input matInput placeholder="标题" formControlName="title">
       </mat-form-field>
-      <label  class="label_upload" [ngStyle]="{'background-image': 'url('+ oldCoverImage+')'}" (click)="openCropperDialog()">点击更改图片</label>
+      <label class="label_upload" [ngStyle]="{'background-image': 'url('+ oldCoverImage+')'}"
+             (click)="openCropperDialog()">点击更改图片</label>
       <div>
         <button mat-button matStepperNext type="button">下一项</button>
       </div>
@@ -20,7 +21,8 @@
       <ng-template matStepLabel>美食内容</ng-template>
       <mat-form-field class="w-100">
         <input matInput placeholder="景点名称" formControlName="name">
-      </mat-form-field>-
+      </mat-form-field>
+      -
       <mat-form-field class="w-100">
         <input matInput placeholder="营业时间" formControlName="businessHours">
       </mat-form-field>
