@@ -47,6 +47,7 @@ export class DetailedComponent implements OnInit, OnDestroy, AfterViewInit {
   initData() {
     this.route.data.subscribe(
       (data: { note: Note }) => {
+        console.log(data);
         this.note = data[0];
       }
     );
@@ -93,7 +94,8 @@ export class DetailedComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   setAnchor() {
-    this.catalogs = Array.from(this.document.querySelectorAll('.content h2'));
+    this.catalogs = Array.from(this.document.querySelectorAll('.note-body .content h2'));
+    console.log(this.catalogs);
     for (const catalogsKey in this.catalogs) {
       this.render.setAttribute((this.catalogs[catalogsKey] as Element), 'id', catalogsKey);
       this.render.addClass((this.catalogs[catalogsKey] as Element), 'anchor');
