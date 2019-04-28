@@ -18,11 +18,11 @@ export class UserReplyDialogComponent implements OnInit {
 
   constructor(private dialogRef: MatDialogRef<UserReplyDialogComponent>,
               @Inject(MAT_DIALOG_DATA) private noteReply: NoteReply,
-              private replyService: NoteReplyService,) {
+              private replyService: NoteReplyService) {
   }
 
   ngOnInit() {
-    this.replies = [this.noteReply];
+  this.getReplyList();
   }
 
   closeDialog() {
@@ -50,7 +50,7 @@ export class UserReplyDialogComponent implements OnInit {
   }
 
   getReplyList() {
-    this.replyService.getReolyList(this.noteReply.fromUserId, this.noteReply.commentId).subscribe((data: AjaxResponse<NoteReply[]>) => {
+    this.replyService.getReplyList(this.noteReply.fromUserId, this.noteReply.commentId).subscribe((data: AjaxResponse<NoteReply[]>) => {
       this.replies = data.data;
     });
   }

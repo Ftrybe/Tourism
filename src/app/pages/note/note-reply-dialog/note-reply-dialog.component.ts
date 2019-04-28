@@ -53,6 +53,7 @@ export class NoteReplyDialogComponent implements OnInit {
     this.replyService.save(reply).subscribe(
       data => {
         this.getList(this.comment.id);
+        this.content = '';
       }
     );
   }

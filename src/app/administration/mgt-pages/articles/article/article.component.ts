@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Article} from '../../../../core/models/article';
 import {ImageCropperDialogComponent} from '../../../../dialog/image-cropper-dialog/image-cropper-dialog.component';
 import {MatDialog} from '@angular/material';
+import {Topic} from '../../../../core/models/topic';
 
 @Component({
   selector: 'app-article',
@@ -18,6 +19,7 @@ export class ArticleComponent implements OnInit {
   file: any = '';
   oldCoverImage: string = './assets/img/upload_bg.png';
   article: Article;
+  top: Topic;
   constructor(private fb: FormBuilder, private articlesService: ArticlesService, private router: Router, private route: ActivatedRoute, private dialog: MatDialog) {
     this.form = this.fb.group({
       id: null,
@@ -75,7 +77,7 @@ export class ArticleComponent implements OnInit {
         resizeToWidth: 1920,
         cropperMinWidth: 1080,
         aspectRatio: 16 / 9,
-        maintainAspectRatio: false
+        maintainAspectRatio: true
       }
     });
     dialogRef.afterClosed().subscribe(result => {
