@@ -28,7 +28,7 @@ export class NoteReplyService {
       commentId: commentId
       }});
   }
-  getReolyList(fromUserId, commentId) {
+  getReplyList(fromUserId, commentId) {
     return this.http.get(this.url + 'listReply', { params: {
       commentId: commentId,
         fromUserId : fromUserId

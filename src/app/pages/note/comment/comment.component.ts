@@ -42,7 +42,7 @@ export class CommentComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getComment();
+    this.getComment(1);
     this.currentUserId = this.userService.getUserId();
   }
 
@@ -54,8 +54,8 @@ export class CommentComponent implements OnInit {
     });
   }
 
-  getComment() {
-    this.commentService.getList(1, this.note.id).subscribe(
+  getComment(pageNum) {
+    this.commentService.getList(pageNum, this.note.id).subscribe(
       data => {
         this.pageInfo = data;
         this.comments = data.list;
@@ -65,13 +65,13 @@ export class CommentComponent implements OnInit {
 
   publish() {
     if (this.content) {
-      let comment: NoteComment = new NoteComment;
+      const comment: NoteComment = new NoteComment;
       comment.noteId = this.note.id;
       comment.content = this.content;
       this.commentService.save(comment).subscribe(
         data => {
           this.snackBar.open(data.message, '关闭', {duration: 2000});
-          this.getComment();
+          this.getComment(this.pageInfo.pageNum);
         }
       );
     } else {
@@ -88,12 +88,18 @@ export class CommentComponent implements OnInit {
         if (data) {
           this.commentService.delete(id).subscribe(
             state => {
-              this.getComment();
-              console.log(1);
+              this.getComment(1);
             }
           );
         }
       }
     );
+  }
+  nextPage(){
+    this.getComment(this.pageInfo.pageNum + 1);
+  }
+
+  prePage() {
+    this.getComment(this.pageInfo.pageNum - 1);
   }
 }

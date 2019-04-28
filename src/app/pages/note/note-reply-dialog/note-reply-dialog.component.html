@@ -21,6 +21,6 @@
 
 </mat-dialog-content>
 <div class="reply-textarea">
-  <textarea class="form-control overflow-hidden" cols="1" [placeholder]="'@:' + (currentSelectUser ? currentSelectUser : '楼主')" appLetterLengthLimit="200" [(ngModel)]="content"> </textarea>
+  <textarea class="form-control overflow-hidden" required cols="1" [placeholder]="'@:' + (currentSelectUser ? currentSelectUser : '楼主')" appLetterLengthLimit="200" [(ngModel)]="content"> </textarea>
   <button class="btn btn-primary" (click)="publish()">回复</button>
 </div>

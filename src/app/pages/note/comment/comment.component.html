@@ -13,10 +13,18 @@
               <span class="text-secondary">{{comment.createTime | dateConvertPass}}</span>
             </div>
             <div class="fr text-secondary rpy-btn" (click)="openReplyDialog(comment)">详细评论</div>
-            <span  class="ml-2 rpy-btn" *ngIf="comment.fromUserId === currentUserId" (click)="delete(comment.id)">删除</span>
+            <span class="ml-2 rpy-btn" *ngIf="comment.fromUserId === currentUserId"
+                  (click)="delete(comment.id)">删除</span>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <ng-container *ngIf="pageInfo!=null">
+    <div class="text-center my-2 text-secondary fs-14 ">
+      <span class="px-2 py-1 cursor-p bg-light fs-14" *ngIf="pageInfo.pageNum > 1" (click)="prePage()">上一页</span>
+      <span class="px-2 py-1 cursor-p bg-light mx-2 fs-14">{{pageInfo.pageNum}}</span>
+      <span class="px-2 py-1 cursor-p bg-light fs-14" *ngIf="pageInfo.hasNextPage" (click)="nextPage()">下一页</span>
+    </div>
+  </ng-container>
 </div>
