@@ -17,8 +17,8 @@ export class UserReplyDialogComponent implements OnInit {
   pageInfo: PageHelper<NoteReply>;
 
   constructor(private dialogRef: MatDialogRef<UserReplyDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) private noteReply: NoteReply,
-              private replyService: NoteReplyService,) {
+              @Inject(MAT_DIALOG_DATA) public noteReply: NoteReply,
+              private replyService: NoteReplyService) {
   }
 
   ngOnInit() {
