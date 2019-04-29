@@ -1,6 +1,7 @@
 import {Routes, RouterModule} from '@angular/router';
 import {SceneryComponent} from './scenery.component';
 import {DetailedComponent} from './detailed/detailed.component';
+import {SceneryDetailResolverService} from '../../core/resolver/scenery-detail-resolver.service';
 
 const routes: Routes = [
   {
@@ -9,7 +10,8 @@ const routes: Routes = [
     pathMatch: 'full'
   }, {
     path: ':id',
-    component: DetailedComponent
+    component: DetailedComponent,
+    resolve: [SceneryDetailResolverService]
   }
 ];
 

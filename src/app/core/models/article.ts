@@ -2,7 +2,7 @@ import {Topic} from './topic';
 
 export class Article {
   id: string;
-  titile: string;
+  title: string;
   name: string;
   topic: Topic;
   declaration: string;

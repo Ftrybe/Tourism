@@ -149,8 +149,8 @@ export class MaintainComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       data => {
         if (data) {
-          console.log(data);
           this.formModel.get('declaration').setValue(data);
+          this.formModel.get('content').setValue(this.document.querySelector('.ql-editor').innerHTML)
           if (this.formModel.valid) {
             if (this.formModel.get('id').value) {
               this.updateNote();

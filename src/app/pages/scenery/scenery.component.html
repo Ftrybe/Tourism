@@ -12,26 +12,16 @@
       </div>
       <div class="scenery-list">
         <div class="row">
-          <div class="col-lg-6 col-md scenery-item">
+          <div class="col-lg-6 col-md scenery-item" *ngFor="let scenery of sceneries">
             <div>
-              <a [routerLink]="['./',1]" class="box">
-                <div class="item-img" style="background-image: url('./assets/img/view/chentaiweigong.jpg')"><p></p>
+              <a [routerLink]="['./',scenery.id]" class="box">
+                <div class="item-img"
+                     [ngStyle]="scenery.coverUrl?{'background-image':'url('+scenery.coverUrl+')'} : null"><p></p>
                 </div>
               </a>
             </div>
             <div class="scenery-item-ttl">
-              陈太尉宫
-            </div>
-          </div>
-          <div class="col-lg-6 col-md scenery-item">
-            <div>
-              <a [routerLink]="['./',2]" class="box">
-                <div class="item-img" style="background-image: url('./assets/img/view/shexiangfengjingqu.jpg')"><p></p>
-                </div>
-              </a>
-            </div>
-            <div class="scenery-item-ttl">
-              畲乡风景
+              {{scenery.title}}
             </div>
           </div>
         </div>

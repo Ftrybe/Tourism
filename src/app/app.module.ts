@@ -7,7 +7,7 @@ import {FooterComponent} from './common/footer/footer.component';
 import {NavbarComponent} from './common/navbar/navbar.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SignComponent} from './dialog/sign';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientJsonpModule, HttpClientModule} from '@angular/common/http';
 import {HasRoleDirective} from './core/directive/has-role.directive';
 import {CustomMaterialModule} from './customMaterial.module';
 import {UserStatusComponent} from './common/navbar/userStatus.component';
@@ -49,6 +49,7 @@ export function jwtOptionsFactory(tokenService) {
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    HttpClientJsonpModule,
     FormsModule,
     ReactiveFormsModule,
     ShareModule,

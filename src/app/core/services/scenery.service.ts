@@ -1,48 +1,47 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
-import {Article} from '../models/article';
+import {Scenery} from '../models/scenery';
 import {Observable} from 'rxjs';
 import {ArticleMap} from '../models/article-map';
-
 @Injectable({
   providedIn: 'root'
 })
-export class ArticlesService {
+export class SceneryService {
   url = `${environment.apiUrl}/articles/`;
 
   constructor(private http: HttpClient) {
   }
 
 
-  addArticle(article: Article) {
-    return this.http.post(this.url + 'add', article);
+  add(scenery: Scenery) {
+    return this.http.post(this.url + 'add', scenery);
   }
 
-  deleteArticle(id) {
+  delete(id) {
     return this.http.delete(this.url + 'del/' + id);
   }
 
-  updateArticle(article) {
-    return this.http.put(this.url + 'update', article);
+  update(scenery) {
+    return this.http.put(this.url + 'update', scenery);
   }
 
-  getArticles(topic): Observable<Article[]> {
+  list(topic): Observable<Scenery[]> {
     const params = {
       topic: topic
     };
-    return this.http.get<Article[]>(this.url + 'all', {params: params});
+    return this.http.get<Scenery[]>(this.url + 'all', {params: params});
   }
 
-  getUserById(id: string): Observable<Article> {
+  getUserById(id: string): Observable<Scenery> {
     const params = {
       id: id
     };
-    return this.http.get<Article>(this.url + 'get', {params: params});
+    return this.http.get<Scenery>(this.url + 'get', {params: params});
   }
 
   getMap(id): Observable<ArticleMap> {
-    return this.http.get<ArticleMap>(this.url + 'getMap', {params: {articleId: id}});
+    return this.http.get<ArticleMap>(this.url + 'getMap', {params: {sceneryId: id}});
   }
 
   saveMap(map: any) {

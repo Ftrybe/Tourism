@@ -76,7 +76,7 @@ export class DetailedComponent implements OnInit, OnDestroy, AfterViewInit {
   @debounce(300)
   praise(id) {
     this.praiseService.praise(id).subscribe(
-      data => {
+      () => {
         this.getSelfPraiseState(id);
         this.getPraiseCount(id);
       }
@@ -85,7 +85,7 @@ export class DetailedComponent implements OnInit, OnDestroy, AfterViewInit {
 
   collection(id) {
     this.collectionService.collection(id).subscribe(
-      data => {
+      () => {
         this.getCollectionCount(id);
         this.getSelfCollectionState(id);
       }

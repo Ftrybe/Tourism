@@ -1,10 +1,11 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 import {NoteReplyService} from '../../../core/services/note-reply.service';
 import {NoteReply} from '../../../core/models/note-reply';
 import {PageHelper} from '../../../core/models/page-helper';
 import {NoteComment} from '../../../core/models/note-comment';
 import {UsersService} from '../../../core/services/users.service';
+import {ConfirmRequestDialogComponent} from '../../../dialog/confirm-request-dialog/confirm-request-dialog.component';
 
 @Component({
   selector: 'app-note-reply-dialog',
@@ -17,12 +18,12 @@ export class NoteReplyDialogComponent implements OnInit {
   currentSelectUser: string = this.comment.userNickname;
   currentSelectUserId: string = this.comment.fromUserId;
   currentUserId: string;
-  canDelete: boolean;
   replies: NoteReply[] = null;
   pageInfo: PageHelper<NoteReply>;
 
   constructor(private dialogRef: MatDialogRef<NoteReplyDialogComponent>,
               @Inject(MAT_DIALOG_DATA) private comment: NoteComment,
+              private dialog: MatDialog,
               private replyService: NoteReplyService,
               private userService: UsersService) {
   }
@@ -68,9 +69,18 @@ export class NoteReplyDialogComponent implements OnInit {
   }
 
   delete(id: string) {
-    this.replyService.delete(id).subscribe(
+    const delDialogRef =  this.dialog.open(ConfirmRequestDialogComponent, {
+     data: '确认删除本条回复？'
+    });
+    delDialogRef.afterClosed().subscribe(
       data => {
-        this.getList(this.comment.id);
+        if(data){
+          this.replyService.delete(id).subscribe(
+            () => {
+              this.getList(this.comment.id);
+            }
+          );
+        }
       }
     );
   }

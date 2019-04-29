@@ -18,6 +18,7 @@ export class NoteComponent implements OnInit {
   public oWrap;
   pageNum: number = 1;
   hasNextPage: boolean;
+
   constructor(private render: Renderer2, private changeDetectorRef: ChangeDetectorRef,
               private noteService: NoteService) {
   }
@@ -41,7 +42,7 @@ export class NoteComponent implements OnInit {
       (data: AjaxResponse<PageHelper<Note>>) => {
         data.data.list.forEach(value => this.notes.push(value));
         this.pageNum = data.data.pageNum;
-        this.hasNextPage  = data.data.hasNextPage;
+        this.hasNextPage = data.data.hasNextPage;
       }
     );
   }

@@ -3,6 +3,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {ArticleMap} from '../../../../core/models/article-map';
 import {Animation, BMarker, MapOptions, MarkerOptions, Point} from 'angular2-baidu-map';
 import {ArticlesService} from '../../../../core/services/articles.service';
+import {BaiduMapService} from '../../../../core/services/baidu-map.service';
+import {BaiduMapResult, BaiduMapSuggestion} from '../../../../core/models/baidu-map-suggestion';
 
 @Component({
   selector: 'app-article-map-dialog',
@@ -16,11 +18,14 @@ export class ArticleMapDialogComponent implements OnInit {
   mapOptions: MapOptions;
   // 标记
   public markers: Array<{ point: Point; options?: MarkerOptions }>;
+  address: any;
+  options: BaiduMapResult[] = [];
 
   constructor(@Optional() private dialogRef: MatDialogRef<ArticleMapDialogComponent>,
               @Optional() @Inject(MAT_DIALOG_DATA) public articleId: string,
               private articleService: ArticlesService,
-              private changeRef: ChangeDetectorRef) {
+              private changeRef: ChangeDetectorRef,
+              private baiduService: BaiduMapService) {
 
   }
 
@@ -33,7 +38,7 @@ export class ArticleMapDialogComponent implements OnInit {
         if (articleMap) {
           this.map = articleMap;
           this.initMap();
-        //  this.changeRef.detectChanges();
+          //  this.changeRef.detectChanges();
         }
       }
     );
@@ -72,5 +77,22 @@ export class ArticleMapDialogComponent implements OnInit {
         }
       }
     ];
+  }
+
+  valueChange() {
+    this.baiduService.getSuggestion(this.address).subscribe(
+      data => {
+        this.options = data.result;
+      }
+    );
+  }
+
+  setLocation(option: BaiduMapResult) {
+    if (option.uid !== '') {
+      this.map.lat = option.location.lat;
+      this.map.lng = option.location.lng;
+      this.initMap();
+      this.changeRef.detectChanges();
+    }
   }
 }

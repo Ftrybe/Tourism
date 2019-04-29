@@ -2,25 +2,47 @@
   <span class="fa fa-angle-left pl-2 pt-1" (click)="closeDialog()"></span>
   <p class="text-center mt-1 mx-auto" style="line-height: 14px">评论详细</p>
 </div>
-<mat-dialog-content class="mh-100" style="padding-bottom: 60px" *ngFor="let reply of replies">
-  <div class="media">
-    <img class="align-self-start mr-3" [src]="reply.fromUserPicture" alt="头像">
-    <div class="media-body">
-      <h5 class="mt-0" (click)="selectUser(reply)">{{reply.fromUserNickname}} 回复: <span>@{{reply.toUserNickname}}</span></h5>
-      <p>{{reply.content}}</p>
-      <div class="media-footer">
-        <div class="fl">
-          <span> {{ reply.createTime | dateConvertPass}}</span>
-        </div>
-        <div class="fr">
-          <span style="cursor: pointer" *ngIf="currentUserId === reply.fromUserId" (click)="delete(reply.id)">删除</span>
-        </div>
+<mat-dialog-content class="mh-100" style="padding-bottom: 60px">
+
+  <div class="cmt">
+    <div class="media">
+      <img class="align-self-start mr-3" [src]="comment.userPicture" alt="头像">
+      <div class="media-body">
+        <h5 class="mt-0" >{{comment.userNickname}}</h5>
+          <p>{{comment.content}}</p>
+          <div class="media-footer">
+            <div class="fl">
+              <span> {{ comment.createTime | dateConvertPass}}</span>
+            </div>
+          </div>
       </div>
     </div>
   </div>
 
+    <ng-container *ngFor="let reply of replies">
+      <div class="media">
+        <img class="align-self-start mr-3" [src]="reply.fromUserPicture" alt="头像">
+        <div class="media-body">
+          <h5 class="mt-0" (click)="selectUser(reply)">{{reply.fromUserNickname}} 回复:
+            <span>@{{reply.toUserNickname}}</span></h5>
+          <p>{{reply.content}}</p>
+          <div class="media-footer">
+            <div class="fl">
+              <span> {{ reply.createTime | dateConvertPass}}</span>
+            </div>
+            <div class="fr">
+            <span style="cursor: pointer" *ngIf="currentUserId === reply.fromUserId"
+                  (click)="delete(reply.id)">删除</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
 </mat-dialog-content>
 <div class="reply-textarea">
-  <textarea class="form-control overflow-hidden" required cols="1" [placeholder]="'@:' + (currentSelectUser ? currentSelectUser : '楼主')" appLetterLengthLimit="200" [(ngModel)]="content"> </textarea>
+  <textarea class="form-control overflow-hidden" required cols="1"
+            [placeholder]="'@:' + (currentSelectUser ? currentSelectUser : '楼主')" appLetterLengthLimit="200"
+            [(ngModel)]="content"> </textarea>
   <button class="btn btn-primary" (click)="publish()">回复</button>
 </div>

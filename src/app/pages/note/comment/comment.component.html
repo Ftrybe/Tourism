@@ -23,7 +23,7 @@
   <ng-container *ngIf="pageInfo!=null">
     <div class="text-center my-2 text-secondary fs-14 ">
       <span class="px-2 py-1 cursor-p bg-light fs-14" *ngIf="pageInfo.pageNum > 1" (click)="prePage()">上一页</span>
-      <span class="px-2 py-1 cursor-p bg-light mx-2 fs-14">{{pageInfo.pageNum}}</span>
+      <span class="px-2 py-1 cursor-p bg-light mx-2 fs-14" *ngIf="pageInfo.pageNum > 1">{{pageInfo.pageNum}}</span>
       <span class="px-2 py-1 cursor-p bg-light fs-14" *ngIf="pageInfo.hasNextPage" (click)="nextPage()">下一页</span>
     </div>
   </ng-container>
