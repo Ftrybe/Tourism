@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {
+  MAT_DATE_LOCALE,
   MatAutocompleteModule,
   MatBadgeModule,
   MatBottomSheetModule,
@@ -79,7 +80,10 @@ const modules = [
 
 @NgModule({
   imports: [modules],
-  exports: [modules]
+  exports: [modules],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'zh-CN'}
+  ]
 })
 export class CustomMaterialModule {
 }
