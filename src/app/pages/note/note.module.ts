@@ -31,7 +31,7 @@ import {NoteDeclarationDialogComponent} from './note-declaration-dialog/note-dec
   ],
   declarations: [
     NoteComponent,
-     CommentComponent,
+    CommentComponent,
     DetailedComponent,
     MaintainComponent,
     SearchComponent,

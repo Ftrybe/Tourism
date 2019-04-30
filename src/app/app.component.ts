@@ -21,19 +21,22 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     // 路由动态修改标题
-        this.router.events.pipe(
-          filter(e => e instanceof NavigationEnd),
-          map(() => this.activatedRoute),
-          map(r => {
-            while (r.firstChild) {
-              r = r.firstChild;
-            }
-            return r;
-          }),
-          filter(r => r.outlet === 'primary'),
-          mergeMap(r => r.data)
-        )
-          .subscribe(e => this.titleService.setTitle(e['title']));
+    this.router.events.pipe(
+      filter(e => e instanceof NavigationEnd),
+      map(() => this.activatedRoute),
+      map(r => {
+        while (r.firstChild) {
+          r = r.firstChild;
+        }
+        return r;
+      }),
+      filter(r => r.outlet === 'primary'),
+      mergeMap(r => r.data)
+    )
+      .subscribe(e => {
+        this.titleService.setTitle(e['title']);
+        window.scrollTo(0, 0);
+      });
   }
 
   ngAfterViewInit(): void {

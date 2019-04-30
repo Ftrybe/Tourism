@@ -52,4 +52,8 @@ export class ArticlesService {
   updateMap(map: any) {
     return this.http.put(this.url + 'updateMap', map);
   }
+
+  uploadImage(file: string): any {
+    return this.http.post(this.url + 'uploadImage', file)
+  }
 }

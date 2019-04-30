@@ -18,6 +18,8 @@ import {FilePreviewOverlayRef} from '../../../common/file-preview-overlay/file-p
 import {SceneryService} from '../../../core/services/scenery.service';
 import {ActivatedRoute} from '@angular/router';
 import {Scenery} from '../../../core/models/scenery';
+import {flatMap} from 'rxjs/operators';
+import {ArticleMap} from '../../../core/models/article-map';
 
 @Component({
   selector: 'app-detailed',
@@ -32,18 +34,12 @@ export class DetailedComponent implements OnInit {
   geolocationOpts: GeolocationControlOptions;
   banner: any;
   scenery: Scenery;
+  map: ArticleMap = new ArticleMap();
+
   constructor(private previewDialog: FilePreviewOverlayService,
               private bannerService: BannerService,
               private sceneryService: SceneryService,
               private route: ActivatedRoute) {
-    this.mapOptions = {
-      centerAndZoom: {
-        lat: 26.4896,
-        lng: 119.5498,
-        zoom: 16
-      },
-      enableKeyboard: true
-    };
     this.controlOpts = {
       anchor: ControlAnchor.BMAP_ANCHOR_TOP_LEFT,      // 显示的控件的位置
       type: NavigationControlType.BMAP_NAVIGATION_CONTROL_LARGE,   // 用来描述它是什么样的导航
@@ -54,26 +50,42 @@ export class DetailedComponent implements OnInit {
       showZoomInfo: true,                             // 是否展示当前的信息
       enableGeolocation: true                         // 是否启用地理定位功能
     };
-    this.markers = [
-      {
-        point: {
-          lat: 26.4896,
-          lng: 119.5498,
-        }
-      }
-    ];
   }
 
 
   ngOnInit() {
-    this.bannerService.getBanner(Topic.FOOD).subscribe(
+    this.map.lng = 119.556407;
+    this.map.lat = 26.495357;
+    this.initMap();
+    this.bannerService.getBanner(Topic.SCRENERY).subscribe(
       data => {
         this.banner = data;
       }
     );
     this.getDetailed();
   }
-
+  initMap() {
+    this.mapOptions = {
+      centerAndZoom: {
+        lat: this.map.lat,
+        lng: this.map.lng,
+        zoom: 14
+      },
+      enableKeyboard: true,
+      enableScrollWheelZoom: true
+    };
+    this.getMarker();
+  }
+  getMarker() {
+    this.markers = [
+      {
+        point: {
+          lat: this.map.lat,
+          lng: this.map.lng,
+        }
+      }
+    ];
+  }
   public setAnimation(marker: BMarker): void {
     marker.setAnimation(Animation.BMAP_ANIMATION_BOUNCE);
   }
@@ -98,5 +110,12 @@ export class DetailedComponent implements OnInit {
         this.scenery = data[0];
       }
     );
+  }
+
+  getMap() {
+    this.sceneryService.getMap(this.scenery.id).subscribe(data => {
+      this.map = data;
+      console.log(data);
+    });
   }
 }

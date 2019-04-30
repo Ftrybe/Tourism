@@ -20,6 +20,7 @@ import {ImageUploadModule} from 'angular2-image-upload';
     ImageCropperModule,
     ArticlesRoutes,
     QuillModule,
+    ImageUploadModule.forRoot(),
     ImageCropperDialogModule,
     BaiduMapModule.forRoot({ak: '8F1HxkUfqSGRywCZYdEZqw4DGLX5glk2'}),
     ImageUploadModule

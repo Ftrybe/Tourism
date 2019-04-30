@@ -4,7 +4,9 @@ import {FilePreviewOverlayRef} from '../../../common/file-preview-overlay/file-p
 import {
   Animation,
   BMapInstance,
-  BMarker, ControlAnchor, GeolocationControlOptions,
+  BMarker,
+  ControlAnchor,
+  GeolocationControlOptions,
   MapOptions,
   MarkerOptions,
   NavigationControlOptions,
@@ -26,7 +28,9 @@ export class DetailedComponent implements OnInit {
   geolocationOpts: GeolocationControlOptions;
   banner: any;
 
-  constructor(private previewDialog: FilePreviewOverlayService, private bannerService: BannerService) {
+  constructor(
+    private previewDialog: FilePreviewOverlayService,
+    private bannerService: BannerService) {
     this.mapOptions = {
       centerAndZoom: {
         lat: 26.4896,

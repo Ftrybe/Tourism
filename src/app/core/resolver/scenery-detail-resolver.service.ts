@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot} from '@angular/router';
 import {Scenery} from '../models/scenery';
-import {EMPTY, Observable, of} from 'rxjs';
-import {mergeMap, take} from 'rxjs/operators';
+import {EMPTY, forkJoin, observable, Observable, of} from 'rxjs';
+import {flatMap, mergeMap, take} from 'rxjs/operators';
 import {SceneryService} from '../services/scenery.service';
+import {ArticleMap} from '../models/article-map';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class SceneryDetailResolverService implements Resolve<Scenery> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Scenery> | Promise<Scenery> | Scenery {
     const id = route.paramMap.get('id');
+
     return this.sceneryService.getUserById(id).pipe(
       take(1),
       mergeMap(scenery => {
@@ -23,7 +25,7 @@ export class SceneryDetailResolverService implements Resolve<Scenery> {
           this.router.navigate(['./']);
           return EMPTY;
         }
-      })
+      }),
     );
   }
 }
