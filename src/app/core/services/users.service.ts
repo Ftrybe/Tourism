@@ -6,7 +6,7 @@ import {catchError, tap} from 'rxjs/operators';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {User} from '../models/user';
 import {AuthorityName} from '../models/authority-name.enum';
-import {Constant} from './constant';
+import {Constant} from '../models/constant';
 
 @Injectable({
   providedIn: 'root'

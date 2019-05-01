@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
-import {Constant} from './constant';
+import {Constant} from '../models/constant';
 import {Observable} from 'rxjs';
 import {AjaxResponse} from '../models/ajax-response';
 

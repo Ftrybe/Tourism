@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
 import {NoteComponent} from '../../pages/note/note.component';
-import {Constant} from './constant';
+import {Constant} from '../models/constant';
 import {NoteComment} from '../models/note-comment';
 import {PageHelper} from '../models/page-helper';
 import {error} from '@angular/compiler/src/util';

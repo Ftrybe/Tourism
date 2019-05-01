@@ -4,7 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {b} from '@angular/core/src/render3';
 import {NotePraise} from '../models/note-praise';
-import {Constant} from './constant';
+import {Constant} from '../models/constant';
 
 @Injectable({
   providedIn: 'root'
