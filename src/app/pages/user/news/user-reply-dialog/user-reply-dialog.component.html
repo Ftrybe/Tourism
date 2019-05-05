@@ -7,7 +7,7 @@
     <img class="align-self-start mr-3" [src]="reply.fromUserPicture" alt="头像">
     <div class="media-body">
       <h5 class="mt-0" *ngIf="noteReply.toUserId == reply.fromUserId">你 回复: <span>@{{reply.toUserNickname}}</span></h5>
-      <h5 class="mt-0" *ngIf="noteReply.toUserId == reply.toUserId">{{reply.fromUserNickname}} 回复: <span>@ 你</span></h5>
+      <h5 class="mt-0" *ngIf="noteReply.toUserId == reply.toUserId">{{reply.fromUserNickname}} 回复: <span>你</span></h5>
       <p>{{reply.content}}</p>
       <div class="media-footer">
         <div class="fl">

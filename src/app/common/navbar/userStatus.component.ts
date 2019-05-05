@@ -19,6 +19,7 @@ export class UserStatusComponent implements OnInit, OnDestroy {
   public menu: string;
   public user: User;
   public countUnread: number;
+
   constructor(
     private usersService: UsersService,
     private dialog: MatDialog,
@@ -86,7 +87,8 @@ export class UserStatusComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
   }
-  getNews(){
+
+  getNews() {
     this.replyService.countUnread().subscribe(
       (data: AjaxResponse<number>) => {
         this.countUnread = data.data;

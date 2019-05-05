@@ -22,6 +22,7 @@ export class MaintainComponent implements OnInit {
   formModel: FormGroup;
   // 裁剪返回图片base64编码
   cover_image_base64: any;
+  old_iamge: any;
   // coverUrl: any;
   // 上传返回的图片路径
   res_image_url: any;
@@ -55,6 +56,7 @@ export class MaintainComponent implements OnInit {
         if (data[0]) {
           this.formModel.patchValue(data[0]);
           this.cover_image_base64 = data[0].coverUrl;
+          this.old_iamge = this.cover_image_base64;
         }
       }
     );
@@ -137,7 +139,11 @@ export class MaintainComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.cover_image_base64 = result;
+      if (result) {
+        this.cover_image_base64 = result;
+        return;
+      }
+      this.cover_image_base64 = this.old_iamge;
     });
   }
 
@@ -150,7 +156,7 @@ export class MaintainComponent implements OnInit {
       data => {
         if (data) {
           this.formModel.get('declaration').setValue(data);
-          this.formModel.get('content').setValue(this.document.querySelector('.ql-editor').innerHTML)
+          this.formModel.get('content').setValue(this.document.querySelector('.ql-editor').innerHTML);
           if (this.formModel.valid) {
             if (this.formModel.get('id').value) {
               this.updateNote();

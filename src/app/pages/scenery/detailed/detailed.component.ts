@@ -18,7 +18,6 @@ import {FilePreviewOverlayRef} from '../../../common/file-preview-overlay/file-p
 import {SceneryService} from '../../../core/services/scenery.service';
 import {ActivatedRoute} from '@angular/router';
 import {Scenery} from '../../../core/models/scenery';
-import {flatMap} from 'rxjs/operators';
 import {ArticleMap} from '../../../core/models/article-map';
 
 @Component({

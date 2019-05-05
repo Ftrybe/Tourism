@@ -1,9 +1,14 @@
 export class Food {
   id: string;
-  name: string;
   title: string;
+  name: string;
   declaration: string;
-  content: string;
+  createTime: Date;
+  modifyTime: Date;
+  businessHours: string;
+  address: string;
+  coverUrl: string;
   state: string;
-  cover_url: string;
+  cost: string;
+  contact: string;
 }

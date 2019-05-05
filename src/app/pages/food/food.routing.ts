@@ -1,6 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 import { FoodComponent } from './food.component';
 import {DetailedComponent} from './detailed/detailed.component';
+import {FoodDetailResolverService} from '../../core/resolver/food-detail-resolver.service';
 
 const routes: Routes = [
   {
@@ -8,7 +9,8 @@ const routes: Routes = [
     component: FoodComponent
    }, {
   path: ':id',
-    component: DetailedComponent
+    component: DetailedComponent,
+    resolve: [FoodDetailResolverService]
   }
 ];
 export const FoodRoutes = RouterModule.forChild(routes);

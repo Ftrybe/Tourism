@@ -18,7 +18,7 @@ export class SceneryComponent implements OnInit {
     this.getList();
   }
   getList(){
-    this.sceneryService.list('SCENERY').subscribe(
+    this.sceneryService.list().subscribe(
       data => {
         this.sceneries = data;
       }

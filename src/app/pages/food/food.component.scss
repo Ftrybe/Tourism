@@ -66,6 +66,9 @@
             font-size: 1.4rem;
             font-style: italic;
             font-weight: normal;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
             @include media-max(md){
               font-size: .8rem;
             }

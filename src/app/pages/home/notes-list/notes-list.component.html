@@ -9,10 +9,10 @@
             <div class="note-overview">
               <div class="note-title pl-2">{{note.title}}</div>
               <div class="note-content pl-2" [innerText]="note.declaration"></div>
-              <div class="opts">
-                <span class="fa fa-user"> <span class="px-1">{{note.userNickname}}</span></span>
-                <span class="fa fa-thumbs-up"><span class="px-1">{{note.praiseCount | numberSimplify}}</span></span>
-                <span class="fa fa-star"><span class="px-1">{{note.collectionCount | numberSimplify}}</span></span>
+              <div class="opts mr-1">
+                <span class="opts-user"><span class="fas fa-user px-1"></span>{{note.userNickname}}</span>
+                <span class="opts-up"><span class="fas fa-thumbs-up px-1"></span>{{note.praiseCount | numberSimplify}}</span>
+                <span class="opts-star"><span class="fas fa-star px-1"></span>{{note.collectionCount | numberSimplify}}</span>
               </div>
             </div>
           </a>

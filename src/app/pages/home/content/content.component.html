@@ -9,31 +9,15 @@
           <p>热门景点</p>
       </div>
       <div class="row my-4">
-        <div class="col-md-4 my-1">
-          <a class="card rounded" href="#">
-            <img class="card-img" src="./assets/img/3.jpg" alt=“海洋世界”>
-            <h3 class="card-title">罗源湾海洋世界</h3>
-            <p class="card-text">福州罗源湾海洋世界旅游区是国家AAAA级旅游景区
-              ，坐落于福州市罗源湾滨海新城，占地面积约300亩，拥有水域面积6000余亩，是世纪金源集团斥巨资打造的大型滨海休闲游乐度假。</p>
+
+        <div class="col-md-4 my-1" *ngFor="let scenery of sceneries">
+          <a [routerLink]="['/food',scenery.id]" class="card rounded" >
+            <img class="card-img" [src]="scenery.coverUrl" alt=“芙蓉吉鲍”>
+            <h3 class="card-title">{{scenery.title}}</h3>
+            <p class="card-text">{{scenery.declaration}}</p>
           </a>
         </div>
-        <div class="col-md-4 my-1">
-          <a class="card rounded" href="#">
-            <img class="card-img" src="./assets/img/view/shexiangfengjingqu.jpg" alt=“畲乡风景区”>
-            <h3 class="card-title">畲乡风景区</h3>
-            <p class="card-text">
-              中国畲山水景区依山傍水，青山、碧水、绿树景观浑然天成，为福建人文奇观、福州生态标杆、罗源旅游新畲风。景点特色：1、畲山称奇：畲山水以山称奇，由南龙北凤构成景区的沟壑峡谷地形，龙山凤山起伏连绵不断，沿着漫步道顺山而上，可看到林中若隐若现的溪水</p>
-          </a>
-        </div>
-        <div class="col-md-4">
-          <a class="card rounded" href="#">
-            <img class="card-img" src="./assets/img/view/chentaiweigong.jpg" alt=“陈太尉宫”>
-            <h3 class="card-title">陈太尉宫</h3>
-            <p class="card-text">陈太尉宫始建于五代梁开平三年（909年），原是陈氏家祠，系陈苏所建。
-              千年古建历代重修本不足为奇，但一宫之内宋、元、明、清建筑风格并存是陈太尉宫的最大特色，据报道在江南仅剩此一家，因此使陈太尉宫被列入国保级文物单位。
-              陈太尉宫整个建筑未用一根钉子，历千百年不动摇，为古代能工巧匠的杰作</p>
-          </a>
-        </div>
+
       </div>
     </div>
   </div>
@@ -41,28 +25,15 @@
     <div class="container">
       <p class="food-list-title my-3 text-secondary font-italic">美食诱惑</p>
       <div class="row my-4">
-        <div class="col-md-4 my-1">
-          <a class="card rounded" href="#">
-            <img class="card-img" src="./assets/img/foods/baoyu.jpg" alt=“芙蓉吉鲍”>
-            <h3 class="card-title">芙蓉吉鲍</h3>
-            <p class="card-text">碧里传统名吃，以碧里乡吉壁村出产的鲍鱼加上鸡牙子肉、鸡蛋清等制成的一道名菜。</p>
+
+        <div class="col-md-4 my-1" *ngFor="let food of foods">
+          <a [routerLink]="['/food',food.id]" class="card rounded" >
+            <img class="card-img" [src]="food.coverUrl" alt=“芙蓉吉鲍”>
+            <h3 class="card-title">{{food.title}}</h3>
+            <p class="card-text">{{food.declaration}}</p>
           </a>
         </div>
-        <div class="col-md-4 my-1">
-          <a class="card rounded" href="#">
-            <img class="card-img" src="./assets/img/foods/bolisu.jpg" alt=“玻璃酥”>
-            <h3 class="card-title">玻璃酥</h3>
-            <p class="card-text">
-              选用猪油膘为主材，以拔丝的烹调手法烹制而成，食之脆口香甜，入口即化。</p>
-          </a>
-        </div>
-        <div class="col-md-4">
-          <a class="card rounded" href="#">
-            <img class="card-img" src="./assets/img/foods/yu.jpg" alt=“岱岱有余”>
-            <h3 class="card-title">岱岱有余</h3>
-            <p class="card-text">一道以溪鱼为主要原料的菜肴，将溪鱼提前以鱼露、姜等作料入味后，下锅煎煮至金黄，口味咸香诱人。</p>
-          </a>
-        </div>
+
       </div>
     </div>
   </div>

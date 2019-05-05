@@ -15,6 +15,8 @@ import {
 } from 'angular2-baidu-map';
 import {BannerService} from '../../../core/services/banner.service';
 import {Topic} from '../../../core/models/topic';
+import {ActivatedRoute} from '@angular/router';
+import {Food} from '../../../core/models/food';
 
 @Component({
   selector: 'app-detailed',
@@ -23,6 +25,7 @@ import {Topic} from '../../../core/models/topic';
 })
 export class DetailedComponent implements OnInit {
   mapOptions: MapOptions;
+  food: Food;
   public markers: Array<{ point: Point; options?: MarkerOptions }>;
   controlOpts: NavigationControlOptions;
   geolocationOpts: GeolocationControlOptions;
@@ -30,7 +33,8 @@ export class DetailedComponent implements OnInit {
 
   constructor(
     private previewDialog: FilePreviewOverlayService,
-    private bannerService: BannerService) {
+    private bannerService: BannerService,
+    private route: ActivatedRoute) {
     this.mapOptions = {
       centerAndZoom: {
         lat: 26.4896,
@@ -66,6 +70,7 @@ export class DetailedComponent implements OnInit {
         this.banner = data;
       }
     );
+    this.getDetailed();
   }
 
   public setAnimation(marker: BMarker): void {
@@ -85,5 +90,11 @@ export class DetailedComponent implements OnInit {
   showPreview() {
     const dialogRef: FilePreviewOverlayRef = this.previewDialog.open({});
   }
-
+  getDetailed() {
+    this.route.data.subscribe(
+      (data) => {
+        this.food = data[0];
+      }
+    );
+  }
 }

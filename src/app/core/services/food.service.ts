@@ -4,39 +4,38 @@ import {environment} from '../../../environments/environment';
 import {Scenery} from '../models/scenery';
 import {Observable} from 'rxjs';
 import {ArticleMap} from '../models/article-map';
-import {AjaxResponse} from '../models/ajax-response';
 import {Food} from '../models/food';
 @Injectable({
   providedIn: 'root'
 })
-export class SceneryService {
-  url = `${environment.apiUrl}/scenery/`;
+export class FoodService {
+  url = `${environment.apiUrl}/foods/`;
 
   constructor(private http: HttpClient) {
   }
 
 
-  add(scenery: Scenery) {
-    return this.http.post(this.url + 'add', scenery);
+  add(food: Food) {
+    return this.http.post(this.url + 'add', food);
   }
 
   delete(id) {
     return this.http.delete(this.url + 'del/' + id);
   }
 
-  update(scenery) {
-    return this.http.put(this.url + 'update', scenery);
+  update(food) {
+    return this.http.put(this.url + 'update', food);
   }
 
-  list(): Observable<Scenery[]> {
-    return this.http.get<Scenery[]>(this.url + 'all');
+  list(): Observable<Food[]> {
+    return this.http.get<Food[]>(this.url + 'all');
   }
 
-  getUserById(id: string): Observable<Scenery> {
+  getById(id: string): Observable<Food> {
     const params = {
       id: id
     };
-    return this.http.get<Scenery>(this.url + 'get', {params: params});
+    return this.http.get<Food>(this.url + 'get', {params: params});
   }
 
   getMap(id): Observable<ArticleMap> {
@@ -51,7 +50,7 @@ export class SceneryService {
     return this.http.put(this.url + 'updateMap', map);
   }
 
-  listOfHome(): Observable<AjaxResponse<Food[]>> {
-    return this.http.get<AjaxResponse<Food[]>>(this.url + 'home');
+  listOfHome() {
+    return this.http.get(this.url + 'home');
   }
 }
