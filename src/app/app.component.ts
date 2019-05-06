@@ -35,7 +35,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     )
       .subscribe(e => {
         this.titleService.setTitle(e['title']);
-        window.scrollTo(0, 0);
+       // window.scrollTo(0, 0);
       });
   }
 

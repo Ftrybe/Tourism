@@ -34,7 +34,14 @@ export class UserStatusComponent implements OnInit, OnDestroy {
       this.usersService.change.subscribe(
         (data: User) => {
           if (data) {
-            this.user = data;
+            if (data.picture) {
+              this.user.picture = data.picture;
+            }
+            if (data.nickname) {
+              this.user.nickname = data.nickname;
+            }
+            console.log(data);
+
             this.cd.detectChanges();
           }
         }
@@ -92,6 +99,7 @@ export class UserStatusComponent implements OnInit, OnDestroy {
     this.replyService.countUnread().subscribe(
       (data: AjaxResponse<number>) => {
         this.countUnread = data.data;
+        this.cd.detectChanges();
       }
     );
   }

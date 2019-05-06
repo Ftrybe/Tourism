@@ -69,12 +69,12 @@ export class NoteReplyDialogComponent implements OnInit {
   }
 
   delete(id: string) {
-    const delDialogRef =  this.dialog.open(ConfirmRequestDialogComponent, {
-     data: '确认删除本条回复？'
+    const delDialogRef = this.dialog.open(ConfirmRequestDialogComponent, {
+      data: '确认删除本条回复？'
     });
     delDialogRef.afterClosed().subscribe(
       data => {
-        if(data){
+        if (data) {
           this.replyService.delete(id).subscribe(
             () => {
               this.getList(this.comment.id);

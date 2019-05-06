@@ -11,7 +11,7 @@
           </span>
       <div class="user-tip rounded">
         <div>
-          <a [routerLink]="['/user', user.id]" >
+          <a *ngIf="user.id" [routerLink]="['/user', user.id]" >
              <img class="user-pic rounded-circle" [src]="user.picture" [alt]="user.username" >
           </a>
           <a [routerLink]="['/user', user.id]" [queryParams]="{select: 'news'}"><span class="fas fa-bell"></span> 消息({{countUnread}})</a>

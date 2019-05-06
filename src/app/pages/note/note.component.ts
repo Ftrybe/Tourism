@@ -49,5 +49,6 @@ export class NoteComponent implements OnInit {
 
   search(note: Note[]) {
     this.notes = note;
+    this.changeDetectorRef.detectChanges();
   }
 }
