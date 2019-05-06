@@ -22,7 +22,7 @@ export class NoteReplyDialogComponent implements OnInit {
   pageInfo: PageHelper<NoteReply>;
 
   constructor(private dialogRef: MatDialogRef<NoteReplyDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) private comment: NoteComment,
+              @Inject(MAT_DIALOG_DATA) public comment: NoteComment,
               private dialog: MatDialog,
               private replyService: NoteReplyService,
               private userService: UsersService) {
