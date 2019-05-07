@@ -74,7 +74,15 @@
           bottom: 4px;
           right: 0;
           text-indent: .3rem;
-
+          .opts-user > span{
+            max-width: 6rem;
+            display: inline-block;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            height: 12px;
+            line-height: 12px;
+          }
           .fa {
             font-weight: 400;
           }
@@ -83,9 +91,12 @@
     }
   }
 
-  @include notes-list(110px, 90px, 17px, 13px, 3rem);
+  @include notes-list(160px, 120px, 17px, 13px, 3rem);
   @include media(md) {
     @include notes-list(330px, 220px, 23px, 14px, 4rem);
+    .opts-user > span{
+      max-width: 8rem !important;
+    }
   }
 }
 
