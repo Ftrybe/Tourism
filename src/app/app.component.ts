@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 
-import {filter, map, mergeMap} from 'rxjs/operators';
+import {filter, map, mergeMap, take, takeLast} from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +15,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   constructor(
     private titleService: Title,
     private router: Router,
-    private activatedRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute
   ) {
   }
 
@@ -28,6 +28,12 @@ export class AppComponent implements OnInit, AfterViewInit {
         while (r.firstChild) {
           r = r.firstChild;
         }
+        r.fragment.pipe(takeLast(1)).subscribe(e => {
+          if (e) {
+            return;
+          }
+          window.scroll(0, 0);
+        });
         return r;
       }),
       filter(r => r.outlet === 'primary'),
@@ -35,7 +41,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     )
       .subscribe(e => {
         this.titleService.setTitle(e['title']);
-       // window.scrollTo(0, 0);
+
       });
   }
 

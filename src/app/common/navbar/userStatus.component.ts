@@ -40,14 +40,12 @@ export class UserStatusComponent implements OnInit, OnDestroy {
             if (data.nickname) {
               this.user.nickname = data.nickname;
             }
-            console.log(data);
-
             this.cd.detectChanges();
           }
+          this.getNews();
         }
       );
       this.getUser();
-      this.getNews();
     }
   }
 
