@@ -1,7 +1,6 @@
-import {Component, OnInit, ElementRef, ViewChild, OnDestroy, AfterViewInit, AfterViewChecked} from '@angular/core';
+import {AfterViewChecked, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {AppSettings} from '../../../app.settings';
 import {Settings} from '../../../app.settings.model';
-import {orders, products, customers, refunds} from '../dashboard.data';
 import {DashboardService} from '../../../../core/services/dashboard.service';
 import {AjaxResponse} from '../../../../core/models/ajax-response';
 import {ChartsData} from '../../../../core/models/charts-data';

@@ -6,6 +6,8 @@ export const verticalMenuItems = [
   new Menu(21, 'Banner', '/manager/home/banner', null, 'computer', null, false, 2),
   new Menu(3, '游记管理', '/manager/notes', null, 'list', null, false, 0),
   new Menu(4, '文章管理', '/manager/articles/', null, 'keyboard', null, false, 0),
+  new Menu(6, '美食管理', '/manager/foods/', null, 'fastfood', null, false, 0),
+  new Menu(7, '景点管理', '/manager/scenery/', null, 'tram', null, false, 0),
   new Menu(5, '用户管理', '/manager/users', null, 'account_box', null, false, 0)
 ];
 

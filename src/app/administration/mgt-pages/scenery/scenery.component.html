@@ -1,6 +1,6 @@
 <app-content-header
   [icon]="'supervisor_account'"
-  [title]="'美食管理'"
+  [title]="'景点管理'"
   [desc]="'浏览，新增，修改，删除，美食信息'"
   [hideBreadcrumb]="false"
   [hasBgImage]="true"
@@ -16,7 +16,7 @@
 <mat-drawer-container class="page-wrapper">
   <div fxLayout="column" class="p-2">
     <div class="p-2">
-      <mat-table #table [dataSource]="articles" class="mat-elevation-z8">
+      <mat-table #table [dataSource]="sceneries" class="mat-elevation-z8">
         <ng-container matColumnDef="title">
           <mat-header-cell *matHeaderCellDef> 标题</mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>

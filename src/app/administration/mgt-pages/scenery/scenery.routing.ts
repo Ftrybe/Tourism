@@ -1,25 +1,25 @@
 import {RouterModule, Routes} from '@angular/router';
 import {EndArticleDetailResolverService} from '../../../core/resolver/end/end-article-detail-resolver.service';
-import {FoodComponent} from './food.component';
+import {SceneryComponent} from './scenery.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: FoodComponent,
+    component: SceneryComponent,
     pathMatch: 'full'
   }, {
     path: 'food',
-    component: FoodComponent,
-    data: {breadcrumb: '添加美食'}
+    component: SceneryComponent,
+    data: {breadcrumb: '添加景点'}
   },
   {
     path: 'food/:id',
-    component: FoodComponent,
+    component: SceneryComponent,
     resolve: [
       EndArticleDetailResolverService
     ],
-    data: {breadcrumb: '添加美食'}
+    data: {breadcrumb: '添加景点'}
   }
 ];
-export const RoutingComponents = [FoodComponent];
-export const FoodRoutes = RouterModule.forChild(routes);
+export const RoutingComponents = [SceneryComponent];
+export const SceneryRoutes = RouterModule.forChild(routes);

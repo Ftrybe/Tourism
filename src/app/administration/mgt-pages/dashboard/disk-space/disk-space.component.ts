@@ -1,4 +1,4 @@
-import {Component, OnInit, ElementRef, ViewChild, AfterViewInit, AfterViewChecked} from '@angular/core';
+import {AfterViewChecked, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {disk_space} from '../dashboard.data';
 
 @Component({

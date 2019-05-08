@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NoteService} from '../../../core/services/note.service';
 import {Note} from '../../../core/models/note';
-import {MatDialog, MatDialogRef} from '@angular/material';
+import {MatDialog, MatDialogRef, PageEvent} from '@angular/material';
 import {NoteDialogComponent} from './note-dialog/note-dialog.component';
 import {AjaxResponse} from '../../../core/models/ajax-response';
 import {PageHelper} from '../../../core/models/page-helper';
@@ -16,19 +16,22 @@ export class NotesComponent implements OnInit {
   showSearch: boolean;
   searchText: any;
   public notes: Note[];
+  pageInfo: PageHelper<Note>;
   displayedColumns = ['title', 'username', 'ops'];
 
   constructor(private noteService: NoteService, private dialog: MatDialog) {
   }
 
   ngOnInit() {
-    this.getList();
+    this.getList(1);
   }
 
-  getList() {
-    this.noteService.getList('1').subscribe(
+  getList(pageNum) {
+    this.noteService.getList(pageNum).subscribe(
       (data: AjaxResponse<PageHelper<Note>>) => {
         if (data) {
+          console.log(data);
+          this.pageInfo = data.data;
           this.notes = data.data.list;
         }
       }
@@ -48,7 +51,7 @@ export class NotesComponent implements OnInit {
         if (data) {
           this.noteService.delete(id).subscribe(
             d => {
-              this.getList();
+              this.getList(this.pageInfo.pageNum);
             }
           );
         }
@@ -61,5 +64,9 @@ export class NotesComponent implements OnInit {
       width: '1278px',
       data: element
     });
+  }
+
+  onPageChange(event: PageEvent) {
+   this.getList(event.pageIndex + 1);
   }
 }

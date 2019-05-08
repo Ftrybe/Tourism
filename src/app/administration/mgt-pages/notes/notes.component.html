@@ -41,4 +41,10 @@
       </mat-table>
     </div>
   </div>
+  <mat-paginator *ngIf="pageInfo" [length]="pageInfo.total"
+                 [pageSize]="pageInfo.pageSize"
+                 [pageSizeOptions]="[5, 10, 25]"
+                  (page)="onPageChange($event)">
+
+  </mat-paginator>
 </mat-drawer-container>
