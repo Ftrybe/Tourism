@@ -2,7 +2,7 @@
   <div class="container">
     <p class="notes-list-title my-3 text-secondary">游记推荐</p>
     <div class="row">
-      <div class="card w-100 border-0">
+      <div class="card w-100 border-0 p-3">
         <div class="note-item text-left" *ngFor="let note of notes">
           <a [routerLink]="['/note/detailed',note.id]" class="note-link">
             <img class="note-img" [src]="note.coverUrl">
@@ -10,7 +10,7 @@
               <div class="note-title pl-2">{{note.title}}</div>
               <div class="note-content pl-2" [innerText]="note.declaration"></div>
               <div class="opts mr-1">
-                <span class="opts-user"><span class="fas fa-user px-1"></span>{{note.userNickname}}</span>
+                <span class="opts-user"><span class="fas fa-user px-1"></span><span class="opts-name">{{note.userNickname}}</span></span>
                 <span class="opts-up"><span class="fas fa-thumbs-up px-1"></span>{{note.praiseCount | numberSimplify}}</span>
                 <span class="opts-star"><span class="fas fa-star px-1"></span>{{note.collectionCount | numberSimplify}}</span>
               </div>
