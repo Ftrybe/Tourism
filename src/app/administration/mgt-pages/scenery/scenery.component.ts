@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
 import {ArticleMapDialogComponent} from '../articles/article-map-dialog/article-map-dialog.component';
 import {SceneryService} from '../../../core/services/scenery.service';
+import {SceneryMapDialogComponent} from './scenery-map-dialog/scenery-map-dialog.component';
 
 @Component({
   selector: 'app-scenery',
@@ -64,7 +65,7 @@ export class SceneryComponent implements OnInit {
    * @param id
    */
   openMapDialog(id) {
-    this.sceneryDialog = this.dialog.open(ArticleMapDialogComponent, {
+    this.sceneryDialog = this.dialog.open(SceneryMapDialogComponent, {
       data: id,
       width: '800px'
     });

@@ -1,6 +1,8 @@
 import {RouterModule, Routes} from '@angular/router';
 import {EndArticleDetailResolverService} from '../../../core/resolver/end/end-article-detail-resolver.service';
 import {SceneryComponent} from './scenery.component';
+import {DetailedComponent} from './detailed/detailed.component';
+
 
 const routes: Routes = [
   {
@@ -8,13 +10,13 @@ const routes: Routes = [
     component: SceneryComponent,
     pathMatch: 'full'
   }, {
-    path: 'food',
-    component: SceneryComponent,
+    path: 'scenery',
+    component: DetailedComponent,
     data: {breadcrumb: '添加景点'}
   },
   {
-    path: 'food/:id',
-    component: SceneryComponent,
+    path: 'scenery/:id',
+    component: DetailedComponent,
     resolve: [
       EndArticleDetailResolverService
     ],

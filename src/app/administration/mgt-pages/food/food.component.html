@@ -8,7 +8,7 @@
 <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center"
              class="px-2 bg-transparent" style="height: 40px;margin-top: -40px">
   <div fxLayout="row">
-    <button mat-icon-button [routerLink]="'./article'">
+    <button mat-icon-button [routerLink]="'./food'">
       <mat-icon>add_circle</mat-icon>
     </button>
   </div>
@@ -16,7 +16,7 @@
 <mat-drawer-container class="page-wrapper">
   <div fxLayout="column" class="p-2">
     <div class="p-2">
-      <mat-table #table [dataSource]="articles" class="mat-elevation-z8">
+      <mat-table #table [dataSource]="foods" class="mat-elevation-z8">
         <ng-container matColumnDef="title">
           <mat-header-cell *matHeaderCellDef> 标题</mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>

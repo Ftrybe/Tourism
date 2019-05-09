@@ -1,6 +1,7 @@
 import {RouterModule, Routes} from '@angular/router';
 import {EndArticleDetailResolverService} from '../../../core/resolver/end/end-article-detail-resolver.service';
 import {FoodComponent} from './food.component';
+import {DetailedComponent} from './detailed/detailed.component';
 
 const routes: Routes = [
   {
@@ -9,12 +10,12 @@ const routes: Routes = [
     pathMatch: 'full'
   }, {
     path: 'food',
-    component: FoodComponent,
+    component: DetailedComponent,
     data: {breadcrumb: '添加美食'}
   },
   {
     path: 'food/:id',
-    component: FoodComponent,
+    component: DetailedComponent,
     resolve: [
       EndArticleDetailResolverService
     ],

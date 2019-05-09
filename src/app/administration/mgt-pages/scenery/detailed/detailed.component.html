@@ -1,3 +1,89 @@
-<p>
-  detailed works!
-</p>
+<app-content-header
+  [icon]="'supervisor_account'"
+  [title]=" '添加景点'"
+  [hideBreadcrumb]="false"
+  [hasBgImage]="true"
+  [class]="'pb-5'"></app-content-header>
+<form [formGroup]="form">
+  <mat-vertical-stepper linear>
+    <mat-step>
+      <ng-template matStepLabel>封面设置</ng-template>
+      <mat-form-field class="w-100">
+        <input matInput placeholder="标题" formControlName="title">
+      </mat-form-field>
+      <label class="label_upload" [ngStyle]="{'background-image': 'url('+ oldCoverImage+')'}"
+             (click)="openCropperDialog()">点击更改图片</label>
+      <div>
+        <button mat-button matStepperNext type="button">下一项</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>简介</ng-template>
+      <mat-form-field class="w-100">
+        <input matInput placeholder="景点名称" formControlName="name">
+      </mat-form-field>
+      <mat-form-field class="w-100">
+        <input matInput placeholder="营业时间" formControlName="businessHours">
+      </mat-form-field>
+      <mat-form-field class="w-100">
+        <input matInput placeholder="费用说明" formControlName="cost">
+      </mat-form-field>
+      <mat-form-field class="w-100">
+        <input matInput placeholder="地址" formControlName="address">
+      </mat-form-field>
+      <mat-form-field class="w-100">
+        <input matInput placeholder="联系方式" formControlName="contact">
+      </mat-form-field>
+      <mat-form-field class="w-100">
+        <mat-select class="w-100" formControlName="topic" placeholder="主题">
+          <mat-option value="FOOD">美食</mat-option>
+          <mat-option value="SCENERY">景点</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="w-100">
+        <textarea matInput placeholder="备注" formControlName="declaration"></textarea>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious type="button">上一项</button>
+        <button mat-button matStepperNext type="button">下一项</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>内容</ng-template>
+      <image-upload
+        id="upload_image" hidden
+        (uploadFinished)="onUploadFinished($event)"
+      ></image-upload>
+      <quill-editor id="quill-editor" [style]="{minHeight:'150px'}" formControlName="content"
+                    (onEditorCreated)="getEditorInstance($event)" placeholder="输入游记内容">
+        <div quill-editor-toolbar>
+          <span class="ql-formats">
+            <button class="ql-bold" [title]="'加粗'"></button>
+          </span>
+          <span class="ql-formats">
+            <button class="ql-header" [value]="'2'" title="大标题"></button>
+          </span>
+          <span class="ql-formats">
+            <button class="ql-list" [value]="'ordered'" title="编号"></button>
+          </span>
+          <span class="ql-formats">
+            <button class="ql-image" title="图片"></button>
+          </span>
+          <span class="ql-formats">
+            <select class="ql-align" [title]="'对齐方式'">
+              <option selected></option>
+              <option value="center"></option>
+              <option value="right"></option>
+              <option value="justify"></option>
+            </select>
+          </span>
+        </div>
+      </quill-editor>
+
+      <div>
+        <button mat-button matStepperPrevious type="button">上一项</button>
+        <button mat-button type="button" (click)="submit()">提交</button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+</form>
