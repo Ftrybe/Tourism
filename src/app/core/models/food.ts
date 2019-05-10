@@ -5,10 +5,9 @@ export class Food {
   declaration: string;
   createTime: Date;
   modifyTime: Date;
-  businessHours: string;
   address: string;
   coverUrl: string;
   state: string;
   cost: string;
-  contact: string;
+  article: string;
 }

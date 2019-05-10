@@ -37,11 +37,10 @@
       padding: 1px;
       text-decoration: none;
 
-      &:hover {
-        .note-overview {
-          background: linear-gradient(to right, #fff, #fff), #e6e6e6;
-          background-clip: content-box, padding-box;
-        }
+      .note-overview {
+        background: linear-gradient(to right, #fff, #fff), #e6e6e67d;
+        border-radius: 0 3px 3px 0;
+        background-clip: content-box, padding-box;
       }
 
       .note-img {
@@ -51,9 +50,9 @@
       .note-overview {
         flex: 1;
         padding: 1px 1px 1px 0;
+        display: flex;
         margin: 8px 0;
         overflow: hidden;
-        position: relative;
 
         .note-title {
           color: #222;
@@ -70,31 +69,32 @@
         .opts {
           color: #6c757d;
           font-size: 10px;
-          position: absolute;
-          bottom: 4px;
-          right: 0;
-          text-indent: .3rem;
-          .opts-user > span{
-            max-width: 6rem;
+          display: flex;
+          text-indent: .2rem;
+
+          .opts-name {
+            max-width: 3rem;
             display: inline-block;
             text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap;
-            height: 12px;
-            line-height: 12px;
-          }
-          .fa {
-            font-weight: 400;
+            vertical-align: bottom;
           }
         }
       }
     }
   }
 
-  @include notes-list(160px, 120px, 17px, 13px, 3rem);
+  @include notes-list(150px, 115px, 17px, 13px, 3rem);
+
+  @media screen and (min-width: 330px) {
+    .opts-name {
+      max-width: 6rem !important;
+    }
+  }
   @include media(md) {
     @include notes-list(330px, 220px, 23px, 14px, 4rem);
-    .opts-user > span{
+    .opts-name {
       max-width: 8rem !important;
     }
   }

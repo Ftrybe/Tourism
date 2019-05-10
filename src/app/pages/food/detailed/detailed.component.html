@@ -13,17 +13,14 @@
       <dl class="row list-horizontal">
         <dt class="col-3">美食名称</dt>
         <dd class="col-9">{{food.name}}</dd>
-        <dt class="col-3">营业时间</dt>
-        <dd class="col-9">{{food.businessHours}}</dd>
         <dt class="col-3">费用说明</dt>
         <dd class="col-9">{{food.cost}}</dd>
         <dt class="col-3">地址</dt>
         <dd class="col-9">{{food.address}}</dd>
-        <dt class="col-3">联系方式</dt>
-        <dd class="col-9">{{food.contact}}</dd>
         <dt class="col-3">备注</dt>
         <dd class="col-9">{{food.declaration}}</dd>
       </dl>
+      <div class="content">{{food.article}}</div>
       <h2>地图</h2>
       <div class="map-warp">
        <baidu-map  class="map" [options]="mapOptions">
@@ -34,7 +31,7 @@
       </div>
     </div>
     <div class="col-lg-3 d-none d-lg-block">
-      <img src="./assets/img/foods/ccyy.jpg" class="img-thumbnail" alt="" (click)="showPreview()">
+      <img  [src]="food.coverUrl" class="img-thumbnail" alt="" (click)="showPreview()">
     </div>
   </div>
 </div>

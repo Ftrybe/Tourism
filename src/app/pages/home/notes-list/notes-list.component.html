@@ -6,13 +6,22 @@
         <div class="note-item text-left" *ngFor="let note of notes">
           <a [routerLink]="['/note/detailed',note.id]" class="note-link">
             <img class="note-img" [src]="note.coverUrl">
-            <div class="note-overview">
+            <div class="note-overview flex-column">
               <div class="note-title pl-2">{{note.title}}</div>
               <div class="note-content pl-2" [innerText]="note.declaration"></div>
-              <div class="opts mr-1">
-                <span class="opts-user"><span class="fas fa-user px-1"></span><span class="opts-name">{{note.userNickname}}</span></span>
-                <span class="opts-up"><span class="fas fa-thumbs-up px-1"></span>{{note.praiseCount | numberSimplify}}</span>
-                <span class="opts-star"><span class="fas fa-star px-1"></span>{{note.collectionCount | numberSimplify}}</span>
+              <div class="opts mt-auto justify-content-end p-1">
+                <span class="opts-user">
+                  <span class="fas fa-user"></span>
+                  <span class="opts-name">{{note.userNickname}}</span>
+                </span>
+                <span class="opts-up">
+                  <span class="fas fa-thumbs-up"></span>
+                  <span class="pl-1">{{note.praiseCount | numberSimplify}}</span>
+                </span>
+                <span class="opts-star">
+                  <span class="fas fa-star"></span>
+                  <span class="pl-1">{{note.collectionCount | numberSimplify}}</span>
+                </span>
               </div>
             </div>
           </a>

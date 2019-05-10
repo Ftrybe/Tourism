@@ -31,7 +31,7 @@ export class HomeContentComponent implements OnInit {
     this.listScenery();
   }
 
-  listScenery() {
+  listFoods() {
     this.foodService.listOfHome().subscribe(
       (data: AjaxResponse<Food[]>) => {
         this.foods = data.data;
@@ -39,7 +39,7 @@ export class HomeContentComponent implements OnInit {
     );
   }
 
-  listFoods() {
+  listScenery() {
     this.sceneryService.listOfHome().subscribe(
       (data: AjaxResponse<Scenery[]>) => {
         this.sceneries = data.data;

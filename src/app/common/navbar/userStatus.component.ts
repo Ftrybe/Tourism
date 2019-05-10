@@ -42,9 +42,9 @@ export class UserStatusComponent implements OnInit, OnDestroy {
             }
             this.cd.detectChanges();
           }
-          this.getNews();
         }
       );
+      this.getNews();
       this.getUser();
     }
   }

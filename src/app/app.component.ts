@@ -28,7 +28,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         while (r.firstChild) {
           r = r.firstChild;
         }
-        r.fragment.pipe(takeLast(1)).subscribe(e => {
+        r.fragment.pipe(take(1)).subscribe(e => {
           if (e) {
             return;
           }

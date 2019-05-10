@@ -51,7 +51,10 @@ export class SceneryService {
     return this.http.put(this.url + 'updateMap', map);
   }
 
-  listOfHome(): Observable<AjaxResponse<Food[]>> {
-    return this.http.get<AjaxResponse<Food[]>>(this.url + 'home');
+  listOfHome(): Observable<AjaxResponse<Scenery[]>> {
+    return this.http.get<AjaxResponse<Scenery[]>>(this.url + 'home');
+  }
+  uploadImage(file: string): any {
+    return this.http.post(this.url + 'uploadImage', file)
   }
 }

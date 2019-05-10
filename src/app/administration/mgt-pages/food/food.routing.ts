@@ -2,6 +2,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {EndArticleDetailResolverService} from '../../../core/resolver/end/end-article-detail-resolver.service';
 import {FoodComponent} from './food.component';
 import {DetailedComponent} from './detailed/detailed.component';
+import {FoodDetailResolverService} from '../../../core/resolver/food-detail-resolver.service';
 
 const routes: Routes = [
   {
@@ -9,17 +10,17 @@ const routes: Routes = [
     component: FoodComponent,
     pathMatch: 'full'
   }, {
-    path: 'food',
+    path: 'add',
     component: DetailedComponent,
     data: {breadcrumb: '添加美食'}
   },
   {
-    path: 'food/:id',
+    path: 'detailed/:id',
     component: DetailedComponent,
     resolve: [
-      EndArticleDetailResolverService
+      FoodDetailResolverService
     ],
-    data: {breadcrumb: '添加美食'}
+    data: {breadcrumb: '修改美食信息'}
   }
 ];
 export const RoutingComponents = [FoodComponent];

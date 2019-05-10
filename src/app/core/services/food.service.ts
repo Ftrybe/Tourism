@@ -53,4 +53,7 @@ export class FoodService {
   listOfHome() {
     return this.http.get(this.url + 'home');
   }
+  uploadImage(file: string): any {
+    return this.http.post(this.url + 'uploadImage', file)
+  }
 }

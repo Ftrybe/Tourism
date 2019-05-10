@@ -4,13 +4,13 @@
 </div>
 <mat-dialog-content class="mh-100" style="padding-bottom: 60px">
 
-  <div class="cmt">
+  <div class="cmt border p-1 bg-light">
     <div class="media">
       <img class="align-self-start mr-3" [src]="comment.userPicture" alt="头像">
       <div class="media-body">
         <h5 class="mt-0" >{{comment.userNickname}}</h5>
           <p>{{comment.content}}</p>
-          <div class="media-footer">
+          <div class="media-footer border-0">
             <div class="fl">
               <span> {{ comment.createTime | dateConvertPass}}</span>
             </div>

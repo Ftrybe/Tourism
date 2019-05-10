@@ -8,6 +8,8 @@ import {MatDialog} from '@angular/material';
 import {DOCUMENT} from '@angular/common';
 import {ImageCropperDialogComponent} from '../../../../dialog/image-cropper-dialog/image-cropper-dialog.component';
 import {FileHolder} from 'angular2-image-upload';
+import {Food} from '../../../../core/models/food';
+import {FoodService} from '../../../../core/services/food.service';
 
 @Component({
   selector: 'app-detailed',
@@ -20,8 +22,7 @@ export class DetailedComponent implements OnInit {
   croppedImage: any = '';
   file: any = '';
   oldCoverImage: string = './assets/img/upload_bg.png';
-  article: Article;
-  top: Topic;
+  food: Food;
   // 上传返回的图片路径
   res_image_url: any;
   // 富文本编辑器配置，添加自定义事件
@@ -29,7 +30,7 @@ export class DetailedComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private articlesService: ArticlesService,
+    private foodService: FoodService,
     private router: Router,
     private route: ActivatedRoute,
     private dialog: MatDialog,
@@ -39,11 +40,8 @@ export class DetailedComponent implements OnInit {
       title: null,
       coverUrl: null,
       name: null,
-      businessHours: null,
       cost: null,
       address: null,
-      contact: null,
-      topic: null,
       declaration: null,
       state: null,
       content: null
@@ -55,7 +53,7 @@ export class DetailedComponent implements OnInit {
       data => {
         if (data[0]) {
           this.form.patchValue(data[0]);
-          this.article = data[0];
+          this.food = data[0];
           this.oldCoverImage = data[0].coverUrl;
         }
       }
@@ -63,21 +61,21 @@ export class DetailedComponent implements OnInit {
   }
 
   submit() {
-    const article: Article = this.form.value as Article;
-    console.log(article.id);
-    if (article.id) {
+    const food: Food = this.form.value as Food;
+    console.log(food.id);
+    if (food.id) {
       this.croppedImage.length > 1 ?
-        article.coverUrl = this.croppedImage : article.coverUrl = this.oldCoverImage;
-      this.articlesService.updateArticle(article).subscribe(
+        food.coverUrl = this.croppedImage : food.coverUrl = this.oldCoverImage;
+      this.foodService.update(food).subscribe(
         data => {
-          this.router.navigate(['/manager/articles']);
+          this.router.navigate(['/manager/food']);
         }
       );
     } else {
-      article.coverUrl = this.croppedImage;
-      this.articlesService.addArticle(article).subscribe(
+      food.coverUrl = this.croppedImage;
+      this.foodService.add(food).subscribe(
         data => {
-          this.router.navigate(['/manager/articles']);
+          this.router.navigate(['/manager/food']);
         }
       );
     }
@@ -114,7 +112,7 @@ export class DetailedComponent implements OnInit {
   }
 
   onUploadFinished(file: FileHolder) {
-    this.articlesService.uploadImage(file.src).subscribe(
+    this.foodService.uploadImage(file.src).subscribe(
       data => {
         if (data) {
           this.res_image_url = data.image_url;

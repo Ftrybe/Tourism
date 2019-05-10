@@ -6,6 +6,7 @@ import {MatDialog} from '@angular/material';
 import {ArticleMapDialogComponent} from '../articles/article-map-dialog/article-map-dialog.component';
 import {SceneryService} from '../../../core/services/scenery.service';
 import {SceneryMapDialogComponent} from './scenery-map-dialog/scenery-map-dialog.component';
+import {ConfirmRequestDialogComponent} from '../../../dialog/confirm-request-dialog/confirm-request-dialog.component';
 
 @Component({
   selector: 'app-scenery',
@@ -28,8 +29,22 @@ export class SceneryComponent implements OnInit {
   }
 
   delete(id: any) {
-
+    const dialogRef = this.dialog.open(ConfirmRequestDialogComponent, {
+      data: '确认删除景点信息？'
+    });
+    dialogRef.afterClosed().subscribe(
+      data => {
+        if (data) {
+          this.sceneryService.delete(id).subscribe(
+            () => {
+              this.getList();
+            }
+          );
+        }
+      }
+    );
   }
+
 
   getList() {
     this.sceneryService.list().subscribe(
@@ -56,7 +71,7 @@ export class SceneryComponent implements OnInit {
   }
 
   jump(id: any) {
-    this.router.navigate(['/manager/articles/article', id]);
+    this.router.navigate(['/manager/scenery/detailed', id]);
   }
 
 

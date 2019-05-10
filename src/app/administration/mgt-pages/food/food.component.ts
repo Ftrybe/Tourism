@@ -7,6 +7,7 @@ import {ArticleMapDialogComponent} from '../articles/article-map-dialog/article-
 import {FoodService} from '../../../core/services/food.service';
 import {Food} from '../../../core/models/food';
 import {FoodMapDialogComponent} from './food-map-dialog/food-map-dialog.component';
+import {ConfirmRequestDialogComponent} from '../../../dialog/confirm-request-dialog/confirm-request-dialog.component';
 
 @Component({
   selector: 'app-food',
@@ -19,8 +20,10 @@ export class FoodComponent implements OnInit {
   articleMap: ArticleMap;
   articleDialog: any;
   foods: Food[];
+
   constructor(private foodService: FoodService,
-              private router: Router, private dialog: MatDialog, private changeRef: ChangeDetectorRef) {
+              private router: Router, private dialog: MatDialog,
+  ) {
   }
 
   ngOnInit() {
@@ -28,15 +31,28 @@ export class FoodComponent implements OnInit {
   }
 
   delete(id: any) {
-
+    const dialogRef = this.dialog.open(ConfirmRequestDialogComponent, {
+      data: '确认删除美食信息？'
+    });
+    dialogRef.afterClosed().subscribe(
+      data => {
+        if (data) {
+          this.foodService.delete(id).subscribe(
+            () => {
+              this.list();
+            }
+          );
+        }
+      }
+    );
   }
 
   list() {
-      this.foodService.list().subscribe(
-        articles => {
-          this.foods = articles;
-        }
-      );
+    this.foodService.list().subscribe(
+      articles => {
+        this.foods = articles;
+      }
+    );
   }
 
   saveMap(data) {
@@ -55,7 +71,7 @@ export class FoodComponent implements OnInit {
   }
 
   jump(id: any) {
-    this.router.navigate(['/manager/articles/article', id]);
+    this.router.navigate(['/manager/food/detailed', id]);
   }
 
 

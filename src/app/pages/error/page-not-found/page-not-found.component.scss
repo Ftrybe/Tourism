@@ -1,0 +1,32 @@
+@keyframes angleWobble {
+  0% {
+    margin: 0;
+    opacity: .7;
+
+  }
+  25% {
+    margin: 0 4px;
+    opacity: .9
+  }
+  50% {
+    margin: 0 8px;
+    opacity: 1
+  }
+  75% {
+    margin: 0 4px;
+    opacity: .9
+  }
+  100% {
+    margin: 0;
+    opacity: .7
+  }
+}
+
+.home-btn {
+  animation-name: angleWobble;
+  animation-duration: 1s;
+  animation-play-state: running;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  cursor: pointer;
+}

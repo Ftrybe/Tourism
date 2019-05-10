@@ -8,6 +8,8 @@ import {MatDialog} from '@angular/material';
 import {DOCUMENT} from '@angular/common';
 import {ImageCropperDialogComponent} from '../../../../dialog/image-cropper-dialog/image-cropper-dialog.component';
 import {FileHolder} from 'angular2-image-upload';
+import {Scenery} from '../../../../core/models/scenery';
+import {SceneryService} from '../../../../core/services/scenery.service';
 
 @Component({
   selector: 'app-detailed',
@@ -20,8 +22,7 @@ export class DetailedComponent implements OnInit {
   croppedImage: any = '';
   file: any = '';
   oldCoverImage: string = './assets/img/upload_bg.png';
-  article: Article;
-  top: Topic;
+  scenery: Scenery;
   // 上传返回的图片路径
   res_image_url: any;
   // 富文本编辑器配置，添加自定义事件
@@ -29,7 +30,7 @@ export class DetailedComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private articlesService: ArticlesService,
+    private sceneryService: SceneryService,
     private router: Router,
     private route: ActivatedRoute,
     private dialog: MatDialog,
@@ -43,7 +44,6 @@ export class DetailedComponent implements OnInit {
       cost: null,
       address: null,
       contact: null,
-      topic: null,
       declaration: null,
       state: null,
       content: null
@@ -55,7 +55,7 @@ export class DetailedComponent implements OnInit {
       data => {
         if (data[0]) {
           this.form.patchValue(data[0]);
-          this.article = data[0];
+          this.scenery = data[0];
           this.oldCoverImage = data[0].coverUrl;
         }
       }
@@ -63,21 +63,21 @@ export class DetailedComponent implements OnInit {
   }
 
   submit() {
-    const article: Article = this.form.value as Article;
-    console.log(article.id);
-    if (article.id) {
+    const scenery: Scenery = this.form.value as Scenery;
+    console.log(scenery.id);
+    if (scenery.id) {
       this.croppedImage.length > 1 ?
-        article.coverUrl = this.croppedImage : article.coverUrl = this.oldCoverImage;
-      this.articlesService.updateArticle(article).subscribe(
+        scenery.coverUrl = this.croppedImage : scenery.coverUrl = this.oldCoverImage;
+      this.sceneryService.update(scenery).subscribe(
         data => {
-          this.router.navigate(['/manager/articles']);
+          this.router.navigate(['/manager/scenery']);
         }
       );
     } else {
-      article.coverUrl = this.croppedImage;
-      this.articlesService.addArticle(article).subscribe(
+      scenery.coverUrl = this.croppedImage;
+      this.sceneryService.add(scenery).subscribe(
         data => {
-          this.router.navigate(['/manager/articles']);
+          this.router.navigate(['/manager/scenery']);
         }
       );
     }
@@ -114,7 +114,7 @@ export class DetailedComponent implements OnInit {
   }
 
   onUploadFinished(file: FileHolder) {
-    this.articlesService.uploadImage(file.src).subscribe(
+    this.sceneryService.uploadImage(file.src).subscribe(
       data => {
         if (data) {
           this.res_image_url = data.image_url;
