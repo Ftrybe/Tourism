@@ -9,7 +9,6 @@ const routes: Routes = [
   {
     path: '', component: PageComponent, children: [
       {path: '', component: HomeContentComponent, data: {title: '罗源游'}},
-      {path: 'index', component: HomeContentComponent, data: {title: '罗源游'}},
       {path: 'scenery', loadChildren: './pages/scenery/scenery.module#SceneryModule', data: {title: '景点推荐'}},
       {path: 'note', loadChildren: './pages/note/note.module#NoteModule', data: {title: '旅游游记'}},
       {path: 'introduction', loadChildren: './pages/introduction/introduction.module#IntroductionModule', data: {title: '罗源湾简介'}},
@@ -23,7 +22,7 @@ const routes: Routes = [
     data: {title: '后台'},
     canActivate: [CanActivateAuthGuard]
   },
-  {path: '**', redirectTo: '/index'}
+  {path: '**', loadChildren: './pages/error/error.module#ErrorModule', data: {title: '页面未找到'}}
 ];
 
 @NgModule({
