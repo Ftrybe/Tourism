@@ -28,10 +28,9 @@ export class NoteReplyService {
       commentId: commentId
       }});
   }
-  getReplyList(fromUserId, commentId) {
+  getReplyList(replyId) {
     return this.http.get(this.url + 'listReply', { params: {
-      commentId: commentId,
-        fromUserId : fromUserId
+      id: replyId,
       }});
   }
 

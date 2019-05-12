@@ -27,9 +27,9 @@ export class PublishComponent implements OnInit {
     );
   }
 
-  deleteNote(id) {
+  deleteNote(id, title) {
     const dialogRef = this.dialog.open(ConfirmRequestDialogComponent, {
-      data: '确认删除？'
+      data: '确认删除游记-> ' + title + '?'
     });
     dialogRef.afterClosed().subscribe(
       state => {
