@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
-import {Scenery} from '../models/scenery';
 import {Observable} from 'rxjs';
 import {ArticleMap} from '../models/article-map';
 import {Food} from '../models/food';
@@ -54,6 +53,6 @@ export class FoodService {
     return this.http.get(this.url + 'home');
   }
   uploadImage(file: string): any {
-    return this.http.post(this.url + 'uploadImage', file)
+    return this.http.post(this.url + 'uploadImage', file);
   }
 }
