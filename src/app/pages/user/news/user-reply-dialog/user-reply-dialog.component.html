@@ -14,7 +14,7 @@
           <span> {{ reply.createTime | dateConvertPass}}</span>
         </div>
         <div class="fr">
-          <span style="cursor: pointer" *ngIf="currentUserId === reply.fromUserId" (click)="delete(reply.id)">删除</span>
+          <span style="cursor: pointer" *ngIf="noteReply.toUserId === reply.fromUserId" (click)="delete(reply.id)">删除</span>
         </div>
       </div>
     </div>

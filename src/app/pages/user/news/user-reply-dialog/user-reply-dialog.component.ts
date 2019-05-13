@@ -50,7 +50,7 @@ export class UserReplyDialogComponent implements OnInit {
   }
 
   getReplyList() {
-    this.replyService.getReplyList(this.noteReply.fromUserId, this.noteReply.commentId).subscribe((data: AjaxResponse<NoteReply[]>) => {
+    this.replyService.getReplyList(this.noteReply.id).subscribe((data: AjaxResponse<NoteReply[]>) => {
       this.replies = data.data;
     });
   }

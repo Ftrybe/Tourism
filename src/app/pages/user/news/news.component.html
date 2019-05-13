@@ -5,7 +5,7 @@
       <ng-template  #readState>
         <span class="r-btn text-white bg-secondary">已读</span>
       </ng-template>
-      <a (click)="getDetailed(reply)" [innerText]="reply.fromUserNickname">
+      <a (click)="getDetailed(reply)">
         {{reply.fromUserNickname}} 回复了你的评论
       </a>
       <div class="ml-auto" style="font-size: 12px">

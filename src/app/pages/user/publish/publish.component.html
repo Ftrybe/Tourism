@@ -4,7 +4,7 @@
                                                                  [innerText]="note.title"></a>
       <div class="ml-auto">
         <a [routerLink]="['/note/modify',note.id]" class="fa fa-pen-square"></a>
-        <a href="javascript:void(0)" (click)="deleteNote(note.id)" class="fa fa-trash mx-2"></a>
+        <a href="javascript:void(0)" (click)="deleteNote(note.id,note.title)" class="fa fa-trash mx-2"></a>
         <a [routerLink]="['/note/detailed',note.id]" class="fa fa-eye"></a></div>
     </li>
   </div>
