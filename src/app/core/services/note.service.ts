@@ -3,12 +3,12 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Note} from 'src/app/core/models/note';
 import {environment} from '../../../environments/environment';
-import {flatMap, map} from 'rxjs/operators';
+import {QuillUploadImageInterface} from '../interface/quill-upload-image.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class NoteService {
+export class NoteService implements QuillUploadImageInterface{
   constructor(private  http: HttpClient) {
   }
 

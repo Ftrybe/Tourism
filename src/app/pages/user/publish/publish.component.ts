@@ -18,6 +18,10 @@ export class PublishComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getList();
+  }
+
+  getList() {
     this.userService.getPublish().subscribe(
       (list: Note[]) => {
         if (list) {
@@ -35,8 +39,8 @@ export class PublishComponent implements OnInit {
       state => {
         if (state) {
           this.noteService.delete(id).subscribe(
-            data => {
-              console.log(data);
+            () => {
+              this.getList();
             }
           );
         }

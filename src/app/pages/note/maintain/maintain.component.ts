@@ -9,8 +9,6 @@ import {UsersService} from '../../../core/services/users.service';
 import {User} from '../../../core/models/user';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Note} from '../../../core/models/note';
-import {ConfirmRequestDialogComponent} from '../../../dialog/confirm-request-dialog/confirm-request-dialog.component';
-import {NoteDeclarationDialogComponent} from '../note-declaration-dialog/note-declaration-dialog.component';
 
 @Component({
   selector: 'app-maintain',
@@ -123,8 +121,9 @@ export class MaintainComponent implements OnInit {
   }
 
   insertToEditor(url: string) {
-    const range = this.quillEditorRef.getSelection();
-    const delta = this.quillEditorRef.insertEmbed(range.index, 'image', `${url}`);
+    const length = this.quillEditorRef.getSelection().index;
+    const delta = this.quillEditorRef.insertEmbed(length, 'image', `${url}`);
+    this.quillEditorRef.setSelection(length + 1);
   }
 
   openCropperDialog() {
@@ -148,7 +147,8 @@ export class MaintainComponent implements OnInit {
   }
 
   openDeclareDialog() {
-    const dialogRef = this.dialog.open(NoteDeclarationDialogComponent, {
+    console.log(this.formModel.get('content').value);
+/*    const dialogRef = this.dialog.open(NoteDeclarationDialogComponent, {
       width: '800px',
       data: this.formModel.get('declaration').value
     });
@@ -171,19 +171,11 @@ export class MaintainComponent implements OnInit {
           }
         }
       }
-    );
+    );*/
   }
 
-  openConfirmDialog() {
-    const dialogRef = this.dialog.open(ConfirmRequestDialogComponent, {
-      data: '是否添加游记简介'
-    });
-    dialogRef.afterClosed().subscribe(
-      data => {
-        if (data) {
-          this.openDeclareDialog();
-        }
-      }
-    );
+  aaa(event: { editor: any; oldRange: Range | null; range: Range | null; source: string | null; html: string }) {
+    console.log(event.editor);
+    console.log(event.html);
   }
 }

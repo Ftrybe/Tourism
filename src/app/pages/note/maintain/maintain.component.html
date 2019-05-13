@@ -13,12 +13,12 @@
     </div>
   </div>
   <div class="container py-3">
-    <image-upload
+<!--    <image-upload
       id="upload_image" hidden
       (uploadFinished)="onUploadFinished($event)"
     ></image-upload>
-    <quill-editor id="quill-editor" [style]="{minHeight:'150px'}" formControlName="content"
-                  (onEditorCreated)="getEditorInstance($event)" placeholder="输入游记内容">
+    <quill-editor id="quill-editor" class="ql-editor" [style]="{minHeight:'150px'}" formControlName="content"
+                  (onEditorCreated)="getEditorInstance($event)" placeholder="输入游记内容" (onContentChanged)="aaa($event)">
       <div quill-editor-toolbar>
           <span class="ql-formats">
             <button class="ql-bold" [title]="'加粗'"></button>
@@ -41,7 +41,8 @@
             </select>
           </span>
       </div>
-    </quill-editor>
+    </quill-editor>-->
+    <app-custom-quill-editor formControlName="content"></app-custom-quill-editor>
     <button class="btn btn-success my-2 p-btn" (click)="publish()">发 表</button>
     <span class="clearfix"></span>
   </div>

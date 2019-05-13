@@ -16,6 +16,8 @@ import {ImageCropperDialogModule} from '../../dialog/image-cropper-dialog/image-
 import {NoteService} from '../../core/services/note.service';
 import {NoteReplyDialogComponent} from './note-reply-dialog/note-reply-dialog.component';
 import {NoteDeclarationDialogComponent} from './note-declaration-dialog/note-declaration-dialog.component';
+import {QuillUploadImageInterface} from '../../core/interface/quill-upload-image.interface';
+import {CustomQuillEditorModule} from '../../common/custom-quill-editor/custom-quill-editor.module';
 
 @NgModule({
   imports: [
@@ -25,8 +27,9 @@ import {NoteDeclarationDialogComponent} from './note-declaration-dialog/note-dec
     FormsModule,
     ReactiveFormsModule,
     CustomMaterialModule,
-    QuillModule,
-    ImageUploadModule.forRoot(),
+/*    QuillModule,
+    ImageUploadModule.forRoot(),*/
+    CustomQuillEditorModule,
     ImageCropperDialogModule
   ],
   declarations: [
