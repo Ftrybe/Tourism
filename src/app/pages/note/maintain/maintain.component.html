@@ -13,36 +13,7 @@
     </div>
   </div>
   <div class="container py-3">
-<!--    <image-upload
-      id="upload_image" hidden
-      (uploadFinished)="onUploadFinished($event)"
-    ></image-upload>
-    <quill-editor id="quill-editor" class="ql-editor" [style]="{minHeight:'150px'}" formControlName="content"
-                  (onEditorCreated)="getEditorInstance($event)" placeholder="输入游记内容" (onContentChanged)="aaa($event)">
-      <div quill-editor-toolbar>
-          <span class="ql-formats">
-            <button class="ql-bold" [title]="'加粗'"></button>
-          </span>
-        <span class="ql-formats">
-            <button class="ql-header" [value]="'2'" title="大标题"></button>
-          </span>
-        <span class="ql-formats">
-            <button class="ql-list" [value]="'ordered'" title="编号"></button>
-          </span>
-        <span class="ql-formats">
-            <button class="ql-image" title="图片"></button>
-          </span>
-        <span class="ql-formats">
-            <select class="ql-align" [title]="'对齐方式'">
-              <option selected></option>
-              <option value="center"></option>
-              <option value="right"></option>
-              <option value="justify"></option>
-            </select>
-          </span>
-      </div>
-    </quill-editor>-->
-    <app-custom-quill-editor formControlName="content"></app-custom-quill-editor>
+    <app-custom-quill-editor formControlName="content" [quillService]="noteService"></app-custom-quill-editor>
     <button class="btn btn-success my-2 p-btn" (click)="publish()">发 表</button>
     <span class="clearfix"></span>
   </div>

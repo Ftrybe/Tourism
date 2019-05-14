@@ -9,6 +9,8 @@ import {UsersService} from '../../../core/services/users.service';
 import {User} from '../../../core/models/user';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Note} from '../../../core/models/note';
+import {$e} from 'codelyzer/angular/styles/chars';
+import {NoteDeclarationDialogComponent} from '../note-declaration-dialog/note-declaration-dialog.component';
 
 @Component({
   selector: 'app-maintain',
@@ -20,12 +22,7 @@ export class MaintainComponent implements OnInit {
   formModel: FormGroup;
   // 裁剪返回图片base64编码
   cover_image_base64: any;
-  old_iamge: any;
-  // coverUrl: any;
-  // 上传返回的图片路径
-  res_image_url: any;
-  // 富文本编辑器配置，添加自定义事件
-  quillEditorRef: any;
+  old_image: any;
   user: User;
   note: Note;
 
@@ -43,7 +40,7 @@ export class MaintainComponent implements OnInit {
       id: null,
       title: ['', Validators.compose([Validators.minLength(3), Validators.maxLength(50)])],
       coverUrl: ['', Validators.required],
-      content: [null, Validators.required],
+      content: ['', Validators.required],
       declaration: ['', Validators.required]
     });
   }
@@ -54,7 +51,7 @@ export class MaintainComponent implements OnInit {
         if (data[0]) {
           this.formModel.patchValue(data[0]);
           this.cover_image_base64 = data[0].coverUrl;
-          this.old_iamge = this.cover_image_base64;
+          this.old_image = this.cover_image_base64;
         }
       }
     );
@@ -81,6 +78,7 @@ export class MaintainComponent implements OnInit {
           this.snackBar.open('更新成功', '关闭', {
             duration: 3000
           });
+          this.router.navigate(['/note/detailed', this.note.id]);
         }
       }
     );
@@ -90,41 +88,12 @@ export class MaintainComponent implements OnInit {
     this.noteService.add(this.formModel.value).subscribe(
       data => {
         if (data) {
-          this.router.navigate(['/note/modify', data]);
+          this.router.navigate(['/note/detailed', data]);
         }
       }
     );
   }
 
-  getEditorInstance(editorInstance: any) {
-    this.quillEditorRef = editorInstance;
-    const toolbar = editorInstance.getModule('toolbar');
-    toolbar.addHandler('image', () => {
-      this.imageHandler();
-    });
-  }
-
-  imageHandler() {
-    const fileUpload: HTMLElement = this.document.querySelector('#upload_image input') as HTMLElement;
-    fileUpload.click();
-  }
-
-  onUploadFinished(file: FileHolder) {
-    this.noteService.uploadImage(file.src).subscribe(
-      data => {
-        if (data) {
-          this.res_image_url = data.image_url;
-          this.insertToEditor(this.res_image_url);
-        }
-      }
-    );
-  }
-
-  insertToEditor(url: string) {
-    const length = this.quillEditorRef.getSelection().index;
-    const delta = this.quillEditorRef.insertEmbed(length, 'image', `${url}`);
-    this.quillEditorRef.setSelection(length + 1);
-  }
 
   openCropperDialog() {
     const dialogRef = this.dialog.open(ImageCropperDialogComponent, {
@@ -142,13 +111,12 @@ export class MaintainComponent implements OnInit {
         this.cover_image_base64 = result;
         return;
       }
-      this.cover_image_base64 = this.old_iamge;
+      this.cover_image_base64 = this.old_image;
     });
   }
 
   openDeclareDialog() {
-    console.log(this.formModel.get('content').value);
-/*    const dialogRef = this.dialog.open(NoteDeclarationDialogComponent, {
+    const dialogRef = this.dialog.open(NoteDeclarationDialogComponent, {
       width: '800px',
       data: this.formModel.get('declaration').value
     });
@@ -156,7 +124,6 @@ export class MaintainComponent implements OnInit {
       data => {
         if (data) {
           this.formModel.get('declaration').setValue(data);
-          this.formModel.get('content').setValue(this.document.querySelector('.ql-editor').innerHTML);
           if (this.formModel.valid) {
             if (this.formModel.get('id').value) {
               this.updateNote();
@@ -171,11 +138,7 @@ export class MaintainComponent implements OnInit {
           }
         }
       }
-    );*/
+    );
   }
 
-  aaa(event: { editor: any; oldRange: Range | null; range: Range | null; source: string | null; html: string }) {
-    console.log(event.editor);
-    console.log(event.html);
-  }
 }

@@ -3,14 +3,15 @@ import { CommonModule } from '@angular/common';
 import { CustomQuillEditorComponent } from './custom-quill-editor.component';
 import {QuillModule} from 'ngx-quill';
 import {ImageUploadModule} from 'angular2-image-upload';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     QuillModule,
     ImageUploadModule.forRoot(),
-    ReactiveFormsModule,
   ],
   declarations: [CustomQuillEditorComponent],
   exports:[CustomQuillEditorComponent]

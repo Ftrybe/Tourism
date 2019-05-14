@@ -11,6 +11,7 @@ import {ImageUploadModule} from 'angular2-image-upload';
 import {ImageCropperDialogModule} from '../../../dialog/image-cropper-dialog/image-cropper-dialog.module';
 import {BaiduMapModule} from 'angular2-baidu-map';
 import {FoodMapDialogComponent} from './food-map-dialog/food-map-dialog.component';
+import {CustomQuillEditorModule} from '../../../common/custom-quill-editor/custom-quill-editor.module';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import {FoodMapDialogComponent} from './food-map-dialog/food-map-dialog.componen
     BaiduMapModule.forRoot({ak: '8F1HxkUfqSGRywCZYdEZqw4DGLX5glk2'}),
     ImageUploadModule,
     FoodRoutes,
+    CustomQuillEditorModule,
   ],
   declarations: [FoodComponent, DetailedComponent, FoodMapDialogComponent],
   entryComponents: [FoodMapDialogComponent]

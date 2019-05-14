@@ -98,32 +98,4 @@ export class DetailedComponent implements OnInit {
     });
   }
 
-  getEditorInstance(editorInstance: any) {
-    this.quillEditorRef = editorInstance;
-    const toolbar = editorInstance.getModule('toolbar');
-    toolbar.addHandler('image', () => {
-      this.imageHandler();
-    });
-  }
-
-  imageHandler() {
-    const fileUpload: HTMLElement = this.document.querySelector('#upload_image input') as HTMLElement;
-    fileUpload.click();
-  }
-
-  onUploadFinished(file: FileHolder) {
-    this.foodService.uploadImage(file.src).subscribe(
-      data => {
-        if (data) {
-          this.res_image_url = data.image_url;
-          this.insertToEditor(this.res_image_url);
-        }
-      }
-    );
-  }
-
-  insertToEditor(url: string) {
-    const range = this.quillEditorRef.getSelection();
-    const delta = this.quillEditorRef.insertEmbed(range.index, 'image', `${url}`);
-  }
 }

@@ -7,16 +7,13 @@ import {DetailedComponent} from './detailed/detailed.component';
 import {CustomMaterialModule} from '../../customMaterial.module';
 import {WINDOW_PROVIDERS} from '../../core/services/window.service';
 import {CommentComponent} from './comment/comment.component';
-import {QuillModule} from 'ngx-quill';
 import {MaintainComponent} from './maintain/maintain.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SearchComponent} from './search/search.component';
-import {ImageUploadModule} from 'angular2-image-upload';
 import {ImageCropperDialogModule} from '../../dialog/image-cropper-dialog/image-cropper-dialog.module';
 import {NoteService} from '../../core/services/note.service';
 import {NoteReplyDialogComponent} from './note-reply-dialog/note-reply-dialog.component';
 import {NoteDeclarationDialogComponent} from './note-declaration-dialog/note-declaration-dialog.component';
-import {QuillUploadImageInterface} from '../../core/interface/quill-upload-image.interface';
 import {CustomQuillEditorModule} from '../../common/custom-quill-editor/custom-quill-editor.module';
 
 @NgModule({
