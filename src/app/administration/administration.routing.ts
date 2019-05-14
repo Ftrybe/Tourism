@@ -1,6 +1,5 @@
 import {Routes, RouterModule, PreloadAllModules} from '@angular/router';
 
-import {ErrorComponent} from './mgt-pages/errors/error/error.component';
 import {PagesComponent} from './mgt-pages/pages.component';
 
 const routes: Routes = [
@@ -18,7 +17,6 @@ const routes: Routes = [
     ]
   },
   {path: 'login', loadChildren: './mgt-pages/login/login.module#LoginModule'},
-  {path: 'error', component: ErrorComponent, data: {breadcrumb: 'Error'}},
 ];
 
 export const AdministrationRoutes = RouterModule.forChild(routes);

@@ -62,6 +62,7 @@ export class DetailedComponent implements OnInit {
       }
     );
     this.getDetailed();
+    this.getMap();
   }
   initMap() {
     this.mapOptions = {
@@ -91,9 +92,9 @@ export class DetailedComponent implements OnInit {
 
   public showWindow({marker, map}: { marker: BMarker; map: BMapInstance }): void {
     map.openInfoWindow(
-      new window.BMap.InfoWindow('地址：浦东南路360号', {
+      new window.BMap.InfoWindow(this.map.address, {
         offset: new window.BMap.Size(0, -30),
-        title: '新上海国际大厦'
+        title: this.map.title
       }),
       marker.getPosition()
     );
@@ -113,8 +114,10 @@ export class DetailedComponent implements OnInit {
 
   getMap() {
     this.sceneryService.getMap(this.scenery.id).subscribe(data => {
+      if (data){
+        console.log(data);
       this.map = data;
-      console.log(data);
+      };
     });
   }
 }

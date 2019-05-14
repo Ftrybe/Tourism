@@ -1,6 +1,6 @@
-import {Component, Inject, Input, OnInit, Output} from '@angular/core';
+import {Component, forwardRef, Inject, Input, OnInit, Output} from '@angular/core';
 import {FileHolder} from 'angular2-image-upload';
-import {ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {AbstractControl, ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {NoteService} from '../../core/services/note.service';
 import {DOCUMENT} from '@angular/common';
 import {QuillUploadImageInterface} from '../../core/interface/quill-upload-image.interface';
@@ -11,7 +11,7 @@ import {QuillUploadImageInterface} from '../../core/interface/quill-upload-image
   templateUrl: './custom-quill-editor.component.html',
   styleUrls: ['./custom-quill-editor.component.scss'],
   providers: [
-    {provide: NG_VALUE_ACCESSOR, useExisting: CustomQuillEditorComponent, multi: true}
+    {provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => CustomQuillEditorComponent), multi: true}
   ]
 })
 export class CustomQuillEditorComponent implements OnInit, ControlValueAccessor {
@@ -19,13 +19,16 @@ export class CustomQuillEditorComponent implements OnInit, ControlValueAccessor 
   res_image_url: any;
   // 富文本编辑器配置，添加自定义事件
   quillEditorRef: any;
-  formModel: FormGroup;
+
   @Input() quillService: QuillUploadImageInterface;
+  data: any;
+  formModel: FormGroup;
+  propagateChange: any = () => { };
 
   // 上传按钮
-  constructor(private fb: FormBuilder,
-              private noteService: NoteService,
-              @Inject(DOCUMENT) private document: Document) {
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private fb: FormBuilder) {
     this.formModel = fb.group({
       content: []
     });
@@ -64,28 +67,22 @@ export class CustomQuillEditorComponent implements OnInit, ControlValueAccessor 
     this.quillEditorRef.setSelection(length + 1);
   }
 
-  contentChange($event: { content: any; delta: any; editor: any; html: string | null; oldDelta: any; source: string; text: string }) {
-    this.formModel.get('content').setValue($event.html);
+  contentChange(event: { content: any; delta: any; editor: any; html: string | null; oldDelta: any; source: string; text: string }) {
+   this.propagateChange(event.html);
   }
 
+
   registerOnChange(fn: any): void {
-    console.log('registerOnChange' + fn);
+    this.propagateChange = fn;
 
   }
 
   registerOnTouched(fn: any): void {
-    console.log('registerOnChange' + fn);
 
   }
 
-  setDisabledState(isDisabled: boolean): void {
-    console.log('registerOnChange' + isDisabled);
 
-  }
-
-  writeValue(obj: any): void {
-    if (obj) {
-      this.formModel.setValue(obj);
-    }
+  writeValue(value: any): void {
+    this.formModel.get('content').setValue(value);
   }
 }

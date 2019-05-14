@@ -24,10 +24,9 @@ export class NoteComponent implements OnInit {
   }
 
   @HostListener('window:scroll')
-  @debounce(200)
+  @debounce(400)
   public onWindowScroll(): void {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-      // Load Your Data Here
       this.getList(this.pageNum + 1);
     }
   }

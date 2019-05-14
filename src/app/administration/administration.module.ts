@@ -7,7 +7,6 @@ import {OverlayContainer} from '@angular/cdk/overlay';
 import {PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface, PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 import {AppSettings} from './app.settings';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {ErrorComponent} from './mgt-pages/errors/error/error.component';
 import {PagesComponent} from './mgt-pages/pages.component';
 import {SharedModule} from './shared/shared.module';
 import {HorizontalMenuComponent} from './theme/components/menu/horizontal-menu/horizontal-menu.component';
@@ -39,7 +38,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   ],
   declarations: [
     AdministrationComponent,
-    ErrorComponent,
     PagesComponent,
     SidenavComponent,
     VerticalMenuComponent,

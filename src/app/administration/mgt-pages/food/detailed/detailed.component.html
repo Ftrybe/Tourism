@@ -38,36 +38,7 @@
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>内容</ng-template>
-      <image-upload
-        id="upload_image" hidden
-        (uploadFinished)="onUploadFinished($event)"
-      ></image-upload>
-      <quill-editor id="quill-editor" [style]="{minHeight:'150px'}" formControlName="content"
-                    (onEditorCreated)="getEditorInstance($event)" placeholder="输入游记内容">
-        <div quill-editor-toolbar>
-          <span class="ql-formats">
-            <button class="ql-bold" [title]="'加粗'"></button>
-          </span>
-          <span class="ql-formats">
-            <button class="ql-header" [value]="'2'" title="大标题"></button>
-          </span>
-          <span class="ql-formats">
-            <button class="ql-list" [value]="'ordered'" title="编号"></button>
-          </span>
-          <span class="ql-formats">
-            <button class="ql-image" title="图片"></button>
-          </span>
-          <span class="ql-formats">
-            <select class="ql-align" [title]="'对齐方式'">
-              <option selected></option>
-              <option value="center"></option>
-              <option value="right"></option>
-              <option value="justify"></option>
-            </select>
-          </span>
-        </div>
-      </quill-editor>
-
+      <app-custom-quill-editor [quillService]="foodService" formControlName="content"></app-custom-quill-editor>
       <div>
         <button mat-button matStepperPrevious type="button">上一项</button>
         <button mat-button type="button" (click)="submit()">提交</button>

@@ -15,6 +15,11 @@
     <div class="row">
       <div class="col-12 col-lg-9 content-warp">
         <div class="control">
+          <div class="fl">
+            <span [matTooltip]="'修改时间：' + (note.modifyTime||note.createTime | date:'yyyy年MM月d日')" matTooltipPosition="above">
+              发表时间：{{note.createTime | date:'yyyy年MM月d日'}}
+            </span>
+          </div>
           <div class="fr">
             <a href="javascript:void(0)"><i class="fa fa-thumbs-up" [class.active]="isPraise"
                                             (click)="praise(note.id)"></i>点赞 {{note.praiseCount ? note.praiseCount:0 }}</a>

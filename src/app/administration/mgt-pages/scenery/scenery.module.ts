@@ -11,6 +11,7 @@ import {ImageUploadModule} from 'angular2-image-upload';
 import {ImageCropperDialogModule} from '../../../dialog/image-cropper-dialog/image-cropper-dialog.module';
 import {BaiduMapModule} from 'angular2-baidu-map';
 import {SceneryMapDialogComponent} from './scenery-map-dialog/scenery-map-dialog.component';
+import {CustomQuillEditorModule} from '../../../common/custom-quill-editor/custom-quill-editor.module';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import {SceneryMapDialogComponent} from './scenery-map-dialog/scenery-map-dialog
     ImageCropperDialogModule,
     BaiduMapModule.forRoot({ak: '8F1HxkUfqSGRywCZYdEZqw4DGLX5glk2'}),
     ImageUploadModule,
-    SceneryRoutes
+    SceneryRoutes,
+    CustomQuillEditorModule
   ],
   declarations: [SceneryComponent, DetailedComponent, SceneryMapDialogComponent],
   entryComponents: [SceneryMapDialogComponent]
