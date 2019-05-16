@@ -3,7 +3,7 @@
     <div class="note-head">
       <app-search (search)="search($event)"></app-search>
     </div>
-    <div class="warp" #warp>
+    <div class="warp" >
       <div class="item"  *ngFor="let note of notes">
         <a [routerLink]="['./detailed',note.id]">
           <mat-card class="note-card">

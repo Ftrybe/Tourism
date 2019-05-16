@@ -23,7 +23,7 @@ export class PageComponent implements OnInit {
   }
 
   public scrollEvent() {
-    const target = this.document.documentElement.scrollTop;
+    const target = this.document.documentElement.scrollTop || this.document.body.scrollTop;
     target > 360 ? this.render.setStyle(this.backToTop.nativeElement, 'display', 'flex')
       : this.render.setStyle(this.backToTop.nativeElement, 'display', 'none');
   }

@@ -12,10 +12,7 @@ import {PageHelper} from '../../core/models/page-helper';
 })
 export class NoteComponent implements OnInit {
   // 辣鸡代码！
-  @ViewChild('warp')
-  warp: ElementRef;
   public notes: Note[] = [];
-  public oWrap;
   pageNum: number = 1;
   hasNextPage: boolean;
 
@@ -32,7 +29,6 @@ export class NoteComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.oWrap = this.warp.nativeElement;
     this.getList(1);
   }
 

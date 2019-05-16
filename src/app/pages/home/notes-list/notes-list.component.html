@@ -2,8 +2,8 @@
   <div class="container">
     <p class="notes-list-title my-3 text-secondary">游记推荐</p>
     <div class="row">
-      <div class="card w-100 border-0 p-3">
-        <div class="note-item text-left my-2" *ngFor="let note of notes">
+      <div class="w-100 border-0 p-3">
+        <div class="card note-item text-left my-3" *ngFor="let note of notes">
           <a [routerLink]="['/note/detailed',note.id]" class="note-link">
             <img class="note-img" [src]="note.coverUrl">
             <div class="note-overview flex-column">
