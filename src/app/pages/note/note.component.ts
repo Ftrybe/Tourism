@@ -20,7 +20,7 @@ export class NoteComponent implements OnInit {
   hasNextPage: boolean;
 
   constructor(private render: Renderer2, private changeDetectorRef: ChangeDetectorRef,
-              private noteService: NoteService) {
+              public noteService: NoteService) {
   }
 
   @HostListener('window:scroll')

@@ -30,7 +30,7 @@ export class DetailedComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private foodService: FoodService,
+    public foodService: FoodService,
     private router: Router,
     private route: ActivatedRoute,
     private dialog: MatDialog,

@@ -43,15 +43,10 @@
         background-clip: content-box, padding-box;
       }
 
-      .note-img {
-        padding: 8px 0;
-      }
-
       .note-overview {
         flex: 1;
         padding: 1px 1px 1px 0;
         display: flex;
-        margin: 8px 0;
         overflow: hidden;
 
         .note-title {
@@ -89,7 +84,7 @@
 
   @media screen and (min-width: 330px) {
     .opts-name {
-      max-width: 6rem !important;
+      max-width: 5rem !important;
     }
   }
   @include media(md) {

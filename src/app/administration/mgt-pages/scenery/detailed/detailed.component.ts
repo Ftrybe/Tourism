@@ -1,13 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {Article} from '../../../../core/models/article';
-import {Topic} from '../../../../core/models/topic';
-import {ArticlesService} from '../../../../core/services/articles.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
 import {DOCUMENT} from '@angular/common';
 import {ImageCropperDialogComponent} from '../../../../dialog/image-cropper-dialog/image-cropper-dialog.component';
-import {FileHolder} from 'angular2-image-upload';
 import {Scenery} from '../../../../core/models/scenery';
 import {SceneryService} from '../../../../core/services/scenery.service';
 
@@ -23,14 +19,10 @@ export class DetailedComponent implements OnInit {
   file: any = '';
   oldCoverImage: string = './assets/img/upload_bg.png';
   scenery: Scenery;
-  // 上传返回的图片路径
-  res_image_url: any;
-  // 富文本编辑器配置，添加自定义事件
-  quillEditorRef: any;
 
   constructor(
     private fb: FormBuilder,
-    private sceneryService: SceneryService,
+    public sceneryService: SceneryService,
     private router: Router,
     private route: ActivatedRoute,
     private dialog: MatDialog,
@@ -100,32 +92,4 @@ export class DetailedComponent implements OnInit {
     });
   }
 
-  getEditorInstance(editorInstance: any) {
-    this.quillEditorRef = editorInstance;
-    const toolbar = editorInstance.getModule('toolbar');
-    toolbar.addHandler('image', () => {
-      this.imageHandler();
-    });
-  }
-
-  imageHandler() {
-    const fileUpload: HTMLElement = this.document.querySelector('#upload_image input') as HTMLElement;
-    fileUpload.click();
-  }
-
-  onUploadFinished(file: FileHolder) {
-    this.sceneryService.uploadImage(file.src).subscribe(
-      data => {
-        if (data) {
-          this.res_image_url = data.image_url;
-          this.insertToEditor(this.res_image_url);
-        }
-      }
-    );
-  }
-
-  insertToEditor(url: string) {
-    const range = this.quillEditorRef.getSelection();
-    const delta = this.quillEditorRef.insertEmbed(range.index, 'image', `${url}`);
-  }
 }

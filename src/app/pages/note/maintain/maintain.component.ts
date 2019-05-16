@@ -28,7 +28,7 @@ export class MaintainComponent implements OnInit {
 
   // 上传按钮
   constructor(private fb: FormBuilder,
-              private noteService: NoteService,
+              public noteService: NoteService,
               @Inject(DOCUMENT) private document: Document,
               private dialog: MatDialog,
               private userService: UsersService,
@@ -78,7 +78,7 @@ export class MaintainComponent implements OnInit {
           this.snackBar.open('更新成功', '关闭', {
             duration: 3000
           });
-          this.router.navigate(['/note/detailed', this.note.id]);
+          this.router.navigate(['/note/detailed', this.formModel.get('id').value]);
         }
       }
     );
