@@ -15,7 +15,7 @@ export class UsersService {
   url = `${environment.apiUrl}/users/`;
   auth = `${environment.apiUrl}/auth/`;
   // 刷新资料
-  @Output() change: EventEmitter<boolean> = new EventEmitter();
+  @Output() change: EventEmitter<User> = new EventEmitter();
 
   refreshInfo(user) {
     this.change.emit(user);

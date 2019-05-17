@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {
   Animation,
   BMapInstance,
@@ -19,6 +19,8 @@ import {SceneryService} from '../../../core/services/scenery.service';
 import {ActivatedRoute} from '@angular/router';
 import {Scenery} from '../../../core/models/scenery';
 import {ArticleMap} from '../../../core/models/article-map';
+import {forkJoin, Observable, pipe} from 'rxjs';
+import {flatMap, map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-detailed',
@@ -28,17 +30,18 @@ import {ArticleMap} from '../../../core/models/article-map';
 export class DetailedComponent implements OnInit {
 
   mapOptions: MapOptions;
-  public markers: Array<{ point: Point; options?: MarkerOptions }>;
+  markers: Array<{ point: Point; options?: MarkerOptions }>;
   controlOpts: NavigationControlOptions;
   geolocationOpts: GeolocationControlOptions;
   banner: any;
   scenery: Scenery;
-  map: ArticleMap = new ArticleMap();
+  map: ArticleMap;
 
   constructor(private previewDialog: FilePreviewOverlayService,
               private bannerService: BannerService,
               private sceneryService: SceneryService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private change: ChangeDetectorRef) {
     this.controlOpts = {
       anchor: ControlAnchor.BMAP_ANCHOR_TOP_LEFT,      // 显示的控件的位置
       type: NavigationControlType.BMAP_NAVIGATION_CONTROL_LARGE,   // 用来描述它是什么样的导航
@@ -53,17 +56,17 @@ export class DetailedComponent implements OnInit {
 
 
   ngOnInit() {
-    this.map.lng = 119.556407;
-    this.map.lat = 26.495357;
-    this.initMap();
+    this.getDetailed();
+   // this.defaultMapOpts();
+    this.getMap();
+    // this.initMap();
     this.bannerService.getBanner(Topic.SCRENERY).subscribe(
       data => {
         this.banner = data;
       }
     );
-    this.getDetailed();
-    this.getMap();
   }
+
   initMap() {
     this.mapOptions = {
       centerAndZoom: {
@@ -76,6 +79,7 @@ export class DetailedComponent implements OnInit {
     };
     this.getMarker();
   }
+
   getMarker() {
     this.markers = [
       {
@@ -86,6 +90,7 @@ export class DetailedComponent implements OnInit {
       }
     ];
   }
+
   public setAnimation(marker: BMarker): void {
     marker.setAnimation(Animation.BMAP_ANIMATION_BOUNCE);
   }
@@ -113,11 +118,23 @@ export class DetailedComponent implements OnInit {
   }
 
   getMap() {
-    this.sceneryService.getMap(this.scenery.id).subscribe(data => {
-      if (data){
-        console.log(data);
-      this.map = data;
-      };
+    this.sceneryService.getMap(this.scenery.id).subscribe((data: ArticleMap) => {
+      if (data) {
+        this.map = new ArticleMap();
+        this.map = data;
+      } else {
+        this.defaultMapOpts();
+      }
+      this.initMap();
     });
   }
+
+  defaultMapOpts() {
+    this.map = new ArticleMap();
+    this.map.lng = 119.556407;
+    this.map.lat = 26.495357;
+    this.map.title = '管理员未设置，请联系管理员';
+    this.map.address = '管理员未设置，请联系管理员';
+  }
+
 }

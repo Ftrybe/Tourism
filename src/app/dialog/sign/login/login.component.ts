@@ -41,9 +41,8 @@ export class LoginComponent implements OnInit {
       if (result) {
         // this.userService.decodeToken();
         this.loginState.emit(true);
-        this.userService.getSelf().subscribe();
+       // this.userService.getSelf().subscribe();
         this.dialog.getDialogById('signDialog').close();
-        this.loginService.unsubscribe();
       } else {
         this.isValid = true;
         setTimeout(() => {
