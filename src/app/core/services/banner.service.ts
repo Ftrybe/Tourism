@@ -29,7 +29,6 @@ export class BannerService {
   delete(id: number) {
     return this.http.delete(this.url + 'delete/' + id).pipe(
       catchError((err) => {
-        console.log(err);
         return of(false);
       })
     );

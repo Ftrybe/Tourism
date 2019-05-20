@@ -1,9 +1,7 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ArticleMap} from '../../../core/models/article-map';
-import {ArticlesService} from '../../../core/services/articles.service';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
-import {ArticleMapDialogComponent} from '../articles/article-map-dialog/article-map-dialog.component';
 import {FoodService} from '../../../core/services/food.service';
 import {Food} from '../../../core/models/food';
 import {FoodMapDialogComponent} from './food-map-dialog/food-map-dialog.component';
@@ -61,7 +59,6 @@ export class FoodComponent implements OnInit {
         if (data) {
           return;
         }
-        console.log('1');
       }
     );
   }

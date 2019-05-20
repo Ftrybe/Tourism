@@ -5,7 +5,7 @@
     <marker [point]="markers[0].point" (loaded)="setAnimation($event)"></marker>
   </baidu-map>
 
-  <mat-form-field class="example-full-width">
+  <mat-form-field class="w-100">
     <input type="text" placeholder="请输入大致位置" aria-label="String" matInput
            [(ngModel)]="address" [matAutocomplete]="auto" (ngModelChange)="valueChange()" >
     <mat-autocomplete #auto="matAutocomplete" >

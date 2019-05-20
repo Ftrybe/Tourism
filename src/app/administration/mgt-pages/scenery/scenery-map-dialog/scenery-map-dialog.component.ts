@@ -38,7 +38,6 @@ export class SceneryMapDialogComponent implements OnInit {
         if (articleMap) {
           this.map = articleMap;
           this.initMap();
-          //  this.changeRef.detectChanges();
         }
       }
     );

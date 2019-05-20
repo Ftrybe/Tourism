@@ -30,16 +30,11 @@ export class NotesComponent implements OnInit {
     this.noteService.getList(pageNum).subscribe(
       (data: AjaxResponse<PageHelper<Note>>) => {
         if (data) {
-          console.log(data);
           this.pageInfo = data.data;
           this.notes = data.data.list;
         }
       }
     );
-  }
-
-  openUserDialog(param) {
-
   }
 
   delete(id: any) {

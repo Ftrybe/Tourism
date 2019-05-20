@@ -17,7 +17,6 @@ export class NoteDialogComponent implements OnInit {
   ngOnInit() {
     this.noteService.getNote(this.note.id).subscribe(
       data => {
-        console.log(data);
         this.note = data;
       }
     );
