@@ -1,9 +1,7 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ArticleMap} from '../../../core/models/article-map';
-import {ArticlesService} from '../../../core/services/articles.service';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
-import {ArticleMapDialogComponent} from '../articles/article-map-dialog/article-map-dialog.component';
 import {SceneryService} from '../../../core/services/scenery.service';
 import {SceneryMapDialogComponent} from './scenery-map-dialog/scenery-map-dialog.component';
 import {ConfirmRequestDialogComponent} from '../../../dialog/confirm-request-dialog/confirm-request-dialog.component';
@@ -49,7 +47,6 @@ export class SceneryComponent implements OnInit {
   getList() {
     this.sceneryService.list().subscribe(
       articles => {
-        console.log(articles);
         this.sceneries = articles;
       }
     );
@@ -61,7 +58,6 @@ export class SceneryComponent implements OnInit {
         if (data) {
           return;
         }
-        console.log('1');
       }
     );
   }

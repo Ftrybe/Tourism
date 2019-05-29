@@ -56,7 +56,6 @@ export class DetailedComponent implements OnInit {
 
   submit() {
     const scenery: Scenery = this.form.value as Scenery;
-    console.log(scenery.id);
     if (scenery.id) {
       this.croppedImage.length > 1 ?
         scenery.coverUrl = this.croppedImage : scenery.coverUrl = this.oldCoverImage;

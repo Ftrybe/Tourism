@@ -38,7 +38,6 @@ export class FoodMapDialogComponent implements OnInit {
         if (articleMap) {
           this.map = articleMap;
           this.initMap();
-          //  this.changeRef.detectChanges();
         }
       }
     );
@@ -83,6 +82,7 @@ export class FoodMapDialogComponent implements OnInit {
     this.baiduService.getSuggestion(this.address).subscribe(
       data => {
         this.options = data.result;
+        console.log(data);
       }
     );
   }
@@ -91,6 +91,7 @@ export class FoodMapDialogComponent implements OnInit {
     if (option.uid !== '') {
       this.map.lat = option.location.lat;
       this.map.lng = option.location.lng;
+      this.map.title = option.name;
       this.initMap();
       this.changeRef.detectChanges();
     }

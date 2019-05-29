@@ -55,7 +55,6 @@ export class DetailedComponent implements OnInit {
 
   submit() {
     const food: Food = this.form.value as Food;
-    console.log(food.id);
     if (food.id) {
       this.croppedImage.length > 1 ?
         food.coverUrl = this.croppedImage : food.coverUrl = this.oldCoverImage;

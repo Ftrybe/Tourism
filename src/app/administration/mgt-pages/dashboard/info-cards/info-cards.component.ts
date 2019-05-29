@@ -31,7 +31,6 @@ export class InfoCardsComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   public onSelect(event) {
-    console.log(event);
   }
 
 
