@@ -21,7 +21,6 @@ export class HomeContentComponent implements OnInit {
   }
 
   ngOnInit() {
-    const data: Date = new Date();
     this.bannerService.getBanner(Topic.HOME).subscribe(
       (data) => {
         this.banner = data;

@@ -6,7 +6,6 @@ import { DetailedComponent } from './detailed/detailed.component';
 import {ShareModule} from '../../share.module';
 import {BaiduMapModule} from 'angular2-baidu-map';
 import {CustomMaterialModule} from '../../customMaterial.module';
-import { FoodItemComponent } from './food-item/food-item.component';
 
 @NgModule({
   imports: [
@@ -16,6 +15,6 @@ import { FoodItemComponent } from './food-item/food-item.component';
     CustomMaterialModule,
     BaiduMapModule.forRoot({ak: '8F1HxkUfqSGRywCZYdEZqw4DGLX5glk2'})
   ],
-  declarations: [FoodComponent, DetailedComponent, FoodItemComponent]
+  declarations: [FoodComponent, DetailedComponent]
 })
 export class FoodModule { }

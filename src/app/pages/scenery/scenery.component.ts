@@ -1,7 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {ArticlesService} from '../../core/services/articles.service';
-import {Topic} from '../../core/models/topic';
-import {Article} from '../../core/models/article';
+import {Component, OnInit} from '@angular/core';
 import {SceneryService} from '../../core/services/scenery.service';
 import {Scenery} from '../../core/models/scenery';
 

@@ -7,6 +7,7 @@ import {JwtHelperService} from '@auth0/angular-jwt';
 import {User} from '../models/user';
 import {AuthorityName} from '../models/authority-name.enum';
 import {Constant} from '../models/constant';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,14 @@ export class UsersService {
   // 刷新资料
   @Output() change: EventEmitter<User> = new EventEmitter();
 
+  @Output() loginState: EventEmitter<boolean> = new EventEmitter();
+
   refreshInfo(user) {
     this.change.emit(user);
+  }
+
+  changeLoginState(isLogin) {
+    this.loginState.emit(isLogin);
   }
 
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {

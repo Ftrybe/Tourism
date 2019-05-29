@@ -7,7 +7,7 @@ import {FooterComponent} from './common/footer/footer.component';
 import {NavbarComponent} from './common/navbar/navbar.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SignComponent} from './dialog/sign';
-import {HttpClientJsonpModule, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientJsonpModule, HttpClientModule} from '@angular/common/http';
 import {HasRoleDirective} from './core/directive/has-role.directive';
 import {CustomMaterialModule} from './customMaterial.module';
 import {UserStatusComponent} from './common/navbar/userStatus.component';
@@ -20,6 +20,9 @@ import {BackToTopDirective} from './core/directive/back-to-top.directive';
 import {JWT_OPTIONS, JwtModule} from '@auth0/angular-jwt';
 import {TokenService} from './core/services/token.service';
 import {ImageCropperModule} from 'ngx-image-cropper';
+import {Router} from '@angular/router';
+import {AuthInterceptor} from './core/interceptors/auth.interceptors';
+import {MatDialog, MatDialogModule} from '@angular/material';
 
 export function jwtOptionsFactory(tokenService) {
   return {
@@ -74,7 +77,15 @@ export function jwtOptionsFactory(tokenService) {
     [
       Title,
       WINDOW_PROVIDERS,
-      TokenService
+      TokenService,
+      {
+        provide: HTTP_INTERCEPTORS,
+        useFactory: function(dialog: MatDialog) {
+          return new AuthInterceptor(dialog);
+        },
+        multi: true,
+        deps: [MatDialog]
+      },
     ],
   bootstrap:
     [

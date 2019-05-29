@@ -38,7 +38,7 @@ export class FoodService {
   }
 
   getMap(id): Observable<ArticleMap> {
-    return this.http.get<ArticleMap>(this.url + 'getMap', {params: {sceneryId: id}});
+    return this.http.get<ArticleMap>(this.url + 'getMap', {params: {foodId: id}});
   }
 
   saveMap(map: any) {

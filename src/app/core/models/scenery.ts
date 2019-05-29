@@ -11,4 +11,5 @@ export class Scenery {
   state: string;
   cost: string;
   contact: string;
+  content: string;
 }

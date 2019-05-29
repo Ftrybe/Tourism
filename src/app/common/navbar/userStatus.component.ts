@@ -81,13 +81,6 @@ export class UserStatusComponent implements OnInit, OnDestroy {
       this.dialogRef.afterClosed().subscribe(result => {
         this.dialogRef = '';
       });
-      // 获取子组件传来得登录状态
-      this.dialog.getDialogById('signDialog').componentInstance.isLogin.subscribe(status => {
-        if (status) {
-          this.isLogin = status;
-          this.getUser();
-        }
-      });
     }
   }
 

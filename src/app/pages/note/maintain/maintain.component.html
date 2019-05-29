@@ -1,20 +1,30 @@
-<form [formGroup]="formModel">
-  <div class="maintain"
-       [ngStyle]="this.cover_image_base64?{'background-image':'url('+this.cover_image_base64+')'} : null">
-    <div class="header text-center">
-      <textarea class="t-title" type="text" placeholder="在这里输入标题" formControlName="title" maxlength="50"></textarea>
-      <label class="upload_bg_btn" (click)="openCropperDialog()">点击更改背景</label>
-      <div class="fr">
-        <div class="avatar">
-          <img class="" [src]="user ? user.picture: ''">
+
+  <div>
+    <form [formGroup]="formModel">
+      <div class="maintain"
+           [ngStyle]="this.cover_image_base64?{'background-image':'url('+this.cover_image_base64+')'} : null">
+        <div class="header text-center">
+          <textarea class="t-title" type="text" placeholder="在这里输入标题" formControlName="title" maxlength="50"></textarea>
+          <label class="upload_bg_btn" (click)="openCropperDialog()">点击更改背景</label>
+          <div class="fr">
+            <div class="avatar">
+              <img class="" [src]="user ? user.picture: ''">
+            </div>
+            <div class="name" [innerText]="user? user.nickname: ''"></div>
+          </div>
         </div>
-        <div class="name" [innerText]="user? user.nickname: ''"></div>
       </div>
-    </div>
+      <div class="container py-3">
+        <div class="row">
+          <div class="col-12 col-lg-9 ">
+          <app-custom-quill-editor formControlName="content" [quillService]="noteService"></app-custom-quill-editor>
+          <button class="btn btn-success my-2 p-btn" (click)="publish()">发 表</button>
+          <span class="clearfix"></span>
+          </div>
+          <div class="col-lg-3">
+
+          </div>
+        </div>
+      </div>
+    </form>
   </div>
-  <div class="container py-3">
-    <app-custom-quill-editor formControlName="content" [quillService]="noteService"></app-custom-quill-editor>
-    <button class="btn btn-success my-2 p-btn" (click)="publish()">发 表</button>
-    <span class="clearfix"></span>
-  </div>
-</form>

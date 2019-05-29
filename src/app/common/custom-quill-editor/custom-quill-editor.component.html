@@ -5,7 +5,7 @@
     (uploadFinished)="onUploadFinished($event)"
   ></image-upload>
   <quill-editor id="quill-editor" class="ql-editor" [style]="{minHeight:'150px'}" formControlName="content"
-                (onEditorCreated)="getEditorInstance($event)" placeholder="输入游记内容"
+                (onEditorCreated)="getEditorInstance($event)" placeholder="请输入内容"
                 (onContentChanged)="contentChange($event)">
     <div quill-editor-toolbar>
           <span class="ql-formats">

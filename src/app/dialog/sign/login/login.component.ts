@@ -13,8 +13,6 @@ import {UsersService} from '../../../core/services/users.service';
 export class LoginComponent implements OnInit {
   // 登录数据模块
   formModel: FormGroup;
-  @Output()
-  loginState = new EventEmitter();
   loginService;
   // 登录失败提示
   isValid: boolean;
@@ -40,7 +38,8 @@ export class LoginComponent implements OnInit {
     this.loginService = this.userService.login(this.formModel.value).subscribe(result => {
       if (result) {
         // this.userService.decodeToken();
-        this.loginState.emit(true);
+       // this.loginState.emit(true);
+        this.userService.changeLoginState(true);
        // this.userService.getSelf().subscribe();
         this.dialog.getDialogById('signDialog').close();
       } else {

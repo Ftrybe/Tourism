@@ -170,20 +170,6 @@ i {
 
   .content {
     padding: 0 16px;
-
-    ::ng-deep {
-      img {
-        max-width: 100%;
-        padding: 0 8px;
-        display: block;
-        margin: 0 auto;
-      }
-
-      p {
-        font-size: 16px;
-        line-height: 32px;
-      }
-    }
   }
 
   .content-warp {
@@ -194,13 +180,16 @@ i {
     position: relative;
     height: 20px;
     margin-bottom: 16px;
-    .fl{
+
+    .fl {
       padding-left: 16px;
-      span{
+
+      span {
         font-size: 12px;
         color: #848884;
       }
     }
+
     .fr {
       position: absolute;
       right: 0;
@@ -256,7 +245,23 @@ i {
   }
 }
 
-::ng-deep .anchor {
-  padding-top: 64px !important;
-  margin-top: -64px !important;
+::ng-deep {
+  .anchor {
+
+    padding-top: 64px !important;
+    margin-top: -64px !important;
+  }
+
+  .note-body {
+    img {
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 32px;
+    }
+  }
 }

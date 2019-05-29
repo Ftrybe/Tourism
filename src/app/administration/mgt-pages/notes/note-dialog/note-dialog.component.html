@@ -1,5 +1,7 @@
-<h1>游记</h1>
-<mat-dialog-content>
+<div class="fixed-top pl-3 btn-back">
+  <mat-icon (click)="closeDialog()">keyboard_return</mat-icon>
+</div>
+<mat-dialog-content class="mh-100">
   <ng-container *ngIf="note">
     <div class="maintain"
          [ngStyle]="note.coverUrl?{'background-image':'url('+note.coverUrl+')'} : null">
@@ -18,9 +20,17 @@
         <div class="row">
           <div class="col-12 content-warp">
             <div class="control">
-              <div class="fr">
-                <a href="javascript:void(0)"><i class="fa fa-thumbs-up" ></i>点赞 {{note.praiseCount ? note.praiseCount:0 }}</a>
-                <a href="javascript:void(0)"><i class="fa fa-star"></i>收藏 {{note.collectionCount ? note.collectionCount:0 }}</a>
+              <div class="fl">
+               <span [matTooltip]="'修改时间：' + (note.modifyTime||note.createTime | date:'yyyy年MM月d日')"
+                  matTooltipPosition="above">
+              发表时间：{{note.createTime | date:'yyyy年MM月d日'}}
+               </span>
+              </div>
+              <div class="fr d-none d-md-block">
+                <a href="javascript:void(0)"><i
+                  class="fa fa-thumbs-up"></i>点赞 {{note.praiseCount ? note.praiseCount : 0 }}</a>
+                <a href="javascript:void(0)"><i
+                  class="fa fa-star"></i>收藏 {{note.collectionCount ? note.collectionCount : 0 }}</a>
               </div>
             </div>
             <div class="content">
@@ -35,5 +45,4 @@
       </div>
     </div>
   </ng-container>
-
 </mat-dialog-content>

@@ -88,7 +88,7 @@ export class MaintainComponent implements OnInit {
     this.noteService.add(this.formModel.value).subscribe(
       data => {
         if (data) {
-          this.router.navigate(['/note/detailed', data]);
+          this.router.navigate(['/note/detailed', data.id]);
         }
       }
     );

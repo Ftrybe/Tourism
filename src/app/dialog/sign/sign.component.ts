@@ -14,10 +14,6 @@ export class SignComponent implements OnInit {
   ngOnInit() {
     this.index = 0;
   }
-
-  onLogin(arg: boolean) {
-    this.isLogin.emit(true);
-  }
   changeIndexEvent(data){
     this.index = data;
   }

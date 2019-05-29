@@ -1,13 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {Article} from '../../../../core/models/article';
-import {Topic} from '../../../../core/models/topic';
-import {ArticlesService} from '../../../../core/services/articles.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
 import {DOCUMENT} from '@angular/common';
 import {ImageCropperDialogComponent} from '../../../../dialog/image-cropper-dialog/image-cropper-dialog.component';
-import {FileHolder} from 'angular2-image-upload';
 import {Food} from '../../../../core/models/food';
 import {FoodService} from '../../../../core/services/food.service';
 
@@ -23,10 +19,7 @@ export class DetailedComponent implements OnInit {
   file: any = '';
   oldCoverImage: string = './assets/img/upload_bg.png';
   food: Food;
-  // 上传返回的图片路径
-  res_image_url: any;
-  // 富文本编辑器配置，添加自定义事件
-  quillEditorRef: any;
+
 
   constructor(
     private fb: FormBuilder,

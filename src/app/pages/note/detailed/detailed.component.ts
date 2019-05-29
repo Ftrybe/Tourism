@@ -102,8 +102,11 @@ export class DetailedComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   getAnchor(id) {
-   // this.window.location.hash = '';
-    this.window.location.hash = id;
+    this.window.location.hash = ' ';
+    setTimeout(() => {
+      this.window.location.hash = id;
+    }, 1);
+
   }
 
   getSelfPraiseState(noteId) {

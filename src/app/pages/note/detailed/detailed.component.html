@@ -20,7 +20,7 @@
               发表时间：{{note.createTime | date:'yyyy年MM月d日'}}
             </span>
           </div>
-          <div class="fr">
+          <div class="fr d-none d-md-block">
             <a href="javascript:void(0)"><i class="fa fa-thumbs-up" [class.active]="isPraise"
                                             (click)="praise(note.id)"></i>点赞 {{note.praiseCount ? note.praiseCount:0 }}</a>
             <a href="javascript:void(0)"><i class="fa fa-star" [class.active]="isCollection"

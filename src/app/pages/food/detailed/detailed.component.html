@@ -20,14 +20,16 @@
         <dt class="col-3">备注</dt>
         <dd class="col-9">{{food.declaration}}</dd>
       </dl>
-      <div class="content">{{food.article}}</div>
+      <div class="content" [innerHTML]="food.content"></div>
       <h2>地图</h2>
       <div class="map-warp">
-       <baidu-map  class="map" [options]="mapOptions">
-         <marker [point]="markers[0].point"  (clicked)="showWindow($event)" (loaded)="setAnimation($event)"></marker>
-         <control type="navigation" [options]="controlOpts"></control>
-         <control type="geolocation" [options]="geolocationOpts"></control>
-       </baidu-map>
+        <ng-container *ngIf="map">
+          <baidu-map  class="map" [options]="mapOptions" >
+            <marker [point]="markers[0].point"  (clicked)="showWindow($event)" (loaded)="setAnimation($event)"></marker>
+            <control type="navigation" [options]="controlOpts"></control>
+            <control type="geolocation" [options]="geolocationOpts"></control>
+          </baidu-map>
+        </ng-container>
       </div>
     </div>
     <div class="col-lg-3 d-none d-lg-block">

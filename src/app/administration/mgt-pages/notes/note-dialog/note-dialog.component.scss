@@ -169,8 +169,6 @@ i {
   }
 
   .content {
-    padding: 0 16px;
-
     ::ng-deep {
       img {
         max-width: 100%;
@@ -193,6 +191,15 @@ i {
     position: relative;
     height: 20px;
     margin-bottom: 16px;
+
+    .fl {
+      padding-left: 16px;
+
+      span {
+        font-size: 12px;
+        color: #848884;
+      }
+    }
 
     .fr {
       position: absolute;
@@ -238,5 +245,10 @@ i {
     &:hover {
       color: rgba(128, 143, 157, 0.93);
     }
+  }
+}
+.btn-back{
+  @media screen and (min-width: 1280px) {
+    display: none;
   }
 }

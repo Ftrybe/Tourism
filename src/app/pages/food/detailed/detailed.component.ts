@@ -17,6 +17,8 @@ import {BannerService} from '../../../core/services/banner.service';
 import {Topic} from '../../../core/models/topic';
 import {ActivatedRoute} from '@angular/router';
 import {Food} from '../../../core/models/food';
+import {ArticleMap} from '../../../core/models/article-map';
+import {FoodService} from '../../../core/services/food.service';
 
 @Component({
   selector: 'app-detailed',
@@ -30,19 +32,13 @@ export class DetailedComponent implements OnInit {
   controlOpts: NavigationControlOptions;
   geolocationOpts: GeolocationControlOptions;
   banner: any;
+  map: ArticleMap;
 
   constructor(
     private previewDialog: FilePreviewOverlayService,
     private bannerService: BannerService,
+    private foodService: FoodService,
     private route: ActivatedRoute) {
-    this.mapOptions = {
-      centerAndZoom: {
-        lat: 26.4896,
-        lng: 119.5498,
-        zoom: 16
-      },
-      enableKeyboard: true
-    };
     this.controlOpts = {
       anchor: ControlAnchor.BMAP_ANCHOR_TOP_LEFT,      // 显示的控件的位置
       type: NavigationControlType.BMAP_NAVIGATION_CONTROL_LARGE,   // 用来描述它是什么样的导航
@@ -53,24 +49,17 @@ export class DetailedComponent implements OnInit {
       showZoomInfo: true,                             // 是否展示当前的信息
       enableGeolocation: true                         // 是否启用地理定位功能
     };
-    this.markers = [
-      {
-        point: {
-          lat: 26.4896,
-          lng: 119.5498,
-        }
-      }
-    ];
   }
 
 
   ngOnInit() {
+    this.getDetailed();
+    this.getMap();
     this.bannerService.getBanner(Topic.FOOD).subscribe(
       data => {
         this.banner = data;
       }
     );
-    this.getDetailed();
   }
 
   public setAnimation(marker: BMarker): void {
@@ -79,9 +68,9 @@ export class DetailedComponent implements OnInit {
 
   public showWindow({marker, map}: { marker: BMarker; map: BMapInstance }): void {
     map.openInfoWindow(
-      new window.BMap.InfoWindow('地址：浦东南路360号', {
+      new window.BMap.InfoWindow(this.map.address, {
         offset: new window.BMap.Size(0, -30),
-        title: '新上海国际大厦'
+        title: this.map.title
       }),
       marker.getPosition()
     );
@@ -97,4 +86,47 @@ export class DetailedComponent implements OnInit {
       }
     );
   }
+  initMap() {
+    this.mapOptions = {
+      centerAndZoom: {
+        lat: this.map.lat,
+        lng: this.map.lng,
+        zoom: 14
+      },
+      enableKeyboard: true,
+      enableScrollWheelZoom: true
+    };
+    this.getMarker();
+  }
+
+  getMarker() {
+    this.markers = [
+      {
+        point: {
+          lat: this.map.lat,
+          lng: this.map.lng,
+        }
+      }
+    ];
+  }
+  getMap() {
+    this.foodService.getMap(this.food.id).subscribe((data: ArticleMap) => {
+      if (data) {
+        this.map = new ArticleMap();
+        this.map = data;
+      } else {
+        this.defaultMapOpts();
+      }
+      this.initMap();
+    });
+  }
+
+  defaultMapOpts() {
+    this.map = new ArticleMap();
+    this.map.lng = 119.556407;
+    this.map.lat = 26.495357;
+    this.map.title = '管理员未设置，请联系管理员';
+    this.map.address = '管理员未设置，请联系管理员';
+  }
+
 }

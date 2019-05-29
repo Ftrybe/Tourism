@@ -30,16 +30,11 @@ export class NotesComponent implements OnInit {
     this.noteService.getList(pageNum).subscribe(
       (data: AjaxResponse<PageHelper<Note>>) => {
         if (data) {
-          console.log(data);
           this.pageInfo = data.data;
           this.notes = data.data.list;
         }
       }
     );
-  }
-
-  openUserDialog(param) {
-
   }
 
   delete(id: any) {
@@ -50,7 +45,7 @@ export class NotesComponent implements OnInit {
       data => {
         if (data) {
           this.noteService.delete(id).subscribe(
-            d => {
+            () => {
               this.getList(this.pageInfo.pageNum);
             }
           );
@@ -62,6 +57,7 @@ export class NotesComponent implements OnInit {
   openDialog(element: any) {
     this.dialog.open(NoteDialogComponent, {
       width: '1278px',
+      panelClass: 'full-width',
       data: element
     });
   }

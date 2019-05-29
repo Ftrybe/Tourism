@@ -28,12 +28,13 @@ export class AppComponent implements OnInit, AfterViewInit {
         while (r.firstChild) {
           r = r.firstChild;
         }
-        r.fragment.pipe(take(1)).subscribe(e => {
-          if (e) {
-            return;
-          }
-          window.scroll(0, 0);
-        });
+
+          r.fragment.pipe(take(1)).subscribe(e => {
+            if (e) {
+              return;
+            }
+            window.scroll(0, 0);
+          });
         return r;
       }),
       filter(r => r.outlet === 'primary'),

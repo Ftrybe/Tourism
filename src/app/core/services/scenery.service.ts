@@ -5,7 +5,6 @@ import {Scenery} from '../models/scenery';
 import {Observable} from 'rxjs';
 import {ArticleMap} from '../models/article-map';
 import {AjaxResponse} from '../models/ajax-response';
-import {Food} from '../models/food';
 @Injectable({
   providedIn: 'root'
 })
@@ -55,6 +54,6 @@ export class SceneryService {
     return this.http.get<AjaxResponse<Scenery[]>>(this.url + 'home');
   }
   uploadImage(file: string): any {
-    return this.http.post(this.url + 'uploadImage', file)
+    return this.http.post(this.url + 'uploadImage', file);
   }
 }

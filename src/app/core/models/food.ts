@@ -9,5 +9,5 @@ export class Food {
   coverUrl: string;
   state: string;
   cost: string;
-  article: string;
+  content: string;
 }

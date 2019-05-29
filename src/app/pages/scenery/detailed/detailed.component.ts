@@ -19,8 +19,6 @@ import {SceneryService} from '../../../core/services/scenery.service';
 import {ActivatedRoute} from '@angular/router';
 import {Scenery} from '../../../core/models/scenery';
 import {ArticleMap} from '../../../core/models/article-map';
-import {forkJoin, Observable, pipe} from 'rxjs';
-import {flatMap, map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-detailed',
@@ -57,9 +55,7 @@ export class DetailedComponent implements OnInit {
 
   ngOnInit() {
     this.getDetailed();
-   // this.defaultMapOpts();
     this.getMap();
-    // this.initMap();
     this.bannerService.getBanner(Topic.SCRENERY).subscribe(
       data => {
         this.banner = data;

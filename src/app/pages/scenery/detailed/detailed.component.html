@@ -24,6 +24,7 @@
         <dt class="col-3">备注</dt>
         <dd class="col-9">{{scenery.declaration}}</dd>
       </dl>
+      <div class="content" [innerHTML]="scenery.content"></div>
       <h2>地图</h2>
       <div class="map-warp">
       <ng-container *ngIf="map">
