@@ -1,7 +1,7 @@
-import {Component, ElementRef, HostListener, Inject, OnInit, Renderer2, ViewChild} from '@angular/core';
-import {DOCUMENT} from '@angular/common';
-import {debounce} from '../core/directive/debounce';
-
+import { Component, ElementRef, HostListener, Inject, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { debounce } from '../core/directive/debounce';
+import { from } from 'rxjs';
 @Component({
   selector: 'app-page',
   templateUrl: './page.component.html',
@@ -12,15 +12,14 @@ export class PageComponent implements OnInit {
   @ViewChild('main') main: ElementRef;
 
   constructor(private render: Renderer2,
-              @Inject(DOCUMENT) private document: Document) {
+    @Inject(DOCUMENT) private document: Document) {
   }
-
   // @debouce 防抖
   @HostListener('window:scroll', [''])
-  @debounce()
-  public windScrolled() {
-    this.scrollEvent();
-  }
+    @debounce()
+    public windScrolled() {
+      this.scrollEvent();
+    }
 
   public scrollEvent() {
     const target = this.document.documentElement.scrollTop || this.document.body.scrollTop;

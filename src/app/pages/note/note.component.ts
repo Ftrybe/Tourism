@@ -1,9 +1,9 @@
-import {ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild} from '@angular/core';
-import {debounce} from '../../core/directive/debounce';
-import {NoteService} from '../../core/services/note.service';
-import {Note} from '../../core/models/note';
-import {AjaxResponse} from '../../core/models/ajax-response';
-import {PageHelper} from '../../core/models/page-helper';
+import { ChangeDetectorRef, Component, HostListener, OnInit } from '@angular/core';
+import { debounce } from '../../core/directive/debounce';
+import { AjaxResponse } from '../../core/models/ajax-response';
+import { Note } from '../../core/models/note';
+import { PageHelper } from '../../core/models/page-helper';
+import { NoteService } from '../../core/services/note.service';
 
 @Component({
   selector: 'app-note',
@@ -16,8 +16,7 @@ export class NoteComponent implements OnInit {
   pageNum: number = 1;
   hasNextPage: boolean;
 
-  constructor(private render: Renderer2, private changeDetectorRef: ChangeDetectorRef,
-              public noteService: NoteService) {
+  constructor(public noteService: NoteService) {
   }
 
   @HostListener('window:scroll')
@@ -29,7 +28,8 @@ export class NoteComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getList(1);
+    console.log(this.notes);
+    //this.getList(1);
   }
 
   getList(page) {
@@ -44,6 +44,8 @@ export class NoteComponent implements OnInit {
 
   search(note: Note[]) {
     this.notes = note;
-    this.changeDetectorRef.detectChanges();
+  }
+  show(){
+    console.log(this.notes);
   }
 }
